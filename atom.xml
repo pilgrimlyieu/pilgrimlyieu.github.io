@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Shrine</title>
+  
+  <subtitle>Fesmoph&#39;s Blog</subtitle>
+  <link href="https://pilgrimlyieu.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://pilgrimlyieu.github.io/"/>
+  <updated>2024-02-08T12:07:53.000Z</updated>
+  <id>https://pilgrimlyieu.github.io/</id>
+  
+  <author>
+    <name>Lyieu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的偶像观</title>
+    <link href="https://pilgrimlyieu.github.io/2024/02/views-of-idols/"/>
+    <id>https://pilgrimlyieu.github.io/2024/02/views-of-idols/</id>
+    <published>2024-02-08T10:52:14.000Z</published>
+    <updated>2024-02-08T12:07:53.000Z</updated>
+    
+    
+    <summary type="html">借「梅西香港行」事件，谈谈我的偶像观</summary>
+    
+    
+    
+    <category term="随记" scheme="https://pilgrimlyieu.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
+    
+    
+    <category term="随记" scheme="https://pilgrimlyieu.github.io/tags/%E9%9A%8F%E8%AE%B0/"/>
+    
+    <category term="偶像" scheme="https://pilgrimlyieu.github.io/tags/%E5%81%B6%E5%83%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2024 寒假时间规划表</title>
+    <link href="https://pilgrimlyieu.github.io/2024/01/winter-holiday-timetable/"/>
+    <id>https://pilgrimlyieu.github.io/2024/01/winter-holiday-timetable/</id>
+    <published>2024-01-14T01:44:27.000Z</published>
+    <updated>2024-02-04T15:35:44.000Z</updated>
+    
+    
+    <summary type="html">2024 寒假时间规划表</summary>
+    
+    
+    
+    
+    <category term="寒假" scheme="https://pilgrimlyieu.github.io/tags/%E5%AF%92%E5%81%87/"/>
+    
+    <category term="时间表" scheme="https://pilgrimlyieu.github.io/tags/%E6%97%B6%E9%97%B4%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023 年终回顾</title>
+    <link href="https://pilgrimlyieu.github.io/2023/12/2023-review/"/>
+    <id>https://pilgrimlyieu.github.io/2023/12/2023-review/</id>
+    <published>2023-12-31T12:08:20.000Z</published>
+    <updated>2024-01-01T14:37:49.000Z</updated>
+    
+    
+    <summary type="html">2023 年终回顾与 2024 寒假展望</summary>
+    
+    
+    
+    <category term="年终总结" scheme="https://pilgrimlyieu.github.io/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="展望" scheme="https://pilgrimlyieu.github.io/categories/%E5%B1%95%E6%9C%9B/"/>
+    
+    
+    <category term="年终总结" scheme="https://pilgrimlyieu.github.io/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="展望" scheme="https://pilgrimlyieu.github.io/tags/%E5%B1%95%E6%9C%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023-11-23 杂记</title>
+    <link href="https://pilgrimlyieu.github.io/2023/11/interruption/"/>
+    <id>https://pilgrimlyieu.github.io/2023/11/interruption/</id>
+    <published>2023-11-23T11:32:30.000Z</published>
+    <updated>2023-11-27T01:11:54.000Z</updated>
+    
+    
+    <summary type="html">2023 年 11 月 23 日杂记</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>再见了，我可爱的 jk</title>
+    <link href="https://pilgrimlyieu.github.io/2023/10/goodbye-jk/"/>
+    <id>https://pilgrimlyieu.github.io/2023/10/goodbye-jk/</id>
+    <published>2023-10-28T07:24:38.000Z</published>
+    <updated>2023-10-29T02:42:04.000Z</updated>
+    
+    
+    <summary type="html">原谅我，是我抛弃你的，因为我怕我忘不了你。</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="双拼" scheme="https://pilgrimlyieu.github.io/tags/%E5%8F%8C%E6%8B%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为中华之崛起而读书</title>
+    <link href="https://pilgrimlyieu.github.io/2023/10/study-for-the-rise-of-China/"/>
+    <id>https://pilgrimlyieu.github.io/2023/10/study-for-the-rise-of-China/</id>
+    <published>2023-10-27T14:22:40.000Z</published>
+    <updated>2023-10-27T14:22:40.000Z</updated>
+    
+    
+    <summary type="html">为中华之崛起而读书。</summary>
+    
+    
+    
+    <category term="随记" scheme="https://pilgrimlyieu.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
+    
+    
+    <category term="随记" scheme="https://pilgrimlyieu.github.io/tags/%E9%9A%8F%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Grief</title>
+    <link href="https://pilgrimlyieu.github.io/2023/10/grief/"/>
+    <id>https://pilgrimlyieu.github.io/2023/10/grief/</id>
+    <published>2023-10-20T07:23:50.000Z</published>
+    <updated>2023-12-06T01:37:08.000Z</updated>
+    
+    
+    <summary type="html">自怨自艾，莫名的悲伤，以及近况。</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023 年 10 月 16 日第六周总结</title>
+    <link href="https://pilgrimlyieu.github.io/2023/10/presentation/"/>
+    <id>https://pilgrimlyieu.github.io/2023/10/presentation/</id>
+    <published>2023-10-16T14:06:58.000Z</published>
+    <updated>2023-10-17T10:01:05.000Z</updated>
+    
+    
+    <summary type="html">本篇博文总结了我忙碌的第六周。</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="总结" scheme="https://pilgrimlyieu.github.io/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「记」类型的区分 &amp; 2023 年 10 月 2 日杂记</title>
+    <link href="https://pilgrimlyieu.github.io/2023/10/zaji/"/>
+    <id>https://pilgrimlyieu.github.io/2023/10/zaji/</id>
+    <published>2023-10-02T12:35:52.000Z</published>
+    <updated>2023-10-05T14:01:24.000Z</updated>
+    
+    
+    <summary type="html">本篇博文区分了几种「记」，并额外介绍了近日动向。</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大学第一周总结 &amp; 杂记</title>
+    <link href="https://pilgrimlyieu.github.io/2023/09/first-week-summary/"/>
+    <id>https://pilgrimlyieu.github.io/2023/09/first-week-summary/</id>
+    <published>2023-09-17T11:26:04.000Z</published>
+    <updated>2023-09-18T01:17:10.000Z</updated>
+    
+    
+    <summary type="html">本篇博文总结了我大学的第一个学习周，同时随便记录一些杂事。</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/categories/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/tags/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AutoHotkey 脚本 OCRC 介绍</title>
+    <link href="https://pilgrimlyieu.github.io/2023/09/ocrc/"/>
+    <id>https://pilgrimlyieu.github.io/2023/09/ocrc/</id>
+    <published>2023-09-05T11:39:55.000Z</published>
+    <updated>2023-11-02T13:17:35.000Z</updated>
+    
+    
+    <summary type="html">本篇博文介绍了我的一个 AutoHotkey 项目 OCRC。</summary>
+    
+    
+    
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/categories/AutoHotkey/"/>
+    
+    
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>南京之旅</title>
+    <link href="https://pilgrimlyieu.github.io/2023/09/nanjing/"/>
+    <id>https://pilgrimlyieu.github.io/2023/09/nanjing/</id>
+    <published>2023-09-02T09:40:49.000Z</published>
+    <updated>2023-12-06T01:37:31.000Z</updated>
+    
+    
+    <summary type="html">本篇博文介绍了我前往南京上大学的旅途。</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/categories/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/tags/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023-08-28 杂记</title>
+    <link href="https://pilgrimlyieu.github.io/2023/08/zaji/"/>
+    <id>https://pilgrimlyieu.github.io/2023/08/zaji/</id>
+    <published>2023-08-27T16:06:43.000Z</published>
+    <updated>2023-09-26T09:55:34.000Z</updated>
+    
+    
+    <summary type="html">2023 年 8 月 28 日杂记</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="Hexo" scheme="https://pilgrimlyieu.github.io/tags/Hexo/"/>
+    
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="GitHub" scheme="https://pilgrimlyieu.github.io/tags/GitHub/"/>
+    
+    <category term="JetBrains" scheme="https://pilgrimlyieu.github.io/tags/JetBrains/"/>
+    
+    <category term="Outlook" scheme="https://pilgrimlyieu.github.io/tags/Outlook/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AutoHotkey 脚本重构小记</title>
+    <link href="https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/"/>
+    <id>https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/</id>
+    <published>2023-08-26T08:13:10.000Z</published>
+    <updated>2023-08-28T04:31:49.000Z</updated>
+    
+    
+    <summary type="html">本篇博文简单介绍了我 AutoHotkey 脚本重构过程中遇到的一些坑及我对两个版本语法的看法。</summary>
+    
+    
+    
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/categories/AutoHotkey/"/>
+    
+    
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023-08-26 杂记 &amp; 南京大学邮箱设置</title>
+    <link href="https://pilgrimlyieu.github.io/2023/08/nju-email/"/>
+    <id>https://pilgrimlyieu.github.io/2023/08/nju-email/</id>
+    <published>2023-08-25T13:47:27.000Z</published>
+    <updated>2023-08-25T16:06:40.000Z</updated>
+    
+    
+    <summary type="html">本篇博文简单记录了我最近动向，并介绍了我南京大学邮箱的客户端设置，利用 IMAP 服务使用 Outlook 收发邮件。</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/categories/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/tags/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
+    
+    <category term="邮箱" scheme="https://pilgrimlyieu.github.io/tags/%E9%82%AE%E7%AE%B1/"/>
+    
+  </entry>
+  
+</feed>

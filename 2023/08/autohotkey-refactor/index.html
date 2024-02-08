@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon.svg">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pilgrimlyieu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500,"threshold":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本篇博文简单介绍了我 AutoHotkey 脚本重构过程中遇到的一些坑及我对两个版本语法的看法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoHotkey 脚本重构小记">
+<meta property="og:url" content="https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/index.html">
+<meta property="og:site_name" content="Shrine">
+<meta property="og:description" content="本篇博文简单介绍了我 AutoHotkey 脚本重构过程中遇到的一些坑及我对两个版本语法的看法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-26T08:13:10.000Z">
+<meta property="article:modified_time" content="2023-08-28T04:31:49.000Z">
+<meta property="article:author" content="Lyieu">
+<meta property="article:tag" content="AutoHotkey">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/","path":"2023/08/autohotkey-refactor/","title":"AutoHotkey 脚本重构小记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AutoHotkey 脚本重构小记 | Shrine</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-comments-virid.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.admonition{font-size:.96em;margin:1.5625em 0;padding:.6rem;overflow:visible;page-break-inside:avoid;border-left:.3rem solid;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);line-height:1.8}.admonition>:last-child{margin-bottom:0!important}.admonition-title::before{position:absolute;top:1rem;left:1rem;width:16px;height:16px;border-radius:100%;content:" "}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;line-height:2}.admonition.note,.admonition.question,.admonition.success{border-color:#42b983}.note>.admonition-title::before,.question>.admonition-title::before,.success>.admonition-title::before{background-color:#42b983}.note>.admonition-title,.question>.admonition-title,.success>.admonition-title{background-color:rgba(66,185,131,.4)}.admonition.info,.admonition.todo{border-color:#00b8d4}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.4)}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.4)}.admonition.bug,.admonition.danger,.admonition.error,.admonition.failure,.admonition.missing{border-color:#ff5252}.bug>.admonition-title::before,.danger>.admonition-title::before,.error>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252}.bug>.admonition-title,.danger>.admonition-title,.error>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.4)}.admonition.example{border-color:#903dcc}.example>.admonition-title::before{background-color:#903dcc}.example>.admonition-title{background-color:rgba(144,61,204,.4)}.admonition.quote{border-color:#aaa}.quote>.admonition-title::before{background-color:#aaa}.quote>.admonition-title{background-color:rgba(170,170,170,.4)}.admonition.abstract,.admonition.tip{border-color:#448aff}.abstract>.admonition-title::before,.tip>.admonition-title::before{background-color:#448aff}.abstract>.admonition-title,.tip>.admonition-title{background-color:rgba(68,138,255,.4)}.admonition.memo,.admonition.sheet{border-color:#c3a210}.memo>.admonition-title::before,.sheet>.admonition-title::before{background-color:#c3a210}.memo>.admonition-title,.sheet>.admonition-title{background-color:rgba(195,162,16,.4)}@media (prefers-color-scheme:light){.admonition{background-color:#eee}.admonition.test{border-color:#283747}.test>.admonition-title::before{background-color:#283747}.test>.admonition-title{background-color:rgba(40,55,71,.4)}}@media (prefers-color-scheme:dark){.admonition{background-color:#444}.admonition.test{border-color:#f2f3f4}.test>.admonition-title::before{background-color:#f2f3f4}.test>.admonition-title{background-color:rgba(242,243,244,.4)}}</style><link rel="alternate" href="/atom.xml" title="Shrine" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shrine</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Fesmoph's Blog</p>
+      <img class="custom-logo-image" src="/images/logo/logo.svg" alt="Shrine">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">74</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-list-ul fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-folder-open fa-fw"></i>归档<span class="badge">29</span></a></li><li class="menu-item menu-item-记事"><a href="/daily/" rel="section"><i class="fa fa-clipboard-list fa-fw"></i>记事</a></li><li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-scroll fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PR"><span class="nav-number">1.</span> <span class="nav-text">PR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MouseHand"><span class="nav-number">3.1.</span> <span class="nav-text">MouseHand</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SlideWindows"><span class="nav-number">3.2.</span> <span class="nav-text">SlideWindows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vark"><span class="nav-number">3.3.</span> <span class="nav-text">Vark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OCRC"><span class="nav-number">3.4.</span> <span class="nav-text">OCRC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%BA%93"><span class="nav-number">3.4.1.</span> <span class="nav-text">基本库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mathpix-%E5%BA%93"><span class="nav-number">3.4.2.</span> <span class="nav-text">Mathpix 库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Baidu-%E5%BA%93"><span class="nav-number">3.4.3.</span> <span class="nav-text">Baidu 库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.4.4.</span> <span class="nav-text">主程序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91"><span class="nav-number">4.</span> <span class="nav-text">踩坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%98%E9%87%8F%E4%B8%8D%E5%8F%AF%E4%BD%BF%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">未初始化变量不可使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8F%98%E9%87%8F%E4%B8%8D%E5%86%8D%E5%8F%AF%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">动态变量不再可用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FileInstall"><span class="nav-number">4.3.</span> <span class="nav-text">FileInstall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GuiObj-CtrlObj"><span class="nav-number">4.4.</span> <span class="nav-text">GuiObj &amp; CtrlObj</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ObjBindMethod"><span class="nav-number">4.5.</span> <span class="nav-text">ObjBindMethod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">4.6.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E5%A4%A7%E5%B0%8F"><span class="nav-number">4.7.</span> <span class="nav-text">比大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThisHotkey"><span class="nav-number">4.8.</span> <span class="nav-text">ThisHotkey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI-%E6%8E%A7%E4%BB%B6"><span class="nav-number">4.9.</span> <span class="nav-text">GUI 控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%92%E5%8F%B7"><span class="nav-number">4.10.</span> <span class="nav-text">冒号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E7%BB%AD%E8%A1%8C"><span class="nav-number">5.1.</span> <span class="nav-text">延续行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">5.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ErrorLevel"><span class="nav-number">5.3.</span> <span class="nav-text">ErrorLevel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%96%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">5.4.</span> <span class="nav-text">胖箭头函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC"><span class="nav-number">5.5.</span> <span class="nav-text">赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E7%AD%89"><span class="nav-number">5.6.</span> <span class="nav-text">相等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BE%E5%88%86%E5%8F%B7"><span class="nav-number">5.7.</span> <span class="nav-text">百分号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OTB"><span class="nav-number">5.8.</span> <span class="nav-text">OTB</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lyieu"
+      src="/images/avatar/avatar.svg">
+  <p class="site-author-name" itemprop="name">Lyieu</p>
+  <div class="site-description" itemprop="description">Dreaming</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pilgrimlyieu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pilgrimlyieu" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pilgrimlyieu@outlook.com" title="E-Mail → mailto:pilgrimlyieu@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.svg">
+      <meta itemprop="name" content="Lyieu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrine">
+      <meta itemprop="description" content="Dreaming">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AutoHotkey 脚本重构小记 | Shrine">
+      <meta itemprop="description" content="本篇博文简单介绍了我 AutoHotkey 脚本重构过程中遇到的一些坑及我对两个版本语法的看法。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AutoHotkey 脚本重构小记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-26 16:13:10" itemprop="dateCreated datePublished" datetime="2023-08-26T16:13:10+08:00">2023-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-28 12:31:49" itemprop="dateModified" datetime="2023-08-28T12:31:49+08:00">2023-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AutoHotkey/" itemprop="url" rel="index"><span itemprop="name">AutoHotkey</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2023/08/autohotkey-refactor/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2023/08/autohotkey-refactor/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>20k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>18 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">本篇博文简单介绍了我 AutoHotkey 脚本重构过程中遇到的一些坑及我对两个版本语法的看法。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>上篇博文我提到了最近我进行了 AutoHotkey 的重构。本篇博文就来介绍一下。</p>
+<h2 id="PR">PR<a class="header-anchor" href="#PR"></a></h2>
+<p>21 号我创建了一个名为「v1_to_v2」的分支，顾名思义是要完成 v1 语法向 v2 语法的转换。并创建了一个名为「Convert convertible scripts to v2」的 Pull Request，这个 PR 最后被更名为「<a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/pull/20">Refactor to v2 &amp; Format codes</a>」，即除重构外，也进行了部分格式化以提高可读性。</p>
+<p>这个 PR 最终是有 28 个 commits，仅次于 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/pull/8">OCRC</a> 的 30 个 commits。但增加代码 1600+ 行，删减代码 1700+ 行，远胜 OCRC，这也是我完成的最大的一个 PR。</p>
+<p>好了不扯淡了，来讲讲 PR 的部分内容。</p>
+<h2 id="工具">工具<a class="header-anchor" href="#工具"></a></h2>
+<p>「工欲善其事，必先利其器」。这是我第二篇博文的介绍。同样的这次转换也使用了一些工具。</p>
+<p>首先就是 VSCode，真香。</p>
+<p>然后装了两个插件，「<a target="_blank" rel="noopener" href="https://github.com/mark-wiemer-org/ahkpp">AutoHotkey Plus Plus</a>」及「<a target="_blank" rel="noopener" href="https://github.com/thqby/vscode-autohotkey2-lsp">AutoHotkey v2 Language Support</a>」。这两个插件在我改代码、Debug 时起到了不可替代的作用，AutoHotkey 维护者用了都说好！</p>
+<p>期间尝试过一个工具 <a target="_blank" rel="noopener" href="https://github.com/mmikeww/AHK-v2-script-converter">AHK-v2-script-converter</a>，试用了一点，但效果不尽人意，因此大部分还是人工转换的，同时加深我的记忆。</p>
+<h2 id="过程">过程<a class="header-anchor" href="#过程"></a></h2>
+<p>大部分的转换还是比较简单的，就不用说什么了。</p>
+<h3 id="MouseHand">MouseHand<a class="header-anchor" href="#MouseHand"></a></h3>
+<p>第一个谈的应该是「MouseHand」这个脚本，这个脚本虽然并没有被废弃，但由于没有使用过，实质上已经是被废弃了。但在重构过程中，我不仅将代码由 v1 转为 v2，还重写了一遍，现在它的效果应该是胜于一开始的。当然我没进行深入测试，只是把参数改小了一点进行简单测试。</p>
+<p>由于手疾，不应该长时间使用鼠标。因此我写了个脚本，一段时间高强度使用鼠标后锁定鼠标，必须休息指定时间后才能继续使用。</p>
+<figure class="highlight autohotkey"><figcaption><span>原 MouseHand</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#Requires AutoHotkey v1.1.36.02+</span></span><br><span class="line"><span class="meta">#NoTrayIcon</span></span><br><span class="line"></span><br><span class="line">Global LBNum := <span class="number">300</span>, CheckMins := <span class="number">30</span>, BreakTime := <span class="number">60</span>, ForceTime := <span class="number">30</span></span><br><span class="line"></span><br><span class="line"><span class="title">~LButton::</span></span><br><span class="line">If (LButtonKeyNum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    LButtonKeyNum ++</span><br><span class="line">    <span class="keyword">Return</span></span><br><span class="line">&#125;</span><br><span class="line">LButtonKeyNum := <span class="number">1</span></span><br><span class="line"><span class="keyword">SetTimer</span> MouseHand, % - <span class="number">60000</span> * CheckMins</span><br><span class="line"><span class="keyword">Return</span></span><br><span class="line"></span><br><span class="line"><span class="title">MouseHand:</span></span><br><span class="line">If (LButtonKeyNum &gt;= LBNum) &#123;</span><br><span class="line">    MsgBox <span class="number">4144</span>, 休息锁定模式, 已经高强度使用鼠标 <span class="variable">%CheckMins%</span> 分钟了 ，活动一下手吧！可在休息至少 <span class="variable">%ForceTime%</span>s 后按 Esc 键退出锁定模式。, <span class="number">10</span></span><br><span class="line">    CoordMode Mouse</span><br><span class="line">    MouseGetPos XPos, YPos</span><br><span class="line"><span class="built_in">    Loop %</span> ForceTime &#123;</span><br><span class="line">        Sleep <span class="number">1000</span></span><br><span class="line">        MouseMove XPos, YPos</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">    Loop %</span> BreakTime - ForceTime &#123;</span><br><span class="line">        KeyWait Esc, DT1</span><br><span class="line">        MouseMove XPos, YPos</span><br><span class="line">    &#125; <span class="keyword">Until</span> !<span class="built_in">ErrorLevel</span></span><br><span class="line">&#125;</span><br><span class="line">LButtonKeyNum := <span class="number">0</span></span><br><span class="line"><span class="keyword">Return</span></span><br></pre></td></tr></table></figure>
+<p>原设置是每 30 分钟检查一次，期间左键单击使用鼠标超过 300 次就算高强度使用。强制休息 30 秒，然后可以按 <kbd>Esc</kbd> 解除锁定。60 秒后自动解除。</p>
+<p>然而我当时不知道 <code>BlockInput</code> 这个命令（其实搜索一下就有了，当时不知道为什么不知道），于是采用了一个笨方法：首先获取最后鼠标位置，然后每秒移动鼠标到该位置。</p>
+<figure class="highlight autohotkey"><figcaption><span>现 MosueHand</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#NoTrayIcon</span></span><br><span class="line"></span><br><span class="line">global LBKeyNum := <span class="number">600</span>, CheckMins := <span class="number">30</span>, BreakSeconds := <span class="number">60</span>, ForceSeconds := <span class="number">30</span></span><br><span class="line"></span><br><span class="line"><span class="title">~LButton::</span></span><br><span class="line">KeyLeftButton(ThisHotkey) &#123;</span><br><span class="line">    static LButton_key_num := <span class="number">0</span></span><br><span class="line">    if LButton_key_num &gt; <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> LButton_key_num++</span><br><span class="line">    LButton_key_num := <span class="number">1</span></span><br><span class="line">    <span class="keyword">SetTimer</span>(LockMouse, -<span class="number">60000</span> * CheckMins)</span><br><span class="line"></span><br><span class="line">    LockMouse() &#123;</span><br><span class="line">        if LButton_key_num &gt;= LBKeyNum &#123;</span><br><span class="line">            BlockInput(<span class="string">&quot;MouseMove&quot;</span>)</span><br><span class="line">            MsgBox(<span class="string">&quot;已经高强度使用鼠标 &quot;</span> CheckMins <span class="string">&quot; 分钟了，活动一下手吧！可在休息至少 &quot;</span> ForceSeconds <span class="string">&quot;s 后按 Esc 键退出锁定模式。&quot;</span>, <span class="string">&quot;休息锁定模式&quot;</span>, <span class="string">&quot;Icon! 0x1000 T5&quot;</span>)</span><br><span class="line">            UnlockMouse(*) =&gt; BlockInput(<span class="string">&quot;MouseMoveOff&quot;</span>)</span><br><span class="line">            <span class="keyword">SetTimer</span>(() =&gt; Hotkey(<span class="string">&quot;~Esc&quot;</span>, UnlockMouse, <span class="string">&quot;On&quot;</span>), -<span class="number">1000</span> * ForceSeconds)</span><br><span class="line">            <span class="keyword">SetTimer</span>(() =&gt; Hotkey(<span class="string">&quot;~Esc&quot;</span>, UnlockMouse, <span class="string">&quot;Off&quot;</span>), -<span class="number">1000</span> * BreakSeconds)</span><br><span class="line">            <span class="keyword">SetTimer</span>(UnlockMouse, -<span class="number">1000</span> * BreakSeconds)</span><br><span class="line">        &#125;</span><br><span class="line">        LButton_key_num := <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是重构与重写后的代码。使用了 <code>BlockInput</code>，是彻底禁止了鼠标的移动（但仍然可以使用按键，即只禁止鼠标的移动）。</p>
+<p>不仅如此，还使用了「胖箭头函数」，减小了代码的体积。</p>
+<p>至此，我完成了第一个比较大的重构，心满意足地关闭了。</p>
+<h3 id="SlideWindows">SlideWindows<a class="header-anchor" href="#SlideWindows"></a></h3>
+<p>然后应该就是「SlideWindows」。这是一个在窗口组循环的脚本。应该是网课期间我企图记电子笔记，为方便多窗口激活而写的一个脚本。很显然这也是一个没使用过的脚本。</p>
+<figure class="highlight autohotkey"><figcaption><span>原 SlideWindows</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">Show() &#123;</span><br><span class="line">    text := <span class="string">&quot;Windows IDs:&quot;</span></span><br><span class="line">    for index, value in windows</span><br><span class="line">        text .= <span class="string">&quot;`r&quot;</span> index <span class="string">&quot;: &quot;</span> value</span><br><span class="line">    <span class="keyword">return</span> text</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IndexOf(item, list) &#123;</span><br><span class="line">    for index, value in list</span><br><span class="line">        if (value = item)</span><br><span class="line">            <span class="keyword">return</span> index</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Global windows := []</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#q::</span></span><br><span class="line">win := WinActive(<span class="string">&quot;A&quot;</span>)</span><br><span class="line">index := IndexOf(win, windows)</span><br><span class="line">if (index = windows.Length())</span><br><span class="line">    actwin := windows[<span class="number">1</span>]</span><br><span class="line">else</span><br><span class="line">    actwin := windows[index + <span class="number">1</span>]</span><br><span class="line">WinActivate <span class="keyword">ahk_id</span> <span class="variable">%actwin%</span></span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#w::</span></span><br><span class="line">win := WinActive(<span class="string">&quot;A&quot;</span>)</span><br><span class="line">if !IndexOf(win, windows)</span><br><span class="line">    windows.Push(win)</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#e::MsgBox % Show()</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#r::</span></span><br><span class="line">InputBox order, Delete Window ID, % Show(), , , , , , , <span class="number">10</span>, <span class="number">1</span></span><br><span class="line">if !<span class="built_in">ErrorLevel</span></span><br><span class="line">    windows.RemoveAt(order)</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p>这是原脚本。比较粗糙，大体就是 <kbd>Win</kbd> + <kbd>Q</kbd> 在窗口组循环，<kbd>Win</kbd> + <kbd>W</kbd> 将当前活跃窗口加入窗口组，<kbd>Win</kbd> + <kbd>E</kbd> 显示窗口组 id，<kbd>Win</kbd> + <kbd>R</kbd> 显示列表、输入数字以移除某个窗口。这四个按键也是测试脚本中最常用的了。</p>
+<p>重构后遇到了几个问题。首先是显示 id，显示一个 id 有啥用，我咋知道 id 对应哪个窗口，这个显示了跟没显示毫无区别。然后就是，假如窗口组中某个窗口关闭了，那么将要激活这个窗口时 v2 会报错，因为 v2 找不到这个窗口，而 v1 虽然找不到，但它也不说。</p>
+<p>于是针对这两点我改进了一下：现在将显示标题而非 id，也许标题很乱也不明所以，但是清晰度确确实实是提升了。还有就是，抛出异常时捕获，并删除掉空项。</p>
+<p>不过相当于浪费了一次按键，因为删除后我没有尝试激活下一个。但如果要考虑下一个激活，那还得考虑下一个是否存在。加上我现在没啥动力做这件事，就搁置了吧。</p>
+<figure class="highlight autohotkey"><figcaption><span>现 SlideWindows</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Show() &#123;</span><br><span class="line">    text := <span class="string">&quot;Windows IDs:&quot;</span></span><br><span class="line">    for index, value in windows</span><br><span class="line">        text .= <span class="string">&quot;`r&quot;</span> index <span class="string">&quot;: &quot;</span> WinGetTitle(<span class="string">&quot;ahk_id &quot;</span> value)</span><br><span class="line">    <span class="keyword">return</span> text</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IndexOf(item, list) &#123;</span><br><span class="line">    for index, value in list</span><br><span class="line">        if value == item</span><br><span class="line">            <span class="keyword">return</span> index</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">global windows := []</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#q::&#123;</span></span><br><span class="line">    index := IndexOf(win := WinActive(<span class="string">&quot;A&quot;</span>), windows)</span><br><span class="line">    try WinActivate(<span class="string">&quot;ahk_id &quot;</span> windows[(index == windows.Length) ? <span class="number">1</span> : index + <span class="number">1</span>])</span><br><span class="line">    catch TargetError</span><br><span class="line"><span class="title">        windows.RemoveAt((index == windows.Length) ? 1 :</span> index + <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#w::&#123;</span></span><br><span class="line">    if !IndexOf(win := WinActive(<span class="string">&quot;A&quot;</span>), windows)</span><br><span class="line">        windows.Push(win)</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#e::MsgBox(Show())</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#r::&#123;</span></span><br><span class="line">    order := InputBox(Show(), <span class="string">&quot;Delete Window ID&quot;</span>, <span class="string">&quot;T10&quot;</span>)</span><br><span class="line">    if order.Result == <span class="string">&quot;OK&quot;</span></span><br><span class="line">        try windows.RemoveAt(order.Value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是重构后的代码。</p>
+<p>重构过程中也发现好几处利用默认以空字串返回的方式偷懒的写法，在 v2 里报错，排查了好一会才找出问题所在。</p>
+<h3 id="Vark">Vark<a class="header-anchor" href="#Vark"></a></h3>
+<p>Vark 也算我一个大项目了，虽然比 OCRC 小得多，但是这是我第一个完全自主创作，包括库都是自己写的项目。OCRC 引用了外部 JSON 库。不过那还能说我用的函数还都是标准库里的呢，所以 OCRC 仍然是我的第一个比较大的项目。</p>
+<p>但是呢 Vark 的重构比较中规中矩，我看了下好像没啥可以谈的。除了我移除了一个参数——Vim 路径。因为我已经加入 PATH 了，就没必要了。</p>
+<p>比较大的改动应该就是同步了 vimrc 的修改。不过最近又改动了好多，估计 Vark 的 vimrc 还得跟进。</p>
+<p>Vark 的重构并没有进行严格的测试，所以会出什么 bug 也说不定。</p>
+<p>Vark 目前还是弱了点，已经一年多没更新过了，希望以后有时间能更新一下吧。</p>
+<h3 id="OCRC">OCRC<a class="header-anchor" href="#OCRC"></a></h3>
+<h4 id="基本库">基本库<a class="header-anchor" href="#基本库"></a></h4>
+<p>OCRC 的重构就累得多了。首先有 GUI 的就它一个（Focus 也有，但这是一个已经废弃的项目了，所以不参与此次重构），其次里面用到了好几个外部函数：<code>UrlDownloadToVar</code>（我更名为 <code>Request</code>）一个，<code>UrlEncode</code> 一个，<code>StrPutVar</code> 一个，<code>Gdip</code> 有几个，然后还有 <code>JSON</code> 库有两个 <code>Load</code> 和 <code>Dump</code>。</p>
+<p><code>JSON</code> 我没有动过，是直接引入的库。仓库在<a target="_blank" rel="noopener" href="https://github.com/cocobelgica/AutoHotkey-JSON">这</a>。很遗憾的是，这个库最后更新时间是 7 年前，虽然说支持 v2-alpha，但显然正式版是用不了了，我也搜到了相关帖子。</p>
+<p>然后我找到了 <a target="_blank" rel="noopener" href="https://github.com/TheArkive/JXON_ahk2">JXON_ahk2</a>，期间还找到了个蛮新的库 <a target="_blank" rel="noopener" href="https://github.com/GroggyOtter/jsongo_AHKv2">jsongo_AHKv2</a>。但我最终选择了 <a target="_blank" rel="noopener" href="https://www.autohotkey.com/boards/viewtopic.php?t=100602">thqby 的 JSON 库</a>，为此我还需要额外引入一个库 <code>Native</code>。thqby 的库调用了一个 C++ 编写的 <code>ahk-json.dll</code>，据称能极大提高解析速度。因此重构后的 OCRC 会在初始时在同路径放一个 <code>ahk-json.dll</code>。<code>Load</code> 和 <code>Dump</code> 分别变成 <code>parse</code> 和 <code>stringify</code>。</p>
+<p><code>Request</code> 函数呢，我找了一下 v2 版本的，但我不想下个库，毕竟 v1 时我就只是单个函数完成的。没发现能满足我需求的，于是就手动重构了 <code>Request</code> 函数，目前来看没出什么问题。</p>
+<p><code>StrPutVar</code> 是一个用在 <code>UrlEncode</code> 的函数。之前精简代码时我把它第三个参数删了，但可笑的是调用时还是有三个参数，然而没报错，仍然能用。</p>
+<p>至于 <code>UrlEncode</code>，我在<a target="_blank" rel="noopener" href="https://www.autohotkey.com/boards/viewtopic.php?p=516828">论坛</a>找到了一个编码解码的函数，由于我只需要编码，就改了一点。这个函数用不到 <code>StrPutVar</code> 了，就移除了。</p>
+<p><code>Gdip</code> 的几个函数则是找到了 v2 版本的库 <a target="_blank" rel="noopener" href="https://github.com/buliasz/AHKv2-Gdip">AHKv2-Gdip</a>，并根据名字替换了，还把单行的函数移除了，直接替换以精简代码。</p>
+<p><code>Common</code> 库里还有几个自己编写的函数。</p>
+<p><code>ReadIni</code> 是一个读取 ini 文件的函数，v1 时 <code>IniRead</code> 是命令，无法写在表达式。而 v2 中一切命令皆函数，因此这个就弃用了。但在重构过程中我发现这两个函数 Section 和 Key 位置是反的。这个 <code>ReadIni</code> 一开始是从别的 OCR 继承下来的，因此保留了这个。我觉得 <code>ReadIni</code> 这个先 Key 再 Section 填参数的操作很离谱，只是我现在才意识到。</p>
+<p><code>Img2Base</code> 除了把一个单行函数移除了外，没有变动。</p>
+<p><code>GetScreenshot</code> 这个函数就是要获取截图。除了重构外还修改了部分内容（也会讲 PR 后修改的部分内容）。</p>
+<p>v1 时在函数内清空剪贴板，而这个操作在 v2 被我移到主函数里了。同时进行了剪贴板内容的保存和恢复。但仔细一想最终结果出来还是要进剪贴板的，这样做好像没啥意义哎。</p>
+<p>同时比较离谱的是函数没有引入任何参数，而是直接 global 了四个设置变量。这个操作简直逆天，传个参都不愿意，我写下这行 global 时脑袋是给驴踢了吗？于是在重构时果断拨乱反正。</p>
+<p>截图的逻辑大概是这样的：如果开启了外部截图支持，同时提供了外部截图的命令，就调用这个命令，如果未开启、未提供命令或调用失败，就会抛出一个错误，捕获这个错误后使用自带截图操作。</p>
+<p>接下来是 PR 后的修改。</p>
+<p>一开始自带截图使用 <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> 调用截图。然而这有个隐患：要是用户覆盖了这个截图键，那就不行了。为此我在网上冲浪，在 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/74258423/is-there-a-way-to-call-the-windows-screenshot-snipping-tool-winshifts-in-pyt">Stack Overflow</a> 查找到了一个方式，使用命令 <code>snippingtool /clip</code> 进行截图。然后我就兴冲冲地提交了。然后我想着在 Windows11 测试一下，结果我惊恐地发现，不行！它会直接打开那个截图工具！然后我就只好继续找，终于在 <a target="_blank" rel="noopener" href="https://www.elevenforum.com/t/snip-and-sketch-and-or-only-snipping-tool.1865/#post-42719">ElevenForum</a> 找到了通用的解决方案：<code>explorer ms-screenclip:</code>。这下总没问题了。</p>
+<p>然后我通过正则获取外部截图的 exe，以作为 <code>ahk_exe</code>，检测截图是否完成。我将 SnipPath 更名为 SnipEXE，而且稍微改了一点正则，把文件名禁止的字符都加进去了，可以更精准。</p>
+<h4 id="Mathpix-库">Mathpix 库<a class="header-anchor" href="#Mathpix-库"></a></h4>
+<p>接下来是 Mathpix 库的内容。</p>
+<p>首先的更改就是不再为 Mathpix 提供为空的默认参数，直接不提供默认参数，Baidu 库也是。因为外部调用都是有传参的，而且默认参数就算了，默认个空字符串算什么。</p>
+<p>同时修改了参数名称，微调了设置所在参数位置，使设置更清晰。</p>
+<p>Mathpix 类精简得只剩下 <code>__New</code> 和 <code>__Show</code> 两个方法，移除了 <code>__FocusSelect</code> <code>__Clip</code> 及 <code>GuiEscape</code>。但并不是说删掉了功能。</p>
+<p><code>__Clip</code> 被一个一行的胖箭头函数 <code>Clip</code> 取代。</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">Clip(CtrlObj, *) =&gt; <span class="built_in">A_Clipboard</span> := CtrlObj.Value</span><br></pre></td></tr></table></figure>
+<p>并使用 <code>OnEvent</code> 绑定在 Edit 控件，在 Focus 事件时触发。更清晰明了，也更简洁。以更为优雅的方式实现了 Click2Clip 功能。而这个功能在 v1 是通过 <code>OnMessage</code> 实现的。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.UpdateClip := ObjBindMethod(this, <span class="string">&quot;__Clip&quot;</span>)</span><br><span class="line">OnMessage(<span class="number">0</span>x201, this.UpdateClip)</span><br></pre></td></tr></table></figure>
+<p>首先将 <code>__Clip</code> 绑定到 this，然后将 0x201 事件关联绑定函数对象（不可以直接用 <code>this.__Clip</code>，后面会讲讲我的推测）。根据<a target="_blank" rel="noopener" href="https://wyagd001.github.io/zh-cn/docs/misc/SendMessageList.htm">Windows 消息列表</a>，0x201 是「按下鼠标左键」的事件，也就是说它监听了全部鼠标左键的消息，然后让我们看看关联到的函数干了什么。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">__Clip(wParam, lParam, msg, hwnd) &#123;</span><br><span class="line">    if !WinExist(<span class="string">&quot;ahk_group Mathpix&quot;</span>) &#123;</span><br><span class="line">        OnMessage(<span class="number">0</span>x201, this.UpdateClip, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    GuiControlGet focusvar, FocusV</span><br><span class="line">    if focusvar in result,latex_result,inline_result,display_result</span><br><span class="line">    &#123;</span><br><span class="line">        GuiControlGet clipvar, , <span class="variable">%hwnd%</span></span><br><span class="line">        if clipvar &#123;</span><br><span class="line">            <span class="built_in">Clipboard</span> := <span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="built_in">Clipboard</span> := clipvar</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>四个参数是必需的，但只用到了一个 Hwnd，是窗口的唯一标识。</p>
+<p>之前创建 GUI 时有行命令是 <code>GroupAdd Mathpix, ahk_id %MRW%</code>，将窗口加入了 Mathpix 组里。现在检测如果不存在这个组，就结束监听并返回。</p>
+<p>然后获取当前控件关联变量名，假如在目标四个里就获取内容，保存到剪贴板里。</p>
+<p>也许其实有更好的方案只是我当时没发现。但我的这个实现实在是烂透了，极其不优雅。不仅监听了无意义的左键消息，还要靠关联变量名判断是不是在控件上。而靠 <code>OnEvent</code> 实现则清晰，优雅多了。</p>
+<p><code>__FocusSelect</code> 也被一行胖箭头函数 <code>FocusSelect</code> 取代。</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">FocusSelect(CtrlObj) =&gt; (CtrlObj.Focus(), Clip(CtrlObj))</span><br></pre></td></tr></table></figure>
+<p>而原本的实现也比较烂。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__FocusSelect(control) &#123;</span><br><span class="line">    GuiControlGet hwndvar, Hwnd, <span class="variable">%control%</span></span><br><span class="line">    GuiControlGet clipvar, , <span class="variable">%control%</span></span><br><span class="line"><span class="built_in">    ControlFocus ,</span> , <span class="keyword">ahk_id</span> <span class="variable">%hwndvar%</span></span><br><span class="line">    <span class="built_in">Clipboard</span> := clipvar</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后一个 <code>GuiEscape</code> 也是用 <code>OnEvent</code> 实现的，甚至不需要再定义一个函数。</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">this.__Results[this.id].OnEvent(<span class="string">&quot;Escape&quot;</span>, (GuiObj) =&gt; GuiObj.Destroy())</span><br></pre></td></tr></table></figure>
+<p>其中 <code>this.__Results[this.id]</code> 就是 GUI 对象，后面也会解释。</p>
+<p>原来则是这样，虽然也比较简洁，但肯定不如上面好。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GuiEscape() &#123;</span><br><span class="line">    Gui Destroy</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Baidu-库">Baidu 库<a class="header-anchor" href="#Baidu-库"></a></h4>
+<p>然后是 Baidu 库的内容。</p>
+<p>加了 Token 函数的结果的判断，防止 Token  获取失败后继续执行，造成两次报错。</p>
+<p>同时还修改了一点 <code>__Token</code> 函数的内容，由于 v1 不严谨的机制，v2 报错了才发现不对。</p>
+<p>Baidu 中一些函数进行了更名，使其用途更明显和清晰。</p>
+<p>跟 Mathpix 类似，Baidu  库也在不影响功能的前提下移除了两个方法：<code>__Update</code> 及 <code>GuiEscape</code>。以下都以 Format 为例。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Gui %</span>id%:Add,  DropDownList, x+<span class="number">5</span> w90 hwndformathwnd AltSubmit Choose<span class="variable">%formatstyle%</span>, 智能段落|合并多行|拆分多行</span><br><span class="line">this.formathwnd := formathwnd</span><br><span class="line">this.__Update(formathwnd, <span class="string">&quot;__Format&quot;</span>)</span><br><span class="line">...</span><br><span class="line">__Update(hwnd, func) &#123;</span><br><span class="line">    bindfunc := ObjBindMethod(this, func)</span><br><span class="line">    GuiControl +g, <span class="variable">%hwnd%</span>, <span class="variable">%bindfunc%</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据我浅薄的知识，使用 g-标签可以使控件在更新时触发函数。然而我的处理函数，例如 <code>__Format</code> 都在类里，直接 <code>g__Format</code> 无法传递 this，因此我就只能先在外部绑定，再把 g-标签通过控件 Hwnd 添加到控件上。这样在 Format 对应控件更新时，结果能及时作出反馈。也许还有更好的办法，但我确实不知道。</p>
+<p>当然这样做也确实有点抽象，在 v2 中仍然是使用 <code>OnEvent</code> 解决。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.__Results[this.id].AddDropDownList(<span class="string">&quot;x+5 w90 vFormatStyle AltSubmit Choose&quot;</span> this.config[<span class="string">&quot;format_style&quot;</span>], [<span class="string">&quot;智能段落&quot;</span>, <span class="string">&quot;合并多行&quot;</span>, <span class="string">&quot;拆分多行&quot;</span>]).SetFont(<span class="string">&quot;s12&quot;</span>)</span><br><span class="line">this.__Results[this.id][<span class="string">&quot;FormatStyle&quot;</span>].OnEvent(<span class="string">&quot;Change&quot;</span>, ObjBindMethod(this, <span class="string">&quot;__Format&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p><code>this.__Results[this.id][&quot;FormatStyle&quot;]</code> 是 Format 对应控件对象。用 <code>OnEvent</code> 绑定，在 Change 事件，即更改时触发。优雅得多喔。</p>
+<p><code>__Clip</code> 方法保留了，因为处理的方法也在用。但是也变成一个胖箭头函数了。</p>
+<figure class="highlight autohotkey"><figcaption><span>原 __Clip</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">__Clip(hwnd := <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    <span class="built_in">Clipboard</span> := <span class="string">&quot;&quot;</span></span><br><span class="line">    if hwnd &#123;</span><br><span class="line">        GuiControlGet result, , <span class="variable">%hwnd%</span></span><br><span class="line">        this.result := result</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Clipboard</span> := this.result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><figcaption><span>现 __Clip</span></figcaption><table><tr><td class="code"><pre><span class="line">__Clip(CtrlObj, *) =&gt; (this.result := CtrlObj.Value, <span class="built_in">A_Clipboard</span> := this.result)</span><br></pre></td></tr></table></figure>
+<p><code>GuiEscape</code> 则是跟 Mathpix 库里一样的处理。</p>
+<p>文本处理的方法都没进行变动，一部分原因是我看不懂了。以后有机会还是要处理一下，比如那个「智能空格」会把 OCR 的 URL 弄得一团糟。</p>
+<h4 id="主程序">主程序<a class="header-anchor" href="#主程序"></a></h4>
+<p>更改了部分变量名及 ini 配置文件的键名，使程序更加清晰。</p>
+<p>令人瞠目结舌的是主程序没有（定义）任何一个函数，全是标签。（不过也不至于会去用 <code>Gosub</code> 什么的）</p>
+<p>现在命令皆函数就舒服得多了。拿开头的 Menu 作为示范。</p>
+<figure class="highlight autohotkey"><figcaption><span>原 Menu（Setting 标签略）</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Menu Tray, Add, 设置, Setting</span><br><span class="line">Menu Tray, Add, 重启, ReloadSub</span><br><span class="line">Menu Tray, Add, 退出, ExitSub</span><br><span class="line"></span><br><span class="line"><span class="title">ReloadSub:</span></span><br><span class="line">Reload</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="title">ExitSub:</span></span><br><span class="line"><span class="keyword">ExitApp</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><figcaption><span>现 Menu</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">A_TrayMenu</span>.Add(<span class="string">&quot;设置&quot;</span>, (*) =&gt; SettingGUI())</span><br><span class="line"><span class="built_in">A_TrayMenu</span>.Add(<span class="string">&quot;重启&quot;</span>, (*) =&gt; Reload())</span><br><span class="line"><span class="built_in">A_TrayMenu</span>.Add(<span class="string">&quot;退出&quot;</span>, (*) =&gt; <span class="keyword">ExitApp</span>())</span><br></pre></td></tr></table></figure>
+<p>然后不知道为啥我要试图以管理员权限启动，这个应该也是从之前继承下来的，现在移除了。</p>
+<p>读取 ini 配置我也从 loop 换成了 for，这个 loop 及里面诡异的变量名设置都是继承下来的。现在终于彻底剔除掉这些痕迹了。</p>
+<p>发现创建 ini 配置文件用的就是 <code>Gosub</code>，打脸了。不过我也意识到一个问题：如果打开 OCRC 后删掉配置文件，然后打开随便一个 OCR，就会报错，看来得在 OCR 前额外加个判断。</p>
+<p>然后还有两个额外标签（实际上是三个） <code>GETV</code> <code>GBaidu_Hotkey</code> 及 <code>GMathpix_Hotkey</code>，后两个是一类的就只放前两个了。这些标签通过控件 g-标签进行关联。与上面提到的类似。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">GETV:</span></span><br><span class="line">    if !WinActive(<span class="string">&quot;ahk_id &quot;</span> SettingHwnd)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    GuiControlGet TabVar, , SysTabControl321</span><br><span class="line">    GuiControlGet tVa, , <span class="variable">%A_GuiControl%</span></span><br><span class="line">    <span class="variable">%A_GuiControl%</span> := tVa</span><br><span class="line"><span class="built_in">    IniWrite %</span>tVa%, <span class="variable">%ConfigFile%</span>, <span class="variable">%TabVar%</span>, <span class="variable">%A_GuiControl%</span></span><br><span class="line">    if <span class="built_in">A_GuiControl</span> in Basic_BaiduOCROnOff,Basic_MathpixOCROnOff</span><br><span class="line">    &#123;</span><br><span class="line">        if !Basic_AutoReloadOnOff</span><br><span class="line">            MsgBox <span class="number">4132</span>, OCRC, 是否要重启以使设置生效？, <span class="number">10</span></span><br><span class="line">            IfMsgBox No</span><br><span class="line">                <span class="keyword">Return</span></span><br><span class="line">        Reload</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="title">GBaidu_Hotkey:</span></span><br><span class="line">    if !WinActive(<span class="string">&quot;ahk_id &quot;</span> SettingHwnd)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"><span class="built_in">    GuiControlGet,</span> tVa, , <span class="variable">%A_GuiControl%</span></span><br><span class="line">    <span class="variable">%A_GuiControl%</span> := tVa</span><br><span class="line"><span class="built_in">    IniWrite %</span>tVa%, <span class="variable">%ConfigFile%</span>, BaiduOCR, <span class="variable">%A_GuiControl%</span></span><br><span class="line"><span class="built_in">    Hotkey %</span>Baidu_HotkeyTemp%, BaiduOCR, Off</span><br><span class="line">    if (Basic_BaiduOCROnOff <span class="literal">and</span> Baidu_Hotkey) &#123;</span><br><span class="line"><span class="built_in">        Hotkey %</span>Baidu_Hotkey%, BaiduOCR, On</span><br><span class="line">        Baidu_HotkeyTemp := Baidu_Hotkey</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p><code>GETV</code> 这个也是继承的好像，应该是 &quot;Get Variable&quot; 的意思。首先获取了当前的 Tab 控件名作为 Section 名，然后写入 ini 对应 Section 的键值。特别地，如果是开关 OCR 则问要不要重启。</p>
+<div class="admonition note"><p class="admonition-title">插嘴
+</p><p>重看文章找错时发现「是」和「G」左边的引号之间有空格。结果我一看源码发现用的是「&quot;」，看来是之前设置的 typographer 的功效。只不过对我来说好像有点碍事。</p>
+</div>
+<p>其实完全可以多做一个（两个）标签，专门关联开关的两个 CheckBox，不知道我当时为啥没做，宁可重启。</p>
+<p><code>GBaidu_Hotkey</code> 则是专门关联 Hotkey 控件的，同时加了一个 <code>Baidu_HotkeyTemp</code> 作为临时热键，在热键更换时禁用废弃热键（没找到删除热键的方法，论坛上找到的也说无法删除，只能禁用）。</p>
+<p>在 v2 里就简洁一点了。同时为 OCR 开关的 CheckBox 单独关联了函数，所以现在已经不需要重启了。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">UpdateVar(CtrlObj, *) =&gt; IniWrite(OCRC_Configs[CtrlObj.Name] := CtrlObj.Value, OCRC_ConfigFilePath, CtrlObj.Gui[<span class="string">&quot;Tabs&quot;</span>].Text, CtrlObj.Name)</span><br><span class="line"></span><br><span class="line">UpdateHotkey(CtrlObj, *) &#123;</span><br><span class="line">    UpdateVar(CtrlObj)</span><br><span class="line">    global Baidu_HotkeyTemp, Mathpix_HotkeyTemp</span><br><span class="line">    if !CtrlObj.Value</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    if CtrlObj.Name == <span class="string">&quot;Baidu_Hotkey&quot;</span> &#123;</span><br><span class="line">        Hotkey(Baidu_HotkeyTemp, OCRC_BaiduOCR, <span class="string">&quot;Off&quot;</span>)</span><br><span class="line">        Hotkey(CtrlObj.Value, OCRC_BaiduOCR, <span class="string">&quot;On&quot;</span>)</span><br><span class="line">        Baidu_HotkeyTemp := CtrlObj.Value</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        Hotkey(Mathpix_HotkeyTemp, OCRC_MathpixOCR, <span class="string">&quot;Off&quot;</span>)</span><br><span class="line">        Hotkey(CtrlObj.Value, OCRC_MathpixOCR, <span class="string">&quot;On&quot;</span>)</span><br><span class="line">        Mathpix_HotkeyTemp := CtrlObj.Value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SwitchHotkey(CtrlObj, *) =&gt; (UpdateVar(CtrlObj), Hotkey(OCRC_Configs[<span class="string">&quot;Baidu_Hotkey&quot;</span>], OCRC_BaiduOCR, CtrlObj.Value ? <span class="string">&quot;On&quot;</span> : <span class="string">&quot;Off&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p><code>UpdateVar</code> 和 <code>UpdateHotkey</code> 起的分别就是 <code>GETV</code> 和 <code>GBaidu_Hotkey</code> 的作用。然后跟上面一样 <code>OnEvent</code> 关联 Click 或 Change 事件。</p>
+<h2 id="踩坑">踩坑<a class="header-anchor" href="#踩坑"></a></h2>
+<h3 id="未初始化变量不可使用">未初始化变量不可使用<a class="header-anchor" href="#未初始化变量不可使用"></a></h3>
+<p>在 v1 中未初始化变量是能直接用的，值视为空，但在 v2 中会报错。这让我一些 v1 中没注意到的犄角旮旯出了问题。</p>
+<h3 id="动态变量不再可用">动态变量不再可用<a class="header-anchor" href="#动态变量不再可用"></a></h3>
+<p>v1 里有个很骚的操作就是动态变量，下面是一个例子。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a   := <span class="string">&quot;b&quot;</span></span><br><span class="line"><span class="variable">%a%</span> := <span class="string">&quot;c&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这个例子中，会产生一个变量 <code>b</code>，它的值是字符串 <code>c</code>。但这在 v2 中不可用，原因其实就是上面那一点，未初始化变量不能直接用。</p>
+<p>OCRC 中引入配置文件的内容我用的就是动态变量，OCRC 中结果 GUI 我用的也是名为 id 动态变量。因此为了间接实现动态变量，我创建了 <code>OCRC_Configs</code> 与 <code>this.__Results</code> 的 Map，并将原动态变量的名作为键，原动态变量的值作为值。不过我想，结果 GUI 似乎用不到动态变量，找个机会删掉吧。</p>
+<h3 id="FileInstall">FileInstall<a class="header-anchor" href="#FileInstall"></a></h3>
+<p>我的 OCRC 主程序最上方有两行：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if !FileExist(<span class="string">&quot;ahk-json.dll&quot;</span>)</span><br><span class="line">    FileInstall(<span class="string">&quot;lib\ahk-json.dll&quot;</span>, <span class="string">&quot;ahk-json.dll&quot;</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>这两行是让编译时将 <code>lib</code> 文件夹下的 <code>ahk-json.dll</code> 打包进 exe，并在使用时如果当前目录不存在，就拉出来。</p>
+<p>一开始我用的是 <code>FileInstall(&quot;ahk-json.dll&quot;, &quot;ahk-json.dll&quot;, 1)</code>，但死活不成功。最后才搜到两个路径不能相同。</p>
+<p>话说回来第三个选覆盖好像没啥用，毕竟我都检测了文件不存在。</p>
+<h3 id="GuiObj-CtrlObj">GuiObj &amp; CtrlObj<a class="header-anchor" href="#GuiObj-CtrlObj"></a></h3>
+<p>即 GUI 和控件对象。</p>
+<p>下面是 OCRC 的 Baidu 库里的一段：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.__Results[this.id] := Gui(, this.id)</span><br><span class="line">this.__Results[this.id].OnEvent(<span class="string">&quot;Escape&quot;</span>, (GuiObj) =&gt; GuiObj.Destroy())</span><br><span class="line">...</span><br><span class="line">this.__Results[this.id].AddDropDownList(<span class="string">&quot;x+5 w90 vFormatStyle AltSubmit Choose&quot;</span> this.config[<span class="string">&quot;format_style&quot;</span>], [<span class="string">&quot;智能段落&quot;</span>, <span class="string">&quot;合并多行&quot;</span>, <span class="string">&quot;拆分多行&quot;</span>]).SetFont(<span class="string">&quot;s12&quot;</span>)</span><br><span class="line">this.__Results[this.id][<span class="string">&quot;FormatStyle&quot;</span>].OnEvent(<span class="string">&quot;Change&quot;</span>, ObjBindMethod(this, <span class="string">&quot;__Format&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>一开始我是这样写的：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.__Results[this.id] := Gui(, this.id).OnEvent(<span class="string">&quot;Escape&quot;</span>, (GuiObj) =&gt; GuiObj.Destroy())</span><br><span class="line">...</span><br><span class="line">this.__Results[this.id].AddDropDownList(<span class="string">&quot;x+5 w90 vFormatStyle AltSubmit Choose&quot;</span> this.config[<span class="string">&quot;format_style&quot;</span>], [<span class="string">&quot;智能段落&quot;</span>, <span class="string">&quot;合并多行&quot;</span>, <span class="string">&quot;拆分多行&quot;</span>]).SetFont(<span class="string">&quot;s12&quot;</span>).OnEvent(<span class="string">&quot;Change&quot;</span>, ObjBindMethod(this, <span class="string">&quot;__Format&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>看起来很不错，多好哇，还挺省空间的。</p>
+<p>然而这会报错。因为 GUI 和控件对象经过 <code>SetFont</code> <code>OnEvent</code> 等处理后返回的是个空字符串（或者是别的？我不记得了），并不是对象。</p>
+<h3 id="ObjBindMethod">ObjBindMethod<a class="header-anchor" href="#ObjBindMethod"></a></h3>
+<p>这其实不只是 v2 的坑，甚至说这其实应该不算坑，只是我学艺不精罢了。</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">this.__Results[this.id][<span class="string">&quot;FormatStyle&quot;</span>].OnEvent(<span class="string">&quot;Change&quot;</span>, ObjBindMethod(this, <span class="string">&quot;__Format&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>这个我原本的写法是</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">this.__Results[this.id][<span class="string">&quot;FormatStyle&quot;</span>].OnEvent(<span class="string">&quot;Change&quot;</span>, this.__Format)</span><br></pre></td></tr></table></figure>
+<p>然后这是 <code>__Format</code></p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__Format(CtrlObj, *) &#123;</span><br><span class="line">    format_style := CtrlObj.Value, result := <span class="string">&quot;&quot;</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后它除了刚触发时能用外，其余时候都会报错，大意是整数没有 Value 这个值。我去 Debug 也发现弄下来的 CtrlObj 居然是个整数，真是令人百思不得其解。</p>
+<p>于是我就按照 v1 的方法用 ObjBindMethod 去弄就成功了。</p>
+<p>然后我无意间发现 <code>OnEvent</code> 传的参数一般有两个，CtrlObj 及 Info，由于 Info 没用，我就用 * 代替了，想传啥传啥，想传几个传几个，然后呢 Info 的类型正好是整数。但这也并没有引起我的关注。</p>
+<p>直到昨天深夜里我躺在床上，猛地才想通了：<code>__Format</code> 作为方法，隐式地包含了一个参数 this，而唯一能成功运行的那行代码长下面那样。</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">this.__Format(this.__Results[this.id][<span class="string">&quot;FormatStyle&quot;</span>])</span><br></pre></td></tr></table></figure>
+<p>这行代码其实就包含了参数 this。</p>
+<p>然而 <code>OnEvent</code> 的函数对象不能包含参数，因此实际上我的 <code>__Format</code> 是要至少两个参数 this 和 CtrlObj，最后传入的是 CtrlObj 与 Info。也就是说，参数错位了。这样也就解释了为何 CtrlObj 是个整数了，因为传入的 Info 本身就是整数。</p>
+<p>而 ObjBindMethod 则解决了这个问题。它应该是将 this 与 <code>__Format</code> 绑起来作为一个新的函数对象了。同样的，如果 <code>OnEvent</code> 里的函数对象要传参，也必须用 Bind 而不能加参数，这个我在搜索过程中也发现了相关帖子。</p>
+<p>v1 时我也遇到了这个问题。当时也是苦想很久未果，搜索一大片后终于发现了 ObjBindMethod 这个解法，虽然不知其原理，但也就用下去了。</p>
+<p>不过现在我大概是知道原理了。希望我理解的没错。</p>
+<h3 id="Map">Map<a class="header-anchor" href="#Map"></a></h3>
+<p>v2 里没有下面的写法了</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">a := &#123;<span class="string">&quot;m&quot;</span>: <span class="number">1</span>, <span class="string">&quot;n&quot;</span>: <span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>必须这样写</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">a := Map(<span class="string">&quot;m&quot;</span>, <span class="number">1</span>, <span class="string">&quot;n&quot;</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>这其实让我百思不得其解。不过 <a target="_blank" rel="noopener" href="https://github.com/thqby/AutoHotkey_H">H 版</a>是支持的，H 版还支持 JSON 和 YAML 解析呢。（这里的 H 版指的不是 HotkeyIt 的 <a target="_blank" rel="noopener" href="https://github.com/hotkeyit/ahkdll">AutoHotkey_H</a>，而是 thqby 的合并了 H 版内容的 <a target="_blank" rel="noopener" href="https://github.com/AutoHotkey/AutoHotkey">AutoHotkey_L</a> 的分支）</p>
+<p>同时也不可以用 <code>a.m</code> 读取了，必须用 <code>a[&quot;m&quot;]</code>。还是有点不习惯的。</p>
+<h3 id="比大小">比大小<a class="header-anchor" href="#比大小"></a></h3>
+<p>这个 v1 也是，我只是发现 v2 也有这个现象罢了。看来连续比大小是无法实现的，必须用 <code>&amp;&amp;</code>。</p>
+<p><code>1 &lt; 3 &lt; 2</code> 的值是 1。原理就是 <code>1 &lt; 3</code> 是 1，<code>1 &lt; 2</code> 也是 1，因此结果是 1。</p>
+<h3 id="ThisHotkey">ThisHotkey<a class="header-anchor" href="#ThisHotkey"></a></h3>
+<p>例如在 MouseHand 里有一段是这样的：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">~LButton::</span></span><br><span class="line">KeyLeftButton(ThisHotkey) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见 <code>KeyLeftButton</code> 及 <code>UnlockMouse</code> 这两个都有 ThisHotkey 这个参数，但都没有显式使用。</p>
+<p>我直接引用文档内容：</p>
+<blockquote>
+<p>当热键被触发时, 热键的名称作为其第一个参数传递, 参数名为 <code>ThisHotkey</code>(不包括尾部的冒号).</p>
+</blockquote>
+<p>同样的例子也出现在 OCRC 中。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">OCRC_BaiduOCR(ThisHotkey) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">OCRC_MathpixOCR(ThisHotkey) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="GUI-控件">GUI 控件<a class="header-anchor" href="#GUI-控件"></a></h3>
+<p>首先是 Text，不设定 h 时文字有时会显示不完整。在 v1 没出现这个问题（但印象中确实遇到过，不过 v1 代码里确实是没有设置 h）。懒得特意去截图了。</p>
+<p>然后是 Edit 及 UpDown，这个纯粹是我眼瞎。UpDown 选项中有个「0x80」，v1 的脚本里我是用了这个选项的。它用来省略千位分隔符。然后文档说「然而, 通常不使用此样式, 因为当脚本从 UpDown 控件(而不是其伙伴控件) 获取的数字中不包含分隔符」，我想也是，有个千位分隔符也不碍事，方便看数字（虽然我的数字都不大）。于是就没加这个选项了。</p>
+<p>于是在测试时，报错了，说你怎么要数字传个字符串过来啊。我一看配置文件，<code>1,000</code>。哎你怎么不讲信用呐，不是说不包含分隔符吗？于是我一气之下又加了这个选项。</p>
+<p>后面再一看，「从 UpDown 控件(而不是其伙伴控件)」，原来如此，我就是从 Edit 控件获取数字的，误会它了。不过也懒得改了，得改关联内容，好麻烦，算了算了，这千位分隔符不要也罢，反正本来平时也就没用过。</p>
+<h3 id="冒号">冒号<a class="header-anchor" href="#冒号"></a></h3>
+<p>v1 的冒号要双写转义，比如要让 <code>a</code> 等于字符串 <code>Hello &quot;World&quot;!</code>，<code>b</code> 等于字符串 <code>&quot;&quot;</code>，应该这么写：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := <span class="string">&quot;Hello &quot;</span><span class="string">&quot;World&quot;</span><span class="string">&quot;!&quot;</span></span><br><span class="line">b := <span class="string">&quot;&quot;</span><span class="string">&quot;&quot;</span><span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>有时候冒号多得我都绕晕了。v2 改为 <code>`&quot;</code></p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := <span class="string">&quot;Hello `&quot;World`&quot;!&quot;</span></span><br><span class="line">b := <span class="string">&quot;`&quot;`&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>写个小抄，在内联代码中用 <code>`</code> 需要双写，同时要有空格间隔，即这样写：<code>`` ` ``</code>。</p>
+<h2 id="特点">特点<a class="header-anchor" href="#特点"></a></h2>
+<p>我累了，写了快六个小时了还没写完。以后有时间再说吧。</p>
+<h3 id="延续行">延续行<a class="header-anchor" href="#延续行"></a></h3>
+<p>在 v1 时想要延续行得把 <code>,</code> 放行首。比如这是 v1 的 <code>Start</code>：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Scripts := [ <span class="comment">;&quot;Basic\Shutdown\Shutdown&quot;</span></span><br><span class="line">          , <span class="string">&quot;Basic\Window\WinDrag\main&quot;</span></span><br><span class="line">          , <span class="string">&quot;Basic\Remap\Fn&quot;</span></span><br><span class="line">          , <span class="string">&quot;Basic\Remap\NumLock&quot;</span></span><br><span class="line">          , <span class="string">&quot;Basic\Remap\Others&quot;</span></span><br><span class="line"></span><br><span class="line">          , <span class="string">&quot;General\Tips\Run&quot;</span></span><br><span class="line">          , <span class="string">&quot;General\Correction\Pinyin&quot;</span></span><br><span class="line">          , <span class="string">&quot;General\Abbreviation\Common&quot;</span></span><br><span class="line">          , <span class="string">&quot;General\AHKMapCheatSheet\Mappings&quot;</span></span><br><span class="line"></span><br><span class="line">          , <span class="string">&quot;Specific\Vim\Vim&quot;</span></span><br><span class="line">          <span class="comment">; , &quot;Specific\Anki\Must&quot;</span></span><br><span class="line"></span><br><span class="line">          , <span class="string">&quot;Tool\Vark\main&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p>跟别的语言格格不入。虽然实现了，但是太丑陋了。</p>
+<p>而 v2 就可以使用别的语言的延续行方式了，看起来就美观得多了：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Scripts := [</span><br><span class="line">    <span class="comment">; &quot;Basic/Shutdown/Shutdown.ahk1&quot;,</span></span><br><span class="line">    <span class="string">&quot;Basic/Window/WinDrag/main.ahk1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Basic/Remap/Fn.ahk&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Basic/Remap/NumLock.ahk&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Basic/Remap/Others.ahk&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;General/Tips/Run.ahk&quot;</span>,</span><br><span class="line">    <span class="string">&quot;General/Correction/Pinyin.ahk&quot;</span>,</span><br><span class="line">    <span class="string">&quot;General/Abbreviation/Common.ahk&quot;</span>,</span><br><span class="line">    <span class="string">&quot;General/AHKMapCheatSheet/Mappings.ahk&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;Specific/Vim/Vim.ahk&quot;</span>,</span><br><span class="line">    <span class="comment">; &quot;Specific/Anki/Must.ahk1&quot;,</span></span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;Tool/Vark/main.ahk&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="命令">命令<a class="header-anchor" href="#命令"></a></h3>
+<p>援引自<a target="_blank" rel="noopener" href="https://wyagd001.github.io/v2/docs/v2-changes.htm#legacy-syntax-removed">v1.1 到 v2.0 的更改</a></p>
+<blockquote>
+<p>删除 &quot;命令语法&quot;. 已经没有了 &quot;命令&quot;, 只有 <em>函数调用语句</em>, 它们只是没有括号的函数或方法调用.</p>
+</blockquote>
+<p>这真是太好了，随便找几个例子。</p>
+<p>比如上面提到的 <code>IniRead</code> 就是一个很好的例子。</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">RegRead ProxyStatus, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Internet Settings, ProxyEnable</span><br></pre></td></tr></table></figure>
+<p>这是 <code>Tips/Run</code> 中用来切换系统代理开关的热键中获取代理状态的一行。它的意思是讲注册表的值赋给 <code>ProxyStatus</code> 这个变量。而在 v2 是这样写：</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">ProxyStatus := RegRead(<span class="string">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span>, <span class="string">&quot;ProxyEnable&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>更加清晰明了。</p>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">MouseGetPos xcursor, ycursor</span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">MouseGetPos(&amp;xcursor, &amp;ycursor)</span><br></pre></td></tr></table></figure>
+<p>然后是 <code>Vark</code> 中获取鼠标位置的命令。在 v2 中是传递了变量的引用。</p>
+<h3 id="ErrorLevel">ErrorLevel<a class="header-anchor" href="#ErrorLevel"></a></h3>
+<p>在网上看到过将 ErrorLevel 形容为「公共厕所」，让我直接笑出声。因为十分贴切。</p>
+<p>在 v1，只要是出错就设置 ErrorLevel，要返回信息就设置 ErrorLevel。这是 v1 中 <a target="_blank" rel="noopener" href="https://wyagd001.github.io/zh-cn/docs/misc/ErrorLevel.htm">ErrorLevel 的文档</a>，好多个函数命令都设置 ErrorLevel。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">IsChineseMode() &#123;</span><br><span class="line">    DetectHiddenWindows On</span><br><span class="line">    WinGet winid, ID, A</span><br><span class="line">    wintitle := <span class="string">&quot;ahk_id &quot;</span> DllCall(<span class="string">&quot;imm32\ImmGetDefaultIMEWnd&quot;</span>, <span class="string">&quot;Uint&quot;</span>, winid, <span class="string">&quot;Uint&quot;</span>)</span><br><span class="line">    SendMessage <span class="number">0</span>x283, <span class="number">0</span>x001, <span class="number">0</span>, , <span class="variable">%wintitle%</span></span><br><span class="line">    DetectHiddenWindows Off</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">ErrorLevel</span> = <span class="number">1025</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是 v1 中检测是不是中文输入法的代码。<code>SendMessage</code> 设置了 ErrorLevel。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">IsChineseMode() &#123;</span><br><span class="line">    DetectHiddenWindows <span class="literal">True</span></span><br><span class="line">    hWnd := winGetID(<span class="string">&quot;A&quot;</span>)</span><br><span class="line">    result := SendMessage(</span><br><span class="line"><span class="built_in">        0x283,</span> <span class="comment">; Message: WM_IME_CONTROL</span></span><br><span class="line"><span class="built_in">        0x001,</span> <span class="comment">; wParam : IMC_GETCONVERSIONMODE</span></span><br><span class="line"><span class="built_in">        0    ,</span> <span class="comment">; lParam : (NoArgs)</span></span><br><span class="line">             , <span class="comment">; Control : (Window)</span></span><br><span class="line">        <span class="comment">; Retrieves the default window handle to the IME class.</span></span><br><span class="line">        <span class="string">&quot;ahk_id &quot;</span> DllCall(<span class="string">&quot;imm32\ImmGetDefaultIMEWnd&quot;</span>, <span class="string">&quot;Uint&quot;</span>, hWnd, <span class="string">&quot;Uint&quot;</span>)</span><br><span class="line">    )</span><br><span class="line">    DetectHiddenWindows <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> result == <span class="number">1025</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而这是 v2。</p>
+<p>在 v2 中很多以前设置 ErrorLevel 的现在会抛出错误。虽然处理错误挺麻烦的，但比起弄 ErrorLevel，还是处理错误比较好。</p>
+<p>总之这个公共变量 ErrorLevel 这是让人痛恨。写起来爽，但是维护时累的要死。</p>
+<h3 id="胖箭头函数">胖箭头函数<a class="header-anchor" href="#胖箭头函数"></a></h3>
+<p>原文是「Fat arrow function」，文档直译为「胖箭头函数」。跟 JavaScript 的箭头函数形式上很像。</p>
+<p>这个写法节省了很多空间，上面也有很多例子。不过最好的例子我觉得应该是下面这个。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^Space::</span></span><br><span class="line">RegRead ProxyStatus, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Internet Settings, ProxyEnable</span><br><span class="line">RegWrite REG_DWORD, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Internet Settings, ProxyEnable, % ProxyStatus := !ProxyStatus</span><br><span class="line"><span class="built_in">ToolTip %</span> <span class="string">&quot;Proxy has been switched &quot;</span> (ProxyStatus ? <span class="string">&quot;On&quot;</span> : <span class="string">&quot;Off&quot;</span>) <span class="string">&quot;.&quot;</span></span><br><span class="line"><span class="keyword">SetTimer</span> RemoveToolTip, -<span class="number">1000</span></span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="title">RemoveToolTip:</span></span><br><span class="line">ToolTip</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p>这是 v1 中切换代理的快捷键。切换后它会显示一个 ToolTip 显示当前代理状态。当然这不能一直显示，于是用 <code>SetTimer</code> 设置 1s 后移除。这也是官方文档给的典型范例。</p>
+<p>而在 v2 中使用胖箭头函数 + 命令皆函数，可以砍掉一个标签。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^Space::</span>&#123;</span><br><span class="line">    ProxyStatus := RegRead(<span class="string">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span>, <span class="string">&quot;ProxyEnable&quot;</span>)</span><br><span class="line">    RegWrite(ProxyStatus := !ProxyStatus, <span class="string">&quot;REG_DWORD&quot;</span>, <span class="string">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span>, <span class="string">&quot;ProxyEnable&quot;</span>)</span><br><span class="line">    ToolTip(<span class="string">&quot;Proxy has been switched &quot;</span> (ProxyStatus ? <span class="string">&quot;On.&quot;</span> : <span class="string">&quot;Off.&quot;</span>))</span><br><span class="line">    <span class="keyword">SetTimer</span>(() =&gt; ToolTip(), -<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="赋值">赋值<a class="header-anchor" href="#赋值"></a></h3>
+<p>v1 中有两种赋值方法，除了 <code>:=</code> 外还有一个我从没用过的 <code>=</code>，下面两个是等价的。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a  = b</span><br><span class="line">a := <span class="string">&quot;b&quot;</span></span><br></pre></td></tr></table></figure>
+<p>我本来就不喜第一种方法，因此没用过，全用的是第二种。v2 中移除了第一种赋值方法。</p>
+<h3 id="相等">相等<a class="header-anchor" href="#相等"></a></h3>
+<p>v1 与 v2 都能用 <code>=</code> 判断相等，不过 v2 加入了一个 <code>==</code>，可以要求大小写也相同，而 <code>=</code> 是忽略大小写的。重构过程中我将 <code>=</code> 全改为 <code>==</code> 了。</p>
+<h3 id="百分号">百分号<a class="header-anchor" href="#百分号"></a></h3>
+<p>v1 中很多要用百分号的地方终于解脱了，这让 AutoHotkey 语法更像通俗的编程语言了。目前我的 v2 代码还没出现用到百分号的场景了。</p>
+<h3 id="OTB"><abbr title="One True Brace">OTB</abbr><a class="header-anchor" href="#OTB"></a></h3>
+<p>v2 完全支持了 <abbr title="One True Brace">OTB</abbr>，即下面这种写法。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if x &lt; y &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>v1 也是支持的，但是有例外。这是 <code>OCRC</code> 中 <code>__Space</code> 的一段 loop：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">loop parse, result, <span class="string">&quot;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    if Mod(A_Index, 2)</span></span><br><span class="line"><span class="string">        PTR .= A_LoopField &quot;</span><span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">    else</span></span><br><span class="line"><span class="string">        PTR .= Trim(A_LoopField) &quot;</span><span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>把 <code>{</code> 移到前一行末尾会出错，因为它把分隔符当 <code>&quot;{</code> 了。而 v2 则没事（还用三元表达式简化了代码）：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">loop parse result, <span class="string">&quot;`&quot;&quot;</span></span><br><span class="line"><span class="title">    PTR .= (Mod(A_Index, 2) ? A_LoopField :</span> Trim(<span class="built_in">A_LoopField</span>)) <span class="string">&quot;`&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>先这样吧。以后想得到再来补充。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AutoHotkey/" rel="tag"><i class="fa fa-tag"></i> AutoHotkey</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/nju-email/" rel="prev" title="2023-08-26 杂记 & 南京大学邮箱设置">
+                  <i class="fa fa-angle-left"></i> 2023-08-26 杂记 & 南京大学邮箱设置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/08/zaji/" rel="next" title="2023-08-28 杂记">
+                  2023-08-28 杂记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lyieu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+<script src="/js/third-party/math/mhchem.min.js"></script>
+<script src="/js/third-party/math/copy-tex.min.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-comments-virid.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","dark":"auto","locale":{"placeholder":"欢迎评论~","level0":"问","level1":"哭","level2":"埋","level3":"挖","level4":"抬","level5":"死","level6":"熬","level7":"买","level8":"瞧","level9":"病","reactionTitle":"反应"},"reaction":["https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f970.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f973.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f9d0.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f632.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f610.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f641.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f62d.png"],"emoji":["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji","https://unpkg.com/@waline/emojis@1.2.0/tw-object","https://unpkg.com/@waline/emojis@1.2.0/tw-travel","https://unpkg.com/@waline/emojis@1.2.0/tw-weather"],"search":false,"meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"wordLimit":0,"login":"enable","pageSize":15,"texRenderer":"KaTeX","el":"#waline","comment":true,"path":"/2023/08/autohotkey-refactor/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

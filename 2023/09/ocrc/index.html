@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon.svg">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pilgrimlyieu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500,"threshold":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本篇博文介绍了我的一个 AutoHotkey 项目 OCRC。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoHotkey 脚本 OCRC 介绍">
+<meta property="og:url" content="https://pilgrimlyieu.github.io/2023/09/ocrc/index.html">
+<meta property="og:site_name" content="Shrine">
+<meta property="og:description" content="本篇博文介绍了我的一个 AutoHotkey 项目 OCRC。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/OCRC.ico">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/menu.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/menu-2.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/setting-basic.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/settings.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/basic-ocr-tooltip.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/setting-advance.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/windowspy.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/setting-textocr.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/translate_languages.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/searchengines.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/setting-formulaocr.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/setting-baidu.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/2022-04-04-20-04-51.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/confidence.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/setting-mathpix.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/configs.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/thepaper.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-1.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-2.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-3.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-4.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-5.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-6.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-7.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-8.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-results.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baiduocr_languagetypes.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/jp.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-9.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-yellow.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/2022-04-05-09-35-37.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/baidu-result-save.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/overwrite-2.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/formula.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/bing-result.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/text-formula.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/formula-2.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/bing-result-2.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/formula.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/mathpix-result.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/mathpix-result-1.gif">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/text-formula.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/mathpix-result-2.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/2022-04-05-09-32-15.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/formula-2.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/mathpix-result-3.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/import-images.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/import-folder.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/overwrite-1.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/output.png">
+<meta property="article:published_time" content="2023-09-05T11:39:55.000Z">
+<meta property="article:modified_time" content="2023-11-02T13:17:35.000Z">
+<meta property="article:author" content="Lyieu">
+<meta property="article:tag" content="AutoHotkey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pilgrimlyieu.github.io/2023/09/ocrc/OCRC.ico">
+
+
+<link rel="canonical" href="https://pilgrimlyieu.github.io/2023/09/ocrc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pilgrimlyieu.github.io/2023/09/ocrc/","path":"2023/09/ocrc/","title":"AutoHotkey 脚本 OCRC 介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AutoHotkey 脚本 OCRC 介绍 | Shrine</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-comments-virid.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.admonition{font-size:.96em;margin:1.5625em 0;padding:.6rem;overflow:visible;page-break-inside:avoid;border-left:.3rem solid;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);line-height:1.8}.admonition>:last-child{margin-bottom:0!important}.admonition-title::before{position:absolute;top:1rem;left:1rem;width:16px;height:16px;border-radius:100%;content:" "}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;line-height:2}.admonition.note,.admonition.question,.admonition.success{border-color:#42b983}.note>.admonition-title::before,.question>.admonition-title::before,.success>.admonition-title::before{background-color:#42b983}.note>.admonition-title,.question>.admonition-title,.success>.admonition-title{background-color:rgba(66,185,131,.4)}.admonition.info,.admonition.todo{border-color:#00b8d4}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.4)}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.4)}.admonition.bug,.admonition.danger,.admonition.error,.admonition.failure,.admonition.missing{border-color:#ff5252}.bug>.admonition-title::before,.danger>.admonition-title::before,.error>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252}.bug>.admonition-title,.danger>.admonition-title,.error>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.4)}.admonition.example{border-color:#903dcc}.example>.admonition-title::before{background-color:#903dcc}.example>.admonition-title{background-color:rgba(144,61,204,.4)}.admonition.quote{border-color:#aaa}.quote>.admonition-title::before{background-color:#aaa}.quote>.admonition-title{background-color:rgba(170,170,170,.4)}.admonition.abstract,.admonition.tip{border-color:#448aff}.abstract>.admonition-title::before,.tip>.admonition-title::before{background-color:#448aff}.abstract>.admonition-title,.tip>.admonition-title{background-color:rgba(68,138,255,.4)}.admonition.memo,.admonition.sheet{border-color:#c3a210}.memo>.admonition-title::before,.sheet>.admonition-title::before{background-color:#c3a210}.memo>.admonition-title,.sheet>.admonition-title{background-color:rgba(195,162,16,.4)}@media (prefers-color-scheme:light){.admonition{background-color:#eee}.admonition.test{border-color:#283747}.test>.admonition-title::before{background-color:#283747}.test>.admonition-title{background-color:rgba(40,55,71,.4)}}@media (prefers-color-scheme:dark){.admonition{background-color:#444}.admonition.test{border-color:#f2f3f4}.test>.admonition-title::before{background-color:#f2f3f4}.test>.admonition-title{background-color:rgba(242,243,244,.4)}}</style><link rel="alternate" href="/atom.xml" title="Shrine" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shrine</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Fesmoph's Blog</p>
+      <img class="custom-logo-image" src="/images/logo/logo.svg" alt="Shrine">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">74</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-list-ul fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-folder-open fa-fw"></i>归档<span class="badge">29</span></a></li><li class="menu-item menu-item-记事"><a href="/daily/" rel="section"><i class="fa fa-clipboard-list fa-fw"></i>记事</a></li><li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-scroll fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">3.</span> <span class="nav-text">使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%9C%E5%8D%95"><span class="nav-number">3.1.</span> <span class="nav-text">菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OCRC-%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">OCRC 设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Basic"><span class="nav-number">3.2.1.</span> <span class="nav-text">Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#OCR"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">OCR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%AA%E5%9B%BE"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">截图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OCRC"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">OCRC</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Advance"><span class="nav-number">3.2.2.</span> <span class="nav-text">Advance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">高级设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6%E6%94%AF%E6%8C%81"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">外部截图软件支持</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BF%BB%E8%AF%91%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">翻译设置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TextOCR"><span class="nav-number">3.2.3.</span> <span class="nav-text">TextOCR</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">默认选项</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FormulaOCR"><span class="nav-number">3.2.4.</span> <span class="nav-text">FormulaOCR</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9-2"><span class="nav-number">3.2.4.1.</span> <span class="nav-text">默认选项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OCR-%E5%BC%95%E6%93%8E%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">OCR 引擎设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BaiduOCR"><span class="nav-number">3.3.1.</span> <span class="nav-text">BaiduOCR</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">基础设置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MathpixOCR"><span class="nav-number">3.3.2.</span> <span class="nav-text">MathpixOCR</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE-2"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">基础设置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.4.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E7%AA%97%E5%8F%A3"><span class="nav-number">3.5.</span> <span class="nav-text">结果窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6-OCR"><span class="nav-number">3.5.1.</span> <span class="nav-text">百度 OCR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bing-OCR"><span class="nav-number">3.5.2.</span> <span class="nav-text">Bing OCR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mathpix-OCR"><span class="nav-number">3.5.3.</span> <span class="nav-text">Mathpix OCR</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5"><span class="nav-number">3.6.</span> <span class="nav-text">导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF"><span class="nav-number">3.7.</span> <span class="nav-text">错误</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lyieu"
+      src="/images/avatar/avatar.svg">
+  <p class="site-author-name" itemprop="name">Lyieu</p>
+  <div class="site-description" itemprop="description">Dreaming</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pilgrimlyieu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pilgrimlyieu" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pilgrimlyieu@outlook.com" title="E-Mail → mailto:pilgrimlyieu@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pilgrimlyieu.github.io/2023/09/ocrc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.svg">
+      <meta itemprop="name" content="Lyieu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrine">
+      <meta itemprop="description" content="Dreaming">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AutoHotkey 脚本 OCRC 介绍 | Shrine">
+      <meta itemprop="description" content="本篇博文介绍了我的一个 AutoHotkey 项目 OCRC。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AutoHotkey 脚本 OCRC 介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-05 19:39:55" itemprop="dateCreated datePublished" datetime="2023-09-05T19:39:55+08:00">2023-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-02 21:17:35" itemprop="dateModified" datetime="2023-11-02T21:17:35+08:00">2023-11-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AutoHotkey/" itemprop="url" rel="index"><span itemprop="name">AutoHotkey</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2023/09/ocrc/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2023/09/ocrc/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>16k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>14 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">本篇博文介绍了我的一个 AutoHotkey 项目 OCRC。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最近 OCRC 更新了挺多，不仅加入了<a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/pull/21">自定义搜索引擎</a>，还补充了<a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/pull/23">翻译</a>这个之前搁置的功能。</p>
+<p>然而旧的 README 还停留在未 release 过的 1.1.3 版本，而现在已经到了 2.0.3 版本了，与之前已经有了很大的不同了。也是时候重写一个 README。</p>
+<div class="admonition warning"><p class="admonition-title">注意
+</p><p>以下内容基于版本 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/releases/tag/OCRC-v2.2.2">2.2.2</a>，未必对其他版本适用。</p>
+</div>
+<h2 id="引言">引言<a class="header-anchor" href="#引言"></a></h2>
+<p><strong>OCRC</strong> 全称为 <em>Optical Character Recognition Commander</em>，中文为<strong>道衣</strong>，是一个集全了<em>百度 OCR</em> 与 <em>Mathpix OCR</em>的<strong>文字 + 公式</strong>识别利器。</p>
+<div class="admonition tip"><p>原中文名是「光学字符识别指挥」。至于现在这个中文名，就跟我的社交软件头像一样，懂的都懂。本篇文章也有对此的提示。</p>
+<p>不过因为习惯了，还是以「OCRC」指代本项目。「道衣」只是名义上的中文名称。</p>
+</div>
+<h2 id="下载">下载<a class="header-anchor" href="#下载"></a></h2>
+<p>最新版本见 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/releases/latest">Release</a>。</p>
+<h2 id="使用说明">使用说明<a class="header-anchor" href="#使用说明"></a></h2>
+<p>OCRC 的使用需要联网，无法离线使用。</p>
+<h3 id="菜单">菜单<a class="header-anchor" href="#菜单"></a></h3>
+<p>OCRC 的菜单图标如下，是一个相机：</p>
+<p><img src="OCRC.ico" alt=""></p>
+<p>实拍如下：</p>
+<p><img src="menu.png" alt=""></p>
+<p>右键会出现五个选项，分别是「OCRC 设置」「OCR 引擎设置」「导入图片」「导入文件夹」「重启」和「退出」。「OCRC 设置」被加粗，这是默认选项，点击图标会默认打开OCRC 基本设置。OCR 引擎设置用来配置 OCRC 内支持的引擎（百度 OCR，Mathpix OCR 及 Bing OCR）。</p>
+<p><img src="menu-2.png" alt=""></p>
+<h3 id="OCRC-设置">OCRC 设置<a class="header-anchor" href="#OCRC-设置"></a></h3>
+<p>设置目前共有四个标签页，分别为「Basic」「Advance」「TextOCR」和「FormulaOCR」。</p>
+<h4 id="Basic">Basic<a class="header-anchor" href="#Basic"></a></h4>
+<p><img src="setting-basic.png" alt=""></p>
+<p>Basic 标签页又分为三组：「OCR」「截图」和「OCRC」。</p>
+<h5 id="OCR">OCR<a class="header-anchor" href="#OCR"></a></h5>
+<p>顾名思义，这是 OCR 的总设置。</p>
+<p>首先是「文本 OCR」及「公式 OCR」的总开关，不管后面怎么配置，只要这里一关 OCR 就不会启用。</p>
+<p>然后是默认引擎的设置。文本 OCR 目前仅支持「百度 OCR」，公式 OCR 则有两个选择，一个是免费的「Bing OCR」（也是默认选项），一个是不免费但强大的「Mathpix OCR」。</p>
+<p>然后是两个类型的 OCR 的热键设置，可以点击编辑框然后输入想要的热键。</p>
+<p>热键设置有特殊规则：</p>
+<ol>
+<li>文本 OCR 与公式 OCR 热键不应相同（并没有对此做出限制，但确实不应该这样做）</li>
+<li>不支持鼠标/游戏杆热键或 <kbd>Win</kbd> 键<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></li>
+</ol>
+<div class="admonition tip"><p>其实有方法可以绕过去。比如我直接改配置文件，就可以把热键设置为带 <kbd>Win</kbd> 键的。设置界面会显示「无」，如下图。</p>
+<p><img src="settings.png" alt=""></p>
+<p>热键修饰符参见<a target="_blank" rel="noopener" href="https://wyagd001.github.io/v2/docs/Hotkeys.htm#Symbols">官方文档</a>。</p>
+</div>
+<h5 id="截图">截图<a class="header-anchor" href="#截图"></a></h5>
+<p>第一个选项「截图时间」，设置截图最长用时，超时将自动终止 OCR。默认为 10 秒。</p>
+<p>第二个选项「缓冲时间」，设置等待截图窗口出现的缓冲时间。由于从快捷键触发截图，到截图窗口激活需要时间，这个时间就是用来检测是否成功开始了截图。如果超时也会终止 OCR。需要注意的是，设置时间过短可能会导致经常性的截图失败。默认是 500 毫秒。</p>
+<p>另外缓冲时间是包含在截图时间里的。也就是说，若是设置截图时间 10 秒，缓冲时间 4 秒，那么真正给予的截图时间只有 6 秒。</p>
+<p>第三个选项「未检测到截图时抛出警告」，设置是否在未发现截图时弹出警告，有利于发现问题。默认开启。若是不喜欢弹窗也可以选择关闭。</p>
+<h5 id="OCRC">OCRC<a class="header-anchor" href="#OCRC"></a></h5>
+<p>这里是 OCRC 设置界面的设置，目前只有一个「设置界面工具提示」的选项，默认开启。</p>
+<p>这个选项可以使光标悬停在选项上会出现提示，如下：</p>
+<p><img src="basic-ocr-tooltip.png" alt=""></p>
+<p>但是这个功能有些我不太好描述的缺陷，加上我对程序还是蛮了解的，就关闭了这个选项。</p>
+<h4 id="Advance">Advance<a class="header-anchor" href="#Advance"></a></h4>
+<p><img src="setting-advance.png" alt=""></p>
+<h5 id="高级设置">高级设置<a class="header-anchor" href="#高级设置"></a></h5>
+<p>「编码精度」设置的是剪贴板 JPEG 格式图片转为 Base64 的精度。我也不了解，悬停的提示是 GitHub Copilot 写的。默认是 75。</p>
+<h5 id="外部截图软件支持">外部截图软件支持<a class="header-anchor" href="#外部截图软件支持"></a></h5>
+<p>这个组用来设置是否使用外部截图软件。</p>
+<p>如果需要的话需先启用，然后设置截图软件的路径。同时支持自定义参数，如我的设置就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:/Software/Snipaste/Snipaste.exe snip -o clipboard</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，OCRC 将剪贴板的图片进行处理，然后通过 API 获取结果。因此外部截图软件截完图必须要复制到剪贴板里。</p>
+<p>还有一点需要注意的是，要求截图窗口的 <code>ahk_exe</code> 属性必须和路径中的 exe 文件相同，否则 OCRC 无法正确判断截图窗口是否激活。如下是 Snipaste 的结果，可见是符合的：</p>
+<p><img src="windowspy.png" alt=""></p>
+<p>目前只测试过 Snipaste，可能其他截图软件有不适配的情况。如果出现了这种情况，那还是得用默认的截图工具。默认采用 Windows 自带截图工具，目前只在 Windows10 与 11 进行了测试，需保证 Windows 有自带截图工具才行。测试方法是 <kbd>Win</kbd> + <kbd>R</kbd> 打开「运行」，然后输入 <code>ms-screenclip:</code> 并回车运行。如果能成功激活截图，那就可以正常运行。</p>
+<h5 id="翻译设置">翻译设置<a class="header-anchor" href="#翻译设置"></a></h5>
+<p>这部分是设置百度 OCR 的翻译的。</p>
+<p>首先是「谷歌翻译代理」，可以设置代理来访问谷歌翻译 API。比如我的设置就是 <code>127.0.0.1:31181</code>。</p>
+<h4 id="TextOCR">TextOCR<a class="header-anchor" href="#TextOCR"></a></h4>
+<p><img src="setting-textocr.png" alt=""></p>
+<h5 id="默认选项">默认选项<a class="header-anchor" href="#默认选项"></a></h5>
+<p>基本是从原「百度 OCR」移植过来的设置。</p>
+<p>「默认排版」有三个选择：「智能段落」「合并多行」和「拆分多行」。默认「智能段落」。</p>
+<p>API 返回结果有推测的段落信息，「智能段落」将其处理得到结果。「合并多行」及「拆分多行」显而易见。</p>
+<p>「默认标点」有四个选择：「智能标点」「中文标点」及「英文标点」。默认「智能标点」。</p>
+<p>「智能标点」是我自己写的根据上下文判断标点的算法，只是<em>实验性</em>的，也许存在一些问题。剩下两个很好理解，就是全部标点都转换。</p>
+<p>「默认空格」有三个选择：「智能空格」及「去除空格」。默认「智能空格」。</p>
+<p>「智能空格」也是我自己写的根据上下文自动空格的算法，也只是<em>实验性</em>的，同时处理情况比较局限，对于网址、路径等情况的处理非常差。「去除空格」就是去除结果中所有空格。</p>
+<div class="admonition note"><p>「原始结果」于 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/releases/tag/OCRC-v2.2.0">2.2.0</a> 移除。</p>
+</div>
+<p>翻译功能由两个选项「默认翻译原始语言」和「默认翻译目标语言」配置。要添加新的语言支持需要到配置文件中进行设置。</p>
+<p><img src="translate_languages.png" alt=""></p>
+<p>默认有三种语言「自动检测」「简体中文」和「英文」，其中「默认翻译目标语言」无法设置「自动检测」。语言对应表参见<a target="_blank" rel="noopener" href="https://cloud.google.com/translate/docs/languages?hl=zh-cn">谷歌文档</a>。添加示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">显示语言名称=语言代码</span><br></pre></td></tr></table></figure>
+<p>「默认搜索引擎」默认自带五个选择：「必应」「百度」「谷歌」「百度百科」和「维基百科」。默认选择是「百度」。</p>
+<p>「默认搜索引擎」可以进行自定义配置，需要在配置文件中进行设置。</p>
+<p><img src="searchengines.png" alt=""></p>
+<p>打开配置文件 <code>OCRC.ini</code>。有一个部分名为 <code>BaiduOCR_SearchEngines</code>，然后按照如下格式进行添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">搜索引擎名称=搜索引擎链接</span><br></pre></td></tr></table></figure>
+<p>名称里不可以包含 <code>=</code>，其余随意。<code>@W</code>（大写）将会被替换为结果。</p>
+<p>另外名为「Everything」的搜索引擎有内置支持，只需要设置 Everything 的路径即刻，如下是我的设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Everything=D:/Software/Everything/Everything.exe</span><br></pre></td></tr></table></figure>
+<p>「搜索时关闭结果窗口」选项，如果开启了，在你使用搜索后，结果窗口会自动关闭。默认开启。</p>
+<h4 id="FormulaOCR">FormulaOCR<a class="header-anchor" href="#FormulaOCR"></a></h4>
+<p><img src="setting-formulaocr.png" alt=""></p>
+<h5 id="默认选项-2">默认选项<a class="header-anchor" href="#默认选项-2"></a></h5>
+<p>「行内公式」有两个选择：「<code>$...$</code>」和「<code>\(...\)</code>」。默认是美元符号。</p>
+<p>区别就是 <code>$\alpha$</code> 和 <code>\(\alpha\)</code>，实际显示都是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>。</p>
+<p>「行间公式」也有两个选择：「<code>$$...$$</code>」和「<code>\[...\]</code>」。默认也是美元符号。</p>
+<p>区别就是</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;n=0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\infty</span>&#125;<span class="keyword">\dfrac</span>&#123;x<span class="built_in">^</span>n&#125;&#123;n!&#125;=<span class="keyword">\e</span><span class="built_in">^</span>x</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\[</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;n=0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\infty</span>&#125;<span class="keyword">\dfrac</span>&#123;x<span class="built_in">^</span>n&#125;&#123;n!&#125;=<span class="keyword">\e</span><span class="built_in">^</span>x</span><br><span class="line"><span class="keyword">\]</span></span><br></pre></td></tr></table></figure>
+<p>实际显示都是</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mfrac><msup><mi>x</mi><mi>n</mi></msup><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mo>=</mo><msup><mi mathvariant="normal">e</mi><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">\sum_{n=0}^{\infty}\dfrac{x^n}{n!}=\e^x
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3414em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7144em;"></span><span class="mord"><span class="mord mathrm">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>「默认选择」有三个选择：「LaTeX」「行内公式」及「行间公式」。默认为「LaTeX」。</p>
+<p>「LaTeX」即为不包含数学分隔符的纯 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 内容；「行内公式」「行间公式」即为分别包含对应分隔符的内容。</p>
+<p>另外还有一个没有列出的选项「文本公式」，Mathpix 会智能识别文本和公式，然后返回文本公式结果，文本公式结果在文本和公式混排时效果比较好。在有文本公式，且文本公式不以环境开头时，无论如何文本公式都是默认选择的。</p>
+<h3 id="OCR-引擎设置">OCR 引擎设置<a class="header-anchor" href="#OCR-引擎设置"></a></h3>
+<h4 id="BaiduOCR">BaiduOCR<a class="header-anchor" href="#BaiduOCR"></a></h4>
+<p><img src="setting-baidu.png" alt=""></p>
+<h5 id="基础设置">基础设置<a class="header-anchor" href="#基础设置"></a></h5>
+<p>然后是 API Key 和 Secret Key。在这里我不过多解释，直接复制原版 README 的内容，更详细的内容也可以自行搜索得到。</p>
+<p>这是百度 OCR API 的相关信息，具体详见<a target="_blank" rel="noopener" href="https://cloud.baidu.com/doc/OCR/s/dk3iqnq51">文字识别 OCR - 新手操作指引</a>或百度关键词「百度 OCR API 申请」进行申请。截至 2022-04-04（即原 README 撰稿日），新用户可领取如下调用福利。</p>
+<p><img src="2022-04-04-20-04-51.png" alt=""></p>
+<p>依照上面指示获取到 API Key 与 Secret Key 后填入设置即可。需要注意的是，这两个信息需要严格保密。</p>
+<p>支持的识别类型包括<em>通用文字（标准）识别</em>、<em>通用文字（高精度）识别</em>、<em>手写文字识别</em>、<em>网络图片识别</em>（默认是第一个，下同）。除了<em>手写文字识别</em>是 500次/月 外其他都是 1000次/月。</p>
+<p>我的建议是全部都用<em>高精度识别</em>。经过不完全的测试，对于手写文字，<em>手写文字识别</em>与<em>高精度识别</em>不相上下，而<em>标准识别</em>一塌糊涂，而<em>高精度识别</em>一般来说次数够用，因此更推荐使用<em>高精度识别</em>。</p>
+<p>另外不需要 API Key 与 Secret Key 实际上也是能使用百度 OCR 的，详见下面<a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a>的介绍。</p>
+<p>识别类型有四种：</p>
+<ul>
+<li>通用文字（标准）识别</li>
+<li>通用文字（高精度）识别</li>
+<li>手写文字识别</li>
+<li>网络图片文字识别</li>
+</ul>
+<p>我用的都是高精度。</p>
+<p>然后是「置信度」设置。置信度有三种，默认为精准：</p>
+<ul>
+<li>精准</li>
+<li>模糊</li>
+<li>关闭</li>
+</ul>
+<p>如下是模糊时的样子：</p>
+<p><img src="confidence.png" alt=""></p>
+<p>精准和模糊的区别只是算法不同。百度 OCR API 返回每行的结果及置信度。精准置信度的计算方法是将每行字符个数作为权重，综合计算置信度；而模糊置信度则是直接累加置信度并除以行数。</p>
+<h4 id="MathpixOCR">MathpixOCR<a class="header-anchor" href="#MathpixOCR"></a></h4>
+<p><img src="setting-mathpix.png" alt=""></p>
+<h5 id="基础设置-2">基础设置<a class="header-anchor" href="#基础设置-2"></a></h5>
+<p>设置「App ID」及「App Key」。</p>
+<p>App 的内容复制了旧版 README。</p>
+<p>获取请百度关键词「Mathpix API 申请」，1000次/月，需要信用卡，超额会扣款（具体不清楚）。</p>
+<p>然后一样的要填入，也一定要注意保密！</p>
+<blockquote>
+<p>另外我好像看到新闻 API 好像免费次数给砍了，具体我不清楚。</p>
+</blockquote>
+<h3 id="配置文件">配置文件<a class="header-anchor" href="#配置文件"></a></h3>
+<p>在没有配置文件时运行 OCRC 或打开 OCRC 设置界面都会创建一个默认配置文件 <code>OCRC.ini</code>。在初次运行时还会放置一个 <code>ahk-json.dll</code> 文件，这个文件是用来解析 JSON 的，如果不慎删除可以重启 OCRC 来重新获得。</p>
+<p><img src="configs.png" alt=""></p>
+<p>这便是配置文件的全貌了，默认情况下除了 <code>BaiduOCR_TokenExpiration</code> 不同外都是相同的。如果不明白相关含义，请不要擅自更改。</p>
+<p>不过我的名称取得还是比较清晰的，也可以和设置里进行对应。</p>
+<p>上面提及了不使用 API Key 和 Secret Key 也能使用百度 OCR，其实就是用了 Token。</p>
+<p>Token 是发送给百度 OCR 的有效期为 30 天的认证字串，如果没有 API Key 和 Secret Key，但是有 Token 的话，可以写在 <code>BaiduOCR_Token</code> 后面。</p>
+<p><code>BaiduOCR_TokenExpiration</code> 是 Token 过期时间。OCRC 将在 Token 过期后重新获得 Token。如果是使用 Token 进行 OCR 的需要将此值调大。</p>
+<h3 id="结果窗口">结果窗口<a class="header-anchor" href="#结果窗口"></a></h3>
+<h4 id="百度-OCR">百度 OCR<a class="header-anchor" href="#百度-OCR"></a></h4>
+<p>以<a target="_blank" rel="noopener" href="https://www.thepaper.cn/newsDetail_forward_24494242">澎湃新闻 - 英国第二大城市伯明翰市政府宣布破产</a>为例进行演示。</p>
+<p><img src="thepaper.png" alt=""></p>
+<p>结果如下：</p>
+<p><img src="baidu-result.png" alt=""></p>
+<p>左上角显示了识别类型。下面的绿条和数值是置信度。</p>
+<p>我使用了「通用文字（高精度）识别」，结果看起来还不错，智能段落也很让人满意，智能标点和智能空格在这个情景工作也挺正常。</p>
+<p><img src="baidu-result-1.gif" alt=""></p>
+<p>可以看到排版选项会清除标点和空格的处理。这是因为排版选项直接修改 API 返回的文本。可以用这个特性恢复初始情况。</p>
+<p><img src="baidu-result-2.gif" alt=""></p>
+<p><img src="baidu-result-3.gif" alt=""></p>
+<p>这是标点和空格的处理。</p>
+<p><img src="baidu-result-4.gif" alt=""></p>
+<p>这是谷歌翻译（中-&gt;英）的结果。</p>
+<details>
+<summary>原始文本和翻译文本的对比</summary>
+<div class="admonition quote"><p class="admonition-title">原文
+</p><p>在一份联合声明中，伯明翰市工党议会的领导人约翰·科顿（John Cotton）和莎伦·汤普森（Sharon Thompson）表示，此举是“我们寻求让我们的城市重新建立稳健财政基础的必要步骤”。而与英国各地的地方政府一样，伯明翰市政府“显然面临着前所未有的财政挑战”，包括社会关怀需求的大幅增长、商业税收入的急剧减少、通胀率居高不下等。该声明指出，伯明翰市已在7月实施了严格的支出控制措施，并请求了额外的战略支持。<br>
+根据伯明翰市政府发布的通知，除保护弱势群体等任务所需的必要开支外，该市将暂停一切其他开支，以保证核心服务的正常进行。<br>
+据悉，伯明翰市破产与其背负的高额索赔账单有关。此前，该市百余名从事教育、餐饮等行业的女性因其薪酬待遇差于同职位男性而将伯明翰市政府告上法庭，要求实现同工同酬，最终最高法院判其胜诉。<br>
+自2012年以来，伯明翰市政府已为此事支付了近11亿英镑的赔款。今年7月，该市市政府透露称，还有7.6亿英镑的相关赔款尚未赔付。伯明翰市议会表示，同工同酬索赔的费用正以每月500万英镑至1400万英镑的速度递增，该市必须为迄今为止累积的赔款债务提供资金，但却没有资源这样做，因此在7月便已暂停非必要开支。</p>
+</div>
+<div class="admonition quote"><p class="admonition-title">OCRC
+</p><p>在一份联合声明中，伯明翰市工党议会的领导人约翰·科顿(JohnCotton)和莎伦·汤普森(Sharon Thompson)表示，此举是“我们寻求让我们的城市重新建立稳健财政基础的必要步骤”。而与英国各地的地方政府一样，伯明翰市政府“显然面临着前所未有的财政挑战”，包括社会关怀需求的大幅增长、商业税收入的急剧减少、通胀率居高不下等。该声明指出，伯明翰市已在 7 月实施了严格的支出控制措施，并请求了额外的战略支持。<br>
+根据伯明翰市政府发布的通知，除保护弱势群体等任务所需的必要开支外，该市将暂停一切其他开支，以保证核心服务的正常进行。<br>
+据悉，伯明翰市破产与其背负的高额索赔账单有关。此前，该市百余名从事教育、餐饮等行业的女性因其薪酬待遇差于同职位男性而将伯明翰市政府告上法庭，要求实现同工同酬，最终最高法院判其胜诉。<br>
+自 2012 年以来，伯明翰市政府已为此事支付了近 11 亿英镑的赔款。今年 7 月，该市市政府透露称，还有 7.6 亿英镑的相关赔款尚未赔付。伯明翰市议会表示，同工同酬索赔的费用正以每月 500 万英镑至 1400 万英镑的速度递增，该市必须为迄今为止累积的赔款债务提供资金，但却没有资源这样做，因此在 7 月便已暂停非必要开支。</p>
+</div>
+<div class="admonition quote"><p class="admonition-title">谷歌翻译
+</p><p>In a joint statement, Birmingham Labor council leaders John Cotton and Sharon Thompson said the move was &quot;a necessary step in our quest to put our city back on sound financial footing&quot;. &quot;. Like local governments across the UK, the City of Birmingham &quot;clearly faces unprecedented financial challenges&quot;, including a substantial increase in demand for social care, a sharp reduction in business tax revenue and high inflation. The statement noted that the City of Birmingham had implemented strict spending controls in July and had requested additional strategic support.<br>
+According to a notice issued by the Birmingham City Government, except for necessary expenditures required for tasks such as protecting vulnerable groups, the city will suspend all other expenditures to ensure the normal operation of core services.<br>
+It is reported that the bankruptcy of Birmingham City is related to the high claims bill it is burdened with. Previously, more than a hundred women engaged in education, catering and other industries in the city took the Birmingham City Government to court because their pay was worse than that of men in the same position, demanding equal pay for equal work. In the end, the Supreme Court ruled in favor of them.<br>
+The City of Birmingham has paid almost £1.1bn in reparations since 2012. In July this year, the city's council revealed that £760m in related compensation had yet to be paid. Birmingham City Council said the cost of equal pay claims was rising at a rate of between £5 million and £14 million a month and that the city had to fund the compensation debt it had accumulated so far but did not have the resources to do so in July. Suspend non-essential spending.</p>
+</div>
+</details>
+<p><img src="baidu-result-5.gif" alt=""></p>
+<p>然后这是搜索。由于内容过长，进行搜索可能会出错，我就换了个比较短的文本。</p>
+<p><img src="baidu-result-6.gif" alt=""></p>
+<p>右键可以实现快速搜索。</p>
+<p><img src="baidu-result-7.gif" alt=""></p>
+<p>编辑框可以自由修改，剪贴板会时刻记录最新内容（当然容易污染剪贴板）。</p>
+<p><img src="baidu-result-8.gif" alt=""></p>
+<p>「排版」的重置功能。</p>
+<p><img src="baidu-results.png" alt=""></p>
+<p>支持多窗口，多翻译窗口等。</p>
+<p>然后演示一下「识别语言」的切换。（引擎因为只有一个，演示没啥必要）</p>
+<p>首先讲一下如何添加自定义语言：一样是打开配置文件，有个块 <code>BaiduOCR_LanguageTypes</code>，按 <code>显示语言名称=语言代码</code> 添加到这个块。默认有「中英文混合」及「英文」。语言对应表参见<a target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/OCR/1k3h7y3db#%E8%AF%B7%E6%B1%82%E8%AF%B4%E6%98%8E">百度文档</a>。</p>
+<p><img src="baiduocr_languagetypes.png" alt=""></p>
+<p>由于我用纯「英文」去识别中文也有较高准确率，因此我特意添加了个 <code>日语=JAP</code> 来进行测试。</p>
+<p>以 <a target="_blank" rel="noopener" href="https://ja.wikipedia.org/wiki/%E3%82%89%E3%82%93%E3%81%BE1/2">Wikipeidia - らんま1/2</a> 为例进行演示。</p>
+<p><img src="jp.png" alt=""></p>
+<p><img src="baidu-result-9.gif" alt=""></p>
+<p>可见「中英文混合」结果明显不如「日语」。</p>
+<details>
+<summary>结果对比与翻译</summary>
+<div class="admonition quote"><p class="admonition-title">原文
+</p><p>早乙女乱馬は、幼少の頃より無差別格闘流の修行に励む高校生。ある時、修行のため中国へ渡ったが、父・早乙女玄馬と共に悲劇的伝説が伝わる泉が多く湧く修行場「呪泉郷」で稽古中に、父の玄馬は熊猫溺泉（ションマオ・ニーチュアン、パンダが溺れた泉）に、乱馬は娘溺泉（ニャン・ニーチュアン、若い娘が溺れた泉）に落ち、それぞれ水をかぶるとパンダと女の子になり、お湯をかぶると元の姿に戻るという変身体質を背負ってしまった。</p>
+</div>
+<div class="admonition quote"><p class="admonition-title">百度 OCR「日语」
+</p><p>早乙女乱馬は、幼少の頃より無差別格闘流の修行に励む高校生。ある時、修行のため中国へ渡ったが、父・早乙女玄馬と共に悲劇的伝説が伝わる泉が多く湧く修行場「呪泉郷」で稽古中に、父の玄馬は熊猫溺泉（ションマオ・ニーチュアン、パンダが溺れた泉）に、乱馬は娘溺泉（ニャン・ニーチュアン、若い娘が溺れた泉）に落ち、それぞれ水をかぶるとパンダと女の子になり、お湯をかぶると元の姿に戻るという変身体質を背負ってしまった。</p>
+</div>
+<div class="admonition quote"><p class="admonition-title">百度 OCR「中英文混合」
+</p><p>早乙女乱馬、幼少）無差别格流修行励高校生。時、修行龙中国八渡、父·早乙女玄馬共悲劇的伍说伍泉多&lt;湧&lt;修行場「呪泉<br>
+卿」稽古中 C, 父玄馬熊猫溺泉(3&gt;才·二一手 1&gt;、八&gt;夕溺机<br>
+泉）C, 乱馬（娘溺泉（二ャ&gt;·二一手 1, 若娘溺机泉）落、子机<br>
+水八&gt;女子、湯办元姿变身体質在背負ま。</p>
+</div>
+<div class="admonition quote"><p class="admonition-title">谷歌翻译
+</p><p>早乙女乱马是一名高中生，从小就接受随机格斗术的训练。某日，他前往中国训练，但在与父亲早乙女玄马一起在有着许多据说有悲惨传说的泉水的训练场“十三峡”练习时，父亲玄马被一只熊淹死了。猫溺水泉。乱马掉进少女淹死的泉水中（念涅川，少女淹死的泉水），当它们被水淹没时，它们变成了熊猫和女孩，当它们被淹没时，它们变成了熊猫和女孩。喝了热水就又恢复原状了，我的体质负担很重。</p>
+</div>
+</details>
+<p>展示一下置信度条其他颜色：</p>
+<p><img src="baidu-yellow.png" alt=""></p>
+<p>直接缩放网页 25% 都还是 95%+ 的置信度，而且粗略准确度还可以。于是只好贴图然后弄到 20%，终于黄条了。</p>
+<div class="admonition note"><p class="admonition-title">注意
+</p><p>这是 2.0.2 的图，与最新版界面不一致，只是为了展示黄条置信度。</p>
+</div>
+<p><img src="2022-04-05-09-35-37.png" alt=""></p>
+<p>然后怎么搞都搞不到红条，还发现了算置信度的除以 0 的 bug。只好用老图了。</p>
+<div class="admonition note"><p class="admonition-title">注意
+</p><p>这是 v1 版本的图，与最新版界面不一致，只是为了展示红条置信度。</p>
+</div>
+<p>百度置信度在 80% 以上才是绿色的，60%~80% 是黄色的，60% 以下是红色的。</p>
+<p><img src="baidu-result-save.png" alt=""></p>
+<div class="admonition info"><p><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/releases/tag/OCRC-2.2.2">2.2.2</a> 加入了文本 OCR 结果窗口保存功能。</p>
+</div>
+<p><img src="overwrite-2.png" alt=""></p>
+<p>若有同名文件，可选择是否覆盖文件。</p>
+<h4 id="Bing-OCR">Bing OCR<a class="header-anchor" href="#Bing-OCR"></a></h4>
+<p>Bing OCR 是 Bing 的公式识别 OCR，于 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/releases/tag/OCRC-v2.1.0">2.1.0</a> 正式集成于 OCRC 中，且作为默认公式 OCR 引擎。优点是免费且无需代理。但是缺点也是很明显的：</p>
+<ol>
+<li>准确率不高</li>
+<li>格式丑陋</li>
+<li>不支持文本公式混排（其实返回结果有一个 <code>latex</code> 有一个 <code>text</code>，但 <code>text</code> 效果不行，我就只输出 <code>latex</code> 了）</li>
+</ol>
+<p>以<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B3%B0%E5%8B%92%E7%BA%A7%E6%95%B0">维基百科 - 泰勒级数</a>为例进行演示。</p>
+<p><img src="formula.png" alt=""></p>
+<p>结果如下：</p>
+<p><img src="bing-result.png" alt=""></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\sum</span> <span class="built_in">_</span> &#123; n = 0 &#125; <span class="built_in">^</span> &#123; <span class="keyword">\infty</span> &#125; <span class="keyword">\frac</span> &#123; f <span class="built_in">^</span> &#123; ( n ) &#125; ( a ) &#125; &#123; n ! &#125; ( x - a ) <span class="built_in">^</span> &#123; n &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\sum</span> <span class="built_in">_</span> &#123; n = 0 &#125; <span class="built_in">^</span> &#123; <span class="keyword">\infty</span> &#125; <span class="keyword">\frac</span> &#123; f <span class="built_in">^</span> &#123; ( n ) &#125; ( a ) &#125; &#123; n ! &#125; ( x - a ) <span class="built_in">^</span> &#123; n &#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\sum</span> <span class="built_in">_</span> &#123; n = 0 &#125; <span class="built_in">^</span> &#123; <span class="keyword">\infty</span> &#125; <span class="keyword">\frac</span> &#123; f <span class="built_in">^</span> &#123; ( n ) &#125; ( a ) &#125; &#123; n ! &#125; ( x - a ) <span class="built_in">^</span> &#123; n &#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>2.1.0 加入了 OCR 引擎切换的选项。</p>
+<p>可以看到结果确实是异常的丑陋，主要是多出来空格，也许后面可以处理一下。</p>
+<p>行内公式：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mfrac><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>a</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\sum _ { n = 0 } ^ { \infty } \frac { f ^ { ( n ) } ( a ) } { n ! } ( x - a ) ^ { n }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5067em;vertical-align:-0.345em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1617em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mclose mtight">!</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9667em;"><span style="top:-2.9667em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5357em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">a</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span>；行间公式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mfrac><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>a</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\sum _ { n = 0 } ^ { \infty } \frac { f ^ { ( n ) } ( a ) } { n ! } ( x - a ) ^ { n }
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.565em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>渲染结果倒是完全正确。</p>
+<p><img src="text-formula.png" alt=""></p>
+<p>这个文本公式混排我也测试了一下，不会输出文本（因为经我测试质量不高，于是我就只保留了公式），下面是结果：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\sum</span> <span class="built_in">_</span> &#123; n = 0 &#125; <span class="built_in">^</span> &#123; <span class="keyword">\infty</span> &#125; <span class="keyword">\frac</span> &#123; f <span class="built_in">^</span> &#123; n &#125; ( n ) &#125; &#123; n ! &#125; ( x - a ) <span class="built_in">^</span> &#123; n &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\sum</span> <span class="built_in">_</span> &#123; n = 0 &#125; <span class="built_in">^</span> &#123; <span class="keyword">\infty</span> &#125; <span class="keyword">\frac</span> &#123; f <span class="built_in">^</span> &#123; n &#125; ( n ) &#125; &#123; n ! &#125; ( x - a ) <span class="built_in">^</span> &#123; n &#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\sum</span> <span class="built_in">_</span> &#123; n = 0 &#125; <span class="built_in">^</span> &#123; <span class="keyword">\infty</span> &#125; <span class="keyword">\frac</span> &#123; f <span class="built_in">^</span> &#123; n &#125; ( n ) &#125; &#123; n ! &#125; ( x - a ) <span class="built_in">^</span> &#123; n &#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>有一点瑕疵，如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mi>n</mi></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^n(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span> 识别成了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mi>n</mi></msup><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^n(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。</p>
+<p>再测试一个复杂一点的：</p>
+<p><img src="formula-2.png" alt=""></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\left</span>. <span class="keyword">\begin</span>&#123;array&#125;  &#123; l  &#125;  &#123; f ( x ) = f ( a ) + <span class="keyword">\frac</span> &#123; x - a &#125; &#123; h &#125; ( A <span class="built_in">_</span> &#123; i i &#125; f [ ( a ) + <span class="keyword">\frac</span> &#123; x - a - h &#125; &#123; 2 h &#125; ( ( A ) <span class="built_in">^</span> &#123; 2 &#125; ( A ) + <span class="keyword">\cdots</span> ) &#125; <span class="keyword">\\</span> &#123; = f ( a ) + <span class="keyword">\sum</span> <span class="built_in">_</span> &#123; k = 1 &#125; <span class="built_in">^</span> &#123; n &#125; <span class="keyword">\frac</span> &#123; A <span class="built_in">_</span> &#123; i f &#125; ( a ) &#125; &#123; k h <span class="built_in">^</span> &#123; k &#125; &#125; <span class="keyword">\right</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\left</span>. <span class="keyword">\begin</span>&#123;array&#125;  &#123; l  &#125;  &#123; f ( x ) = f ( a ) + <span class="keyword">\frac</span> &#123; x - a &#125; &#123; h &#125; ( A <span class="built_in">_</span> &#123; i i &#125; f [ ( a ) + <span class="keyword">\frac</span> &#123; x - a - h &#125; &#123; 2 h &#125; ( ( A ) <span class="built_in">^</span> &#123; 2 &#125; ( A ) + <span class="keyword">\cdots</span> ) &#125; <span class="keyword">\\</span> &#123; = f ( a ) + <span class="keyword">\sum</span> <span class="built_in">_</span> &#123; k = 1 &#125; <span class="built_in">^</span> &#123; n &#125; <span class="keyword">\frac</span> &#123; A <span class="built_in">_</span> &#123; i f &#125; ( a ) &#125; &#123; k h <span class="built_in">^</span> &#123; k &#125; &#125; <span class="keyword">\right</span>.<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\left</span>. <span class="keyword">\begin</span>&#123;array&#125;  &#123; l  &#125;  &#123; f ( x ) = f ( a ) + <span class="keyword">\frac</span> &#123; x - a &#125; &#123; h &#125; ( A <span class="built_in">_</span> &#123; i i &#125; f [ ( a ) + <span class="keyword">\frac</span> &#123; x - a - h &#125; &#123; 2 h &#125; ( ( A ) <span class="built_in">^</span> &#123; 2 &#125; ( A ) + <span class="keyword">\cdots</span> ) &#125; <span class="keyword">\\</span> &#123; = f ( a ) + <span class="keyword">\sum</span> <span class="built_in">_</span> &#123; k = 1 &#125; <span class="built_in">^</span> &#123; n &#125; <span class="keyword">\frac</span> &#123; A <span class="built_in">_</span> &#123; i f &#125; ( a ) &#125; &#123; k h <span class="built_in">^</span> &#123; k &#125; &#125; <span class="keyword">\right</span>.</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>错误百出，报错，我只好自己修改一点才能勉强展示：</p>
+<figure class="highlight latex"><figcaption><span>稍作修改</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">\left</span>. <span class="keyword">\begin</span>&#123;array&#125;  &#123; l  &#125;  &#123; f ( x ) = f ( a ) + <span class="keyword">\frac</span> &#123; x - a &#125; &#123; h &#125; ( A <span class="built_in">_</span> &#123; i i &#125; f [ ( a ) + <span class="keyword">\frac</span> &#123; x - a - h &#125; &#123; 2 h &#125; ( ( A ) <span class="built_in">^</span> &#123; 2 &#125; ( A ) + <span class="keyword">\cdots</span> )   <span class="keyword">\\</span>  = f ( a ) + <span class="keyword">\sum</span> <span class="built_in">_</span> &#123; k = 1 &#125; <span class="built_in">^</span> &#123; n &#125; <span class="keyword">\frac</span> &#123; A <span class="built_in">_</span> &#123; i f &#125; ( a ) &#125; &#123; k h <span class="built_in">^</span> &#123; k &#125; &#125; &#125; <span class="keyword">\end</span>&#123;array&#125; <span class="keyword">\right</span>.</span><br></pre></td></tr></table></figure>
+<p>结果展示：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnalign="left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mi>h</mi></mfrac><mo stretchy="false">(</mo><msub><mi>A</mi><mrow><mi>i</mi><mi>i</mi></mrow></msub><mi>f</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>a</mi><mo>−</mo><mi>h</mi></mrow><mrow><mn>2</mn><mi>h</mi></mrow></mfrac><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>A</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>+</mo><mo>⋯</mo><mtext> </mtext><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mfrac><mrow><msub><mi>A</mi><mrow><mi>i</mi><mi>f</mi></mrow></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mrow><mi>k</mi><msup><mi>h</mi><mi>k</mi></msup></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\left. \begin{array}  { l  }  { f ( x ) = f ( a ) + \frac { x - a } { h } ( A _ { i i } f [ ( a ) + \frac { x - a - h } { 2 h } ( ( A ) ^ { 2 } ( A ) + \cdots )   \\  = f ( a ) + \sum _ { k = 1 } ^ { n } \frac { A _ { i f } ( a ) } { k h ^ { k } } } \end{array} \right.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3981em;vertical-align:-0.449em;"></span><span class="minner"><span class="mopen nulldelimiter"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.949em;"><span style="top:-2.949em;"><span class="pstrut" style="height:3.0381em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8023em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ii</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">[(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">a</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">((</span><span class="mord mathnormal">A</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mclose">)</span><span class="mspace newline"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0381em;"><span style="top:-2.6426em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight"><span class="mord mathnormal mtight">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.782em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5131em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2901em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">a</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3574em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.449em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>这结果是相当之糟糕，还用了个莫名其妙的 <code>array</code>。遇到这种情况，就需要切换识别引擎了：</p>
+<p><img src="bing-result-2.gif" alt=""></p>
+<h4 id="Mathpix-OCR">Mathpix OCR<a class="header-anchor" href="#Mathpix-OCR"></a></h4>
+<div class="admonition info"><p class="admonition-title">注意
+</p><p>结果窗口是 2.0.2 版本的，2.1.0 还有一个引擎切换的选项。同时 Bing OCR 也支持 Click2Clip，为了避免重复劳动就不重新截图了。</p>
+</div>
+<p>同样以<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B3%B0%E5%8B%92%E7%BA%A7%E6%95%B0">维基百科 - 泰勒级数</a>为例进行演示。</p>
+<p><img src="formula.png" alt=""></p>
+<p>结果如下：</p>
+<p><img src="mathpix-result.png" alt=""></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;n=0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\infty</span>&#125; <span class="keyword">\frac</span>&#123;f<span class="built_in">^</span>&#123;(n)&#125;(a)&#125;&#123;n !&#125;(x-a)<span class="built_in">^</span>&#123;n&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\sum</span><span class="built_in">_</span>&#123;n=0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\infty</span>&#125; <span class="keyword">\frac</span>&#123;f<span class="built_in">^</span>&#123;(n)&#125;(a)&#125;&#123;n !&#125;(x-a)<span class="built_in">^</span>&#123;n&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;n=0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\infty</span>&#125; <span class="keyword">\frac</span>&#123;f<span class="built_in">^</span>&#123;(n)&#125;(a)&#125;&#123;n !&#125;(x-a)<span class="built_in">^</span>&#123;n&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>渲染结果：行内 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mfrac><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>a</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n !}(x-a)^{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5067em;vertical-align:-0.345em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1617em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mclose mtight">!</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9667em;"><span style="top:-2.9667em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5357em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">a</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span> 及行间</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mfrac><mrow><msup><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>a</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n !}(x-a)^{n}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.565em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p><img src="mathpix-result-1.gif" alt=""></p>
+<p>Mathpix OCR 我最引以为傲的就是这个 Click2Clip 功能。点击想要的结果窗口，就能直接复制里面的内容。</p>
+<p>编辑框无法进行编辑，这点与百度 OCR 不同。不过在这里编辑又没有实时渲染，编辑了也没有用。还有一点比较遗憾的是刚打开时它会默认全选整个编辑框，重构前的 v1 是不会的，原因是什么我也不知道，虽然没影响但是有点不美观。</p>
+<div class="admonition note"><p class="admonition-title">更新
+</p><p>2.1.0 版本修复了这个美观问题。不过就看不出来默认选择的是哪个了，只有剪贴板记录了默认选择。</p>
+</div>
+<p><img src="text-formula.png" alt=""></p>
+<p>这是文本和公式混排的情况。</p>
+<p><img src="mathpix-result-2.png" alt=""></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在数学上，对于一个在实数或复数 <span class="built_in">$</span>a<span class="built_in">$</span> 邻域上，以实数作为变量或以复数作为变量的函 数，并且是无穷可微的函数 <span class="built_in">$</span>f(x)<span class="built_in">$</span> ，它的泰勒级数是以下这种形式的幂级数：</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;n=0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\infty</span>&#125; <span class="keyword">\frac</span>&#123;f<span class="built_in">^</span>&#123;(n)&#125;(a)&#125;&#123;n !&#125;(x-a)<span class="built_in">^</span>&#123;n&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>谦虚的 Mathpix，完全正确的结果它的置信度只有 43.48%，如果百度是这个置信度，那就是一堆乱文了。</p>
+<p>因此 Mathpix 置信度在 60% 以上都是绿色的，20%~60% 是黄色的，20% 以下才是红色的。</p>
+<p><img src="2022-04-05-09-32-15.png" alt=""></p>
+<p>这是旧图的红色置信度显示，不舍得让 Mathpix 瞎搞。</p>
+<p><img src="formula-2.png" alt=""></p>
+<p><img src="mathpix-result-3.png" alt=""></p>
+<p>这是一个四个都出现的情况，这种情况下默认选择的是配置里设置的。</p>
+<p>下面是四个结果展示：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">f(x) <span class="built_in">&amp;</span> =f(a)+<span class="keyword">\frac</span>&#123;x-a&#125;&#123;h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;1&#125;[f](a)+<span class="keyword">\frac</span>&#123;x-a-h&#125;&#123;2 h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;2&#125;[f](a)+<span class="keyword">\cdots</span><span class="keyword">\right</span>)<span class="keyword">\right</span>) <span class="keyword">\\</span></span><br><span class="line"><span class="built_in">&amp;</span> =f(a)+<span class="keyword">\sum</span><span class="built_in">_</span>&#123;k=1&#125;<span class="built_in">^</span>&#123;n&#125; <span class="keyword">\frac</span>&#123;<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;k&#125;[f](a)&#125;&#123;k ! h<span class="built_in">^</span>&#123;k&#125;&#125; <span class="keyword">\prod</span><span class="built_in">_</span>&#123;i=0&#125;<span class="built_in">^</span>&#123;k-1&#125;((x-a)-i h)</span><br><span class="line"><span class="keyword">\end</span>&#123;aligned&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">f(x) <span class="built_in">&amp;</span> =f(a)+<span class="keyword">\frac</span>&#123;x-a&#125;&#123;h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;1&#125;[f](a)+<span class="keyword">\frac</span>&#123;x-a-h&#125;&#123;2 h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;2&#125;[f](a)+<span class="keyword">\cdots</span><span class="keyword">\right</span>)<span class="keyword">\right</span>) <span class="keyword">\\</span></span><br><span class="line"><span class="built_in">&amp;</span> =f(a)+<span class="keyword">\sum</span><span class="built_in">_</span>&#123;k=1&#125;<span class="built_in">^</span>&#123;n&#125; <span class="keyword">\frac</span>&#123;<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;k&#125;[f](a)&#125;&#123;k ! h<span class="built_in">^</span>&#123;k&#125;&#125; <span class="keyword">\prod</span><span class="built_in">_</span>&#123;i=0&#125;<span class="built_in">^</span>&#123;k-1&#125;((x-a)-i h)</span><br><span class="line"><span class="keyword">\end</span>&#123;aligned&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">f(x) <span class="built_in">&amp;</span> =f(a)+<span class="keyword">\frac</span>&#123;x-a&#125;&#123;h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;1&#125;[f](a)+<span class="keyword">\frac</span>&#123;x-a-h&#125;&#123;2 h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;2&#125;[f](a)+<span class="keyword">\cdots</span><span class="keyword">\right</span>)<span class="keyword">\right</span>) <span class="keyword">\\</span></span><br><span class="line"><span class="built_in">&amp;</span> =f(a)+<span class="keyword">\sum</span><span class="built_in">_</span>&#123;k=1&#125;<span class="built_in">^</span>&#123;n&#125; <span class="keyword">\frac</span>&#123;<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;k&#125;[f](a)&#125;&#123;k ! h<span class="built_in">^</span>&#123;k&#125;&#125; <span class="keyword">\prod</span><span class="built_in">_</span>&#123;i=0&#125;<span class="built_in">^</span>&#123;k-1&#125;((x-a)-i h)</span><br><span class="line"><span class="keyword">\end</span>&#123;aligned&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\begin</span>&#123;aligned&#125; f(x) <span class="built_in">&amp;</span> =f(a)+<span class="keyword">\frac</span>&#123;x-a&#125;&#123;h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;1&#125;[f](a)+<span class="keyword">\frac</span>&#123;x-a-h&#125;&#123;2 h&#125;<span class="keyword">\left</span>(<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;2&#125;[f](a)+<span class="keyword">\cdots</span><span class="keyword">\right</span>)<span class="keyword">\right</span>) <span class="keyword">\ </span><span class="built_in">&amp;</span> =f(a)+<span class="keyword">\sum</span><span class="built_in">_</span>&#123;k=1&#125;<span class="built_in">^</span>&#123;n&#125; <span class="keyword">\frac</span>&#123;<span class="keyword">\Delta</span><span class="built_in">_</span>&#123;h&#125;<span class="built_in">^</span>&#123;k&#125;[f](a)&#125;&#123;k ! h<span class="built_in">^</span>&#123;k&#125;&#125; <span class="keyword">\prod</span><span class="built_in">_</span>&#123;i=0&#125;<span class="built_in">^</span>&#123;k-1&#125;((x-a)-i h)<span class="keyword">\end</span>&#123;aligned&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>然后我突然忘了这种情况下文本公式的意义了。而且文本公式结果还出错了，换行符只有一个 <code>\</code>。待我慢慢研究这陈年老代码吧，顺便看看 commit 记录和 CHANGELOG，也许能找到些端倪。</p>
+<p>另外行内公式出现换行符属实是不应该，这些后面都要进行处理，不写 README 还真不知道。</p>
+<div class="admonition note"><p class="admonition-title">注意
+</p><p>以上内容已过时。「行内公式出现换行」及「文本公式结果换行符 <code>\\</code> 被替换成 <code>\</code>」的问题已在 2.1.0 中修复。</p>
+</div>
+<p>挑一个行间展示一下：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>a</mi></mrow><mi>h</mi></mfrac><mrow><mo fence="true">(</mo><msubsup><mi mathvariant="normal">Δ</mi><mi>h</mi><mn>1</mn></msubsup><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>a</mi><mo>−</mo><mi>h</mi></mrow><mrow><mn>2</mn><mi>h</mi></mrow></mfrac><mrow><mo fence="true">(</mo><msubsup><mi mathvariant="normal">Δ</mi><mi>h</mi><mn>2</mn></msubsup><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mo>⋯</mo><mtext> </mtext><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mfrac><mrow><msubsup><mi mathvariant="normal">Δ</mi><mi>h</mi><mi>k</mi></msubsup><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mrow><mi>k</mi><mo stretchy="false">!</mo><msup><mi>h</mi><mi>k</mi></msup></mrow></mfrac><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></munderover><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo><mo>−</mo><mi>i</mi><mi>h</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+f(x) &amp; =f(a)+\frac{x-a}{h}\left(\Delta_{h}^{1}[f](a)+\frac{x-a-h}{2 h}\left(\Delta_{h}^{2}[f](a)+\cdots\right)\right) \\
+&amp; =f(a)+\sum_{k=1}^{n} \frac{\Delta_{h}^{k}[f](a)}{k ! h^{k}} \prod_{i=0}^{k-1}((x-a)-i h)
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:6.1383em;vertical-align:-2.8191em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.3191em;"><span style="top:-5.7052em;"><span class="pstrut" style="height:3.8361em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span><span style="top:-2.6191em;"><span class="pstrut" style="height:3.8361em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.8191em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.3191em;"><span style="top:-5.7052em;"><span class="pstrut" style="height:3.8361em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">h</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">]</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">h</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">]</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span><span style="top:-2.6191em;"><span class="pstrut" style="height:3.8361em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5261em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">!</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7751em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-2.4169em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2831em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">]</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8361em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∏</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mopen">((</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">ih</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.8191em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>感叹 Mathpix 是真的牛，希望有好的开源替代，白嫖内心不安。</p>
+<h3 id="导入">导入<a class="header-anchor" href="#导入"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/releases/tag/OCRC-v2.2.0">2.2.0</a> 加入了导入图片和文件夹进行文本 OCR 识别的功能。入口在任务栏菜单里。</p>
+<p>仅支持文本 OCR，公式 OCR 由于我认为意义不大，加上还要额外耗费精力，就不支持了。</p>
+<p>支持图片格式包括 jpg, jpeg, png 和 bmp。参考<a target="_blank" rel="noopener" href="https://cloud.baidu.com/doc/OCR/s/1k3h7y3db#%E8%AF%B7%E6%B1%82%E8%AF%B4%E6%98%8E">百度 API 文档 image 参数说明</a>。</p>
+<p><img src="import-images.png" alt=""></p>
+<p><img src="import-folder.png" alt=""></p>
+<p>图片可以进行多选，文件夹由于 Windows 的限制只能选择一个。</p>
+<p>导入图片会为每个图片生成一个 OCR 结果窗口；导入文件夹则会为文件夹内每个图片生成对应的 txt 文件，如 <code>example.img</code> 对应的 txt 文件为 <code>example.img.txt</code>。</p>
+<p>导入文件夹不支持递归操作。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/releases/tag/OCRC-v2.2.2">2.2.2</a> 支持覆盖文件的提示和设置，以下是导入文件夹的覆盖提示：</p>
+<p><img src="overwrite-1.png" alt=""></p>
+<p>可选择「跳过」「覆盖」或「总是覆盖」。</p>
+<p><img src="output.png" alt=""></p>
+<p>完成结果输出后会弹出提示。</p>
+<h3 id="错误">错误<a class="header-anchor" href="#错误"></a></h3>
+<p>OCRC 自带的错误不多，只有几个：</p>
+<p>首先是未检测到截图的错误。如果在 Basic 设置里开启了，然后没检测到截图（例如外部截图软件设置不当，缓冲时间设置过短，终止了截图等）就会弹出报错。</p>
+<p>然后就是百度 OCR 搜索的错误。分别是 Everything 和普通搜索引擎，如果运行失败就会报错。</p>
+<p>然后就没了。由于我自己写的程序不完善，有时候会弹出 AutoHotkey 的报错，这时候重新截图就好了。</p>
+<p>最后就是百度 OCR 和 Mathpix OCR 自己的报错。详见下面的文档。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">OCR</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">网址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">百度</td>
+<td style="text-align:center">Token</td>
+<td style="text-align:center"><a target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu">https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu</a></td>
+</tr>
+<tr>
+<td style="text-align:center">百度</td>
+<td style="text-align:center">识别</td>
+<td style="text-align:center"><a target="_blank" rel="noopener" href="https://cloud.baidu.com/doc/OCR/s/dk3h7y5vr">https://cloud.baidu.com/doc/OCR/s/dk3h7y5vr</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Mathpix</td>
+<td style="text-align:center">识别</td>
+<td style="text-align:center"><a target="_blank" rel="noopener" href="https://docs.mathpix.com/#error-id-strings">https://docs.mathpix.com/#error-id-strings</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition test"><p class="admonition-title">脚注
+</p><p>暂时先写这么多，有额外内容以后再补充。旧版 README 还有「<a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/blob/ebc6b771cf5967bc177e6b36b53ec80b7841ec69/Project/OCRC/README.md#%E9%B8%A3%E8%B0%A2-thanks">鸣谢</a>」「<a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/AutoHotkey-Script/blob/ebc6b771cf5967bc177e6b36b53ec80b7841ec69/Project/OCRC/README.md#%E6%84%9F%E6%82%9F-thoughts">感悟</a>」等内容。</p>
+</div>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://wyagd001.github.io/v2/docs/lib/GuiControls.htm#Hotkey">中文文档相关介绍</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AutoHotkey/" rel="tag"><i class="fa fa-tag"></i> AutoHotkey</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/nanjing/" rel="prev" title="南京之旅">
+                  <i class="fa fa-angle-left"></i> 南京之旅
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/first-week-summary/" rel="next" title="大学第一周总结 & 杂记">
+                  大学第一周总结 & 杂记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lyieu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+<script src="/js/third-party/math/mhchem.min.js"></script>
+<script src="/js/third-party/math/copy-tex.min.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-comments-virid.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","dark":"auto","locale":{"placeholder":"欢迎评论~","level0":"问","level1":"哭","level2":"埋","level3":"挖","level4":"抬","level5":"死","level6":"熬","level7":"买","level8":"瞧","level9":"病","reactionTitle":"反应"},"reaction":["https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f970.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f973.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f9d0.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f632.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f610.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f641.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f62d.png"],"emoji":["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji","https://unpkg.com/@waline/emojis@1.2.0/tw-object","https://unpkg.com/@waline/emojis@1.2.0/tw-travel","https://unpkg.com/@waline/emojis@1.2.0/tw-weather"],"search":false,"meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"wordLimit":0,"login":"enable","pageSize":15,"texRenderer":"KaTeX","el":"#waline","comment":true,"path":"/2023/09/ocrc/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

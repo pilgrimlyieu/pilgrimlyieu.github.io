@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon.svg">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pilgrimlyieu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500,"threshold":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="「工欲善其事，必先利其器」，本篇博文简单介绍了我 Windows 上的软件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Windows 软件集合">
+<meta property="og:url" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/index.html">
+<meta property="og:site_name" content="Shrine">
+<meta property="og:description" content="「工欲善其事，必先利其器」，本篇博文简单介绍了我 Windows 上的软件。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/mandatory-softwares.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/mandatory-portable-softwares.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/7-Zip.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/autohotkey.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/huorong.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/mathematica.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/potplayer.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/powertoys.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/tim.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/quicker.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/vscode.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/vscode_portable_mode.jpg">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/optional-softwares.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/optional-portable-softwares.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/easyconnect.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/pcmanager.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/nfc.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/win11ime.png">
+<meta property="article:published_time" content="2023-08-08T11:44:13.000Z">
+<meta property="article:modified_time" content="2023-09-29T02:21:54.000Z">
+<meta property="article:author" content="Lyieu">
+<meta property="article:tag" content="Hugo">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="7-Zip">
+<meta property="article:tag" content="AutoHotkey">
+<meta property="article:tag" content="火绒">
+<meta property="article:tag" content="Mathematica">
+<meta property="article:tag" content="PotPlayer">
+<meta property="article:tag" content="PowerToys">
+<meta property="article:tag" content="QQ">
+<meta property="article:tag" content="DevToys">
+<meta property="article:tag" content="Anki">
+<meta property="article:tag" content="Calibre">
+<meta property="article:tag" content="DevSidecar">
+<meta property="article:tag" content="draw.io">
+<meta property="article:tag" content="Everything">
+<meta property="article:tag" content="Geogebra">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Vim">
+<meta property="article:tag" content="Honeyview">
+<meta property="article:tag" content="TeX Live">
+<meta property="article:tag" content="IDM">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="qBittorrent">
+<meta property="article:tag" content="Quicker">
+<meta property="article:tag" content="ScreenToGif">
+<meta property="article:tag" content="SumatraPDF">
+<meta property="article:tag" content="微信">
+<meta property="article:tag" content="VSCode">
+<meta property="article:tag" content="GoldenDict-ng">
+<meta property="article:tag" content="BCUninstaller">
+<meta property="article:tag" content="EasyConnect">
+<meta property="article:tag" content="华为电脑管家">
+<meta property="article:tag" content="Aegisub">
+<meta property="article:tag" content="PowerDVD">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Pandoc">
+<meta property="article:tag" content="Sandboxie-Plus">
+<meta property="article:tag" content="StartAllBack">
+<meta property="article:tag" content="ADB">
+<meta property="article:tag" content="Carnac">
+<meta property="article:tag" content="FastStone Capture">
+<meta property="article:tag" content="gtags">
+<meta property="article:tag" content="ripgrep">
+<meta property="article:tag" content="Office Tool Plus">
+<meta property="article:tag" content="Xmake">
+<meta property="article:tag" content="WolframEngine">
+<meta property="article:tag" content="Clash">
+<meta property="article:tag" content="微力同步">
+<meta property="article:tag" content="waifu2x">
+<meta property="article:tag" content="mkvtoolnix">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/mandatory-softwares.png">
+
+
+<link rel="canonical" href="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/","path":"2023/08/my-windows-softwares/","title":"使用 Windows 软件集合"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用 Windows 软件集合 | Shrine</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-comments-virid.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.admonition{font-size:.96em;margin:1.5625em 0;padding:.6rem;overflow:visible;page-break-inside:avoid;border-left:.3rem solid;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);line-height:1.8}.admonition>:last-child{margin-bottom:0!important}.admonition-title::before{position:absolute;top:1rem;left:1rem;width:16px;height:16px;border-radius:100%;content:" "}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;line-height:2}.admonition.note,.admonition.question,.admonition.success{border-color:#42b983}.note>.admonition-title::before,.question>.admonition-title::before,.success>.admonition-title::before{background-color:#42b983}.note>.admonition-title,.question>.admonition-title,.success>.admonition-title{background-color:rgba(66,185,131,.4)}.admonition.info,.admonition.todo{border-color:#00b8d4}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.4)}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.4)}.admonition.bug,.admonition.danger,.admonition.error,.admonition.failure,.admonition.missing{border-color:#ff5252}.bug>.admonition-title::before,.danger>.admonition-title::before,.error>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252}.bug>.admonition-title,.danger>.admonition-title,.error>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.4)}.admonition.example{border-color:#903dcc}.example>.admonition-title::before{background-color:#903dcc}.example>.admonition-title{background-color:rgba(144,61,204,.4)}.admonition.quote{border-color:#aaa}.quote>.admonition-title::before{background-color:#aaa}.quote>.admonition-title{background-color:rgba(170,170,170,.4)}.admonition.abstract,.admonition.tip{border-color:#448aff}.abstract>.admonition-title::before,.tip>.admonition-title::before{background-color:#448aff}.abstract>.admonition-title,.tip>.admonition-title{background-color:rgba(68,138,255,.4)}.admonition.memo,.admonition.sheet{border-color:#c3a210}.memo>.admonition-title::before,.sheet>.admonition-title::before{background-color:#c3a210}.memo>.admonition-title,.sheet>.admonition-title{background-color:rgba(195,162,16,.4)}@media (prefers-color-scheme:light){.admonition{background-color:#eee}.admonition.test{border-color:#283747}.test>.admonition-title::before{background-color:#283747}.test>.admonition-title{background-color:rgba(40,55,71,.4)}}@media (prefers-color-scheme:dark){.admonition{background-color:#444}.admonition.test{border-color:#f2f3f4}.test>.admonition-title::before{background-color:#f2f3f4}.test>.admonition-title{background-color:rgba(242,243,244,.4)}}</style><link rel="alternate" href="/atom.xml" title="Shrine" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shrine</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Fesmoph's Blog</p>
+      <img class="custom-logo-image" src="/images/logo/logo.svg" alt="Shrine">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">74</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-list-ul fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-folder-open fa-fw"></i>归档<span class="badge">29</span></a></li><li class="menu-item menu-item-记事"><a href="/daily/" rel="section"><i class="fa fa-clipboard-list fa-fw"></i>记事</a></li><li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-scroll fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">必装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Zip"><span class="nav-number">1.1.</span> <span class="nav-text">7-Zip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AutoHotkey"><span class="nav-number">1.2.</span> <span class="nav-text">AutoHotkey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-C"><span class="nav-number">1.3.</span> <span class="nav-text">C&#x2F;C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%AB%E7%BB%92"><span class="nav-number">1.4.</span> <span class="nav-text">火绒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathematica-%C2%A9"><span class="nav-number">1.5.</span> <span class="nav-text">Mathematica ©</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PotPlayer"><span class="nav-number">1.6.</span> <span class="nav-text">PotPlayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PowerToys"><span class="nav-number">1.7.</span> <span class="nav-text">PowerToys</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ"><span class="nav-number">1.8.</span> <span class="nav-text">QQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DevToys"><span class="nav-number">1.9.</span> <span class="nav-text">DevToys</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anki"><span class="nav-number">1.10.</span> <span class="nav-text">Anki</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calibre"><span class="nav-number">1.11.</span> <span class="nav-text">Calibre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DevSidecar"><span class="nav-number">1.12.</span> <span class="nav-text">DevSidecar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#draw-io"><span class="nav-number">1.13.</span> <span class="nav-text">draw.io</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Everything"><span class="nav-number">1.14.</span> <span class="nav-text">Everything</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GeoGebra"><span class="nav-number">1.15.</span> <span class="nav-text">GeoGebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">1.16.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vim"><span class="nav-number">1.17.</span> <span class="nav-text">Vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Honeyview"><span class="nav-number">1.18.</span> <span class="nav-text">Honeyview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TeX-Live"><span class="nav-number">1.19.</span> <span class="nav-text">TeX Live</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Internet-Download-Manager-%C2%A9"><span class="nav-number">1.20.</span> <span class="nav-text">Internet Download Manager ©</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">1.21.</span> <span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">1.22.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qBittorrent"><span class="nav-number">1.23.</span> <span class="nav-text">qBittorrent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quicker"><span class="nav-number">1.24.</span> <span class="nav-text">Quicker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sandboxie-Plus"><span class="nav-number">1.25.</span> <span class="nav-text">Sandboxie-Plus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ScreenToGif"><span class="nav-number">1.26.</span> <span class="nav-text">ScreenToGif</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SumatraPDF"><span class="nav-number">1.27.</span> <span class="nav-text">SumatraPDF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1"><span class="nav-number">1.28.</span> <span class="nav-text">微信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Studio-Code"><span class="nav-number">1.29.</span> <span class="nav-text">Visual Studio Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GoldenDict-ng"><span class="nav-number">1.30.</span> <span class="nav-text">GoldenDict-ng</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bulk-Crap-Uninstaller"><span class="nav-number">1.31.</span> <span class="nav-text">Bulk Crap Uninstaller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFmpeg"><span class="nav-number">1.32.</span> <span class="nav-text">FFmpeg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Snipaste"><span class="nav-number">1.33.</span> <span class="nav-text">Snipaste</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TrafficMonitor"><span class="nav-number">1.34.</span> <span class="nav-text">TrafficMonitor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">选装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EasyConnect"><span class="nav-number">2.1.</span> <span class="nav-text">EasyConnect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8E%E4%B8%BA%E7%94%B5%E8%84%91%E7%AE%A1%E5%AE%B6"><span class="nav-number">2.2.</span> <span class="nav-text">华为电脑管家</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aegisub"><span class="nav-number">2.3.</span> <span class="nav-text">Aegisub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PowerDVD-%C2%A9"><span class="nav-number">2.4.</span> <span class="nav-text">PowerDVD ©</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker"><span class="nav-number">2.5.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Go"><span class="nav-number">2.6.</span> <span class="nav-text">Go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ghostscript"><span class="nav-number">2.7.</span> <span class="nav-text">Ghostscript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JetBrains-Toolbox"><span class="nav-number">2.8.</span> <span class="nav-text">JetBrains Toolbox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pandoc"><span class="nav-number">2.9.</span> <span class="nav-text">Pandoc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StartAllBack-%C2%A9"><span class="nav-number">2.10.</span> <span class="nav-text">StartAllBack ©</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkvtoolnix"><span class="nav-number">2.11.</span> <span class="nav-text">mkvtoolnix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Develop-Bridge"><span class="nav-number">2.12.</span> <span class="nav-text">Android Develop Bridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carnac"><span class="nav-number">2.13.</span> <span class="nav-text">Carnac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clash"><span class="nav-number">2.14.</span> <span class="nav-text">Clash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastStone-Capture-%C2%A9"><span class="nav-number">2.15.</span> <span class="nav-text">FastStone Capture ©</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gtags"><span class="nav-number">2.16.</span> <span class="nav-text">gtags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hugo"><span class="nav-number">2.17.</span> <span class="nav-text">Hugo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ripgrep"><span class="nav-number">2.18.</span> <span class="nav-text">ripgrep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E5%8A%9B%E5%90%8C%E6%AD%A5"><span class="nav-number">2.19.</span> <span class="nav-text">微力同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waifu2x-caffe"><span class="nav-number">2.20.</span> <span class="nav-text">waifu2x-caffe</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SubtitleFont"><span class="nav-number">3.1.</span> <span class="nav-text">SubtitleFont</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Office-Tool-Plus"><span class="nav-number">3.2.</span> <span class="nav-text">Office Tool Plus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%90%A7%E5%B7%A5%E5%85%B7%E7%AE%B1"><span class="nav-number">3.3.</span> <span class="nav-text">图吧工具箱</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lyieu"
+      src="/images/avatar/avatar.svg">
+  <p class="site-author-name" itemprop="name">Lyieu</p>
+  <div class="site-description" itemprop="description">Dreaming</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pilgrimlyieu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pilgrimlyieu" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pilgrimlyieu@outlook.com" title="E-Mail → mailto:pilgrimlyieu@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pilgrimlyieu.github.io/2023/08/my-windows-softwares/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.svg">
+      <meta itemprop="name" content="Lyieu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrine">
+      <meta itemprop="description" content="Dreaming">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用 Windows 软件集合 | Shrine">
+      <meta itemprop="description" content="「工欲善其事，必先利其器」，本篇博文简单介绍了我 Windows 上的软件。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 Windows 软件集合
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-08 19:44:13" itemprop="dateCreated datePublished" datetime="2023-08-08T19:44:13+08:00">2023-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-29 10:21:54" itemprop="dateModified" datetime="2023-09-29T10:21:54+08:00">2023-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2023/08/my-windows-softwares/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2023/08/my-windows-softwares/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">「工欲善其事，必先利其器」，本篇博文简单介绍了我 Windows 上的软件。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="admonition warning"><p class="admonition-title">注意
+</p><p>这里的软件包括安装程序安装的软件，便携绿色版的软件及工具性软件。</p>
+<p>同时我的安装包集合只是为了指示可以考虑这个软件，而非一定要安装此版本。</p>
+<p>以下软件如果使用了 crack 版本，将在软件名称后用 © 标识。</p>
+<p>不提供软件安装包及 crack 版本。以下全部链接都来自可信网址（大部分是官网）。</p>
+</div>
+<div class="admonition note"><p class="admonition-title">注意
+</p><p>本文图片不进行更新，请以文本为主。主要是为了避免 <code>.git</code> 爆炸。</p>
+<p>你问我为什么不用 Git LFS？因为 LFS 数额有限嘛，省着点比较好。<del>其实是因为试着加了一些没成功，于是放弃了。</del></p>
+</div>
+<p>正所谓「工欲善其事，必先利其器」，<strong>软件</strong>便是重要的器。本篇博文便简单介绍我电脑上的软件。</p>
+<p>我软件安装的方式是安装包手动安装，winget 等包管理器安装的安装方式还没进行过探索。</p>
+<p>我的软件安装包集合分为三个部分，<code>Mandatory</code>, <code>Optional</code> 与 <code>Tool</code>，分别代表「必装」「选装」和「工具」。前二者分别有个 <code>_Portable</code> 的子文件夹，意为便携绿色版。</p>
+<p>让我们开始吧。</p>
+<h2 id="必装">必装<a class="header-anchor" href="#必装"></a></h2>
+<p><img src="mandatory-softwares.png" alt=""></p>
+<p><img src="mandatory-portable-softwares.png" alt=""></p>
+<h3 id="7-Zip">7-Zip<a class="header-anchor" href="#7-Zip"></a></h3>
+<p><img src="7-Zip.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://www.7-zip.org">7-Zip</a> 作为压缩软件。以前用的是 WinRAR ©，但是一思索才知道其实用不上。WinRAR 有而 7-Zip 没有的应该就是恢复卷了，但是我从来没用过这个功能，再加上用 © 终究是不安心，于是就拥抱开源了。</p>
+<p>7-Zip 还有一个分支版本 <a target="_blank" rel="noopener" href="https://github.com/mcmilk/7-Zip-zstd">ZSTD</a>，<s>我笔记本选择了原版，老台式电脑选择了 ZSTD</s>，最后都选择了 ZSTD。还有一个 <a target="_blank" rel="noopener" href="https://github.com/M2Team/NanaZip">NanaZip</a> 基于 7-Zip，并对 Windows11 进行了适配，我没有试过。</p>
+<p>由于 7-Zip 图标实在是太原始了，我都对图标进行了更换，有所好转。</p>
+<p><code>Codecs-x64.7z</code> 是 <code>Codecs</code> 文件，按照 <a target="_blank" rel="noopener" href="https://github.com/mcmilk/7-Zip-zstd#zstandard-codec-plugin-for-mainline-7-zip">ZSTD 文档</a>进行了配置。</p>
+<h3 id="AutoHotkey">AutoHotkey<a class="header-anchor" href="#AutoHotkey"></a></h3>
+<p><img src="autohotkey.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://www.autohotkey.com">AutoHotkey</a> 是一个脚本软件。没什么好说的，个人需求所以必装。<s>由于只学了一点 v1，而 v2 已经出正式版了，所以两个都装</s><ins>目前大部分脚本都迁移到 v2 了，不过有部分脚本（例如复制别人的）还停留在 v1，因此还是两个都装</ins>。</p>
+<h3 id="C-C">C/C++<a class="header-anchor" href="#C-C"></a></h3>
+<p>包括 <a target="_blank" rel="noopener" href="https://winlibs.com/">WinLibs</a> 和 <a target="_blank" rel="noopener" href="https://xmake.io/">Xmake</a>。</p>
+<p>没写过 C/C++，但是大学要学，环境得配。第一个看网上有说在 SourceForge 下载，但是我在 WinLibs 下载的比在 SourceForge 下载的领先好几个大版本，看到有人评论说不要去 SourceForge 下载，但很多 2022 的教程还是如此。Xmake 听说比 Cmake 好用，还是中国人开发，我也不懂就跟跟风。</p>
+<h3 id="火绒">火绒<a class="header-anchor" href="#火绒"></a></h3>
+<p><img src="huorong.png" alt=""></p>
+<p><code>ShanWall</code> 和 <code>Tencent</code> 是我装的一些规则，用以保护隐私与简单防护。<s>当然关掉了一部分免得打扰</s>。</p>
+<p><a target="_blank" rel="noopener" href="https://www.huorong.cn">火绒</a>其实可以不装，因为 Windows Defender 就足够了。不过我装火绒是为了它的一些功能：</p>
+<ul>
+<li>弹窗拦截</li>
+<li>规则拦截</li>
+<li>行为拦截</li>
+<li>查看占用</li>
+<li>粉碎文件</li>
+<li>右键管理</li>
+<li>启动管理</li>
+</ul>
+<p>更何况它还很安静，比较不错，没指望它真的能让我电脑百毒不侵。最强的杀毒就是避免接触毒。</p>
+<p>当然它上面功能还是有些缺陷：</p>
+<ul>
+<li>规则/行为拦截弹窗太多（当然这与火绒无关，是我加了规则的原因）</li>
+<li>查看占用程序不完全</li>
+<li>粉碎文件失败</li>
+<li>右键管理凌乱，不知道所属</li>
+</ul>
+<p>但总的来说还是够用的。</p>
+<h3 id="Mathematica-©">Mathematica ©<a class="header-anchor" href="#Mathematica-©"></a></h3>
+<p><img src="mathematica.png" alt=""></p>
+<p>第一个文件是本体，第二个文件是中文语言包。</p>
+<p><s>虽然我装的是 ©，但是南大买了软件，所以其实我是可以去掉 © 的</s>。</p>
+<p><a target="_blank" rel="noopener" href="https://www.wolfram.com/mathematica">Mathematica</a> 是一款功能超强的数学软件，<s>然而我把它当作 10+G 的大号计算器在用</s>。诚然，它对我来说没什么用，但是还是放在了「必装」项，可能是为了收藏？（同时不定期更新到最新的安装包）<s>抑或是显示我有个学习数学的心</s>？</p>
+<p><s>有机会的话</s>还是要学学 Wolfram 语言和 Mathematica 的，算我立的一个 flag 吧。</p>
+<div class="admonition info"><p class="admonition-title">更新
+</p><p>放入了 <code>Wolfram</code> 文件夹并加入了 WolframEngine 作为免费轻量替代。</p>
+</div>
+<h3 id="PotPlayer">PotPlayer<a class="header-anchor" href="#PotPlayer"></a></h3>
+<p><img src="potplayer.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://potplayer.daum.net/">PotPlayer</a> 是一个视频播放软件。其实这是三个不同的软件，只是 <a target="_blank" rel="noopener" href="https://github.com/Nevcairiel/LAVFilters">LAVFilters</a> 和 <a target="_blank" rel="noopener" href="https://madvr.com/">madVR</a> 我不会单独装，都是和 PotPlayer 一起装的，因此列在一起。</p>
+<p>PotPlayer 的配置也是复杂，找个机会开篇新帖记录一下。</p>
+<p>同时因为它诡异的配置方式，导出来的是注册表，配置在注册表里，还有据说开始有广告了，我一度想过替换掉它，尝试过 <a target="_blank" rel="noopener" href="https://mpv.io/">mpv</a>，但是最终还是放弃了，还是 GUI 设置这种配置方式对我这种小白比较友好。同时我还在配置时遇到两个问题：</p>
+<ul>
+<li>无法载入副字幕</li>
+<li>画面问题（比较笼统，我也忘记了）</li>
+</ul>
+<p>最终还是回归了 PotPlayer，不过以后有机会也许还会再尝试一下的。</p>
+<h3 id="PowerToys">PowerToys<a class="header-anchor" href="#PowerToys"></a></h3>
+<p><img src="powertoys.png" alt=""></p>
+<p><code>Everything</code> 和 <code>Translator</code> 是其中的 Run 功能的插件。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/powertoys/">PowerToys</a> 是一个 Windows 工具箱。</p>
+<p>我用到的功能有：</p>
+<ul>
+<li>始终置顶：这样就去掉了我 AutoHotkey 脚本的一行 <code>#a::WinSet AlwaysOnTop, , A</code>，同时还有边框与声音提示，功能增强。</li>
+<li>唤醒：用来防止待机，目前笔记本由于一直有电源于是就开着了。</li>
+<li>颜色选择器：这个 Snipaste 也可以，不过 PowerToys 可以提供的类型更多，而且更美观。</li>
+<li>FancyZones：虽然开着但没用过，用处似乎挺大，不过我确实还没找到应用场景。</li>
+<li>File Locksmith：怎么说呢，有的火绒查不到的它查得到，火绒查得到的它查不到，留下来互补。</li>
+<li>文件资源管理器加载项：用来在文件资源管理器预览，也是虽然开着但没用过。</li>
+<li>Hosts 文件编辑器：也许可以用这个更优雅地编辑 Hosts？不过我已经很久没改过 Hosts 了，也是开着没用过。</li>
+<li>图像大小调整器：好用，绝，不多说，省空间啊！</li>
+<li>鼠标实用工具：开了「查找我的鼠标」，但也感觉用处不大。</li>
+<li>速览：快速预览，应该是很好用的功能，不过现在似乎还有些不成熟？</li>
+<li>PowerRename：可以替代一些命名工具，但是功能还不够强大，以前我都是用 Everything 重命名的，PowerRename 可以改善一点体验，但是功能还是要再强大一点才行。
+<ul>
+<li>8 月 26 日更新：不如 Everything，Everything 选择一群文件后会把原规则给你写出来，只用稍微改一点就好了，更方便，因此关掉了 PowerRename。</li>
+</ul>
+</li>
+<li>PowerToys Run：太棒了的功能，以前也有听过 <a target="_blank" rel="noopener" href="https://www.u.tools/">uTools</a> 之名，真正用上了同类工具才知其爽。当然现在功能还是太弱了，不过期待它的发展。</li>
+<li>快速重音：应该是蛮有用的功能，但是触发机制有点诡异，我练了几下才能稳定。以前输入音标都是直接输字母，然后从自定义短语选的，这个也许能改变一下。有点奇怪的是我选的拼音字符集但还有一些奇怪的符号 <code>ɑɑ̄ɑ́ɑ̌ɑ̀</code>（我发现了，这是手写体，然而我一直用的是印刷体 <code>aāáǎà</code>），同时功能也太弱了，不能自定义，不过我看到有人提相关 issues 了，期待前景。</li>
+<li>注册表速览：可以用来看 <code>reg</code> 文件改了啥，不过注册表不能用这个打开，到 Windows11 了注册表还是那么复古。</li>
+<li>快捷键指南：功能还是太少了，而且还是英文的，不过也看到相关改进 issue 了。</li>
+</ul>
+<h3 id="QQ">QQ<a class="header-anchor" href="#QQ"></a></h3>
+<p><img src="tim.png" alt=""></p>
+<p><s><a target="_blank" rel="noopener" href="https://tim.qq.com/">TIM</a> 是作为 QQ 的简洁替代品。不过也简洁过头了点，我聊天记录都不知道在哪里看。</s></p>
+<p>已经放弃了 TIM，投奔了 <a target="_blank" rel="noopener" href="https://im.qq.com/pcqq/index.shtml">QQNT</a>。不得不说新版界面还是蛮好看的。</p>
+<p><code>UserDataInfo.ini</code> 是为了转移 TIM 的储存目录，也是离谱不能直接设置。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; C:\Users\Public\Documents\Tencent\QQ</span></span><br><span class="line"><span class="section">[UserDataImportSet]</span></span><br><span class="line"><span class="attr">NeedImport</span>=<span class="number">0</span></span><br><span class="line"><span class="attr">OldVersion</span>=</span><br><span class="line"><span class="attr">OldVerDataPathType</span>=</span><br><span class="line"><span class="attr">OldVerDataPath</span>=</span><br><span class="line"><span class="attr">OldQQInstallPath</span>=C:\Users\UserName\Documents\Tencent Files</span><br><span class="line"><span class="section">[UserDataSet]</span></span><br><span class="line"><span class="attr">UserDataSavePathType</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">UserDataSavePath</span>=Z:\YourSavePath</span><br><span class="line">NewVersion=</span><br></pre></td></tr></table></figure>
+<p>将这个文件放在 <code>C:\Users\Public\Documents\Tencent\QQ</code> 里，储存目录就会转移到 <code>Z:\YourSavePath</code> 了。（不知道 <code>NewVersion</code> 为啥没高亮）</p>
+<h3 id="DevToys">DevToys<a class="header-anchor" href="#DevToys"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://devtoys.app/">DevToys</a> 号称「开发者的瑞士军刀」。我还没怎么用过，不过里面一些功能我觉得还是不错的，随便看几个：</p>
+<ul>
+<li>时间戳</li>
+<li>进制转换</li>
+<li>编码解码</li>
+<li>生成 UUID</li>
+</ul>
+<h3 id="Anki">Anki<a class="header-anchor" href="#Anki"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://apps.ankiweb.net/">Anki</a> 是一个 Flashcards 学习记忆软件，<s>高考后我已经两个月没碰过了</s>。我总计制了 12075 条笔记与 16002 张卡片（质量不高，其中 16000 还是考生物前才破的）。AnkiDroid 在我高考结束后才发布 2.16，然后呢 FSRS 要等到 2.17。也许大学也会继续用？就不知道还有没有时间和动力制卡了。</p>
+<h3 id="Calibre">Calibre<a class="header-anchor" href="#Calibre"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://calibre-ebook.com/">Calibre</a> 是一个电子书管理软件。但其实我需要的只是一个电子书阅读器，这一点没找到令人满意的，出于 Calibre 的受欢迎，而选择了它，不过电子书阅读效果还是不够好。</p>
+<h3 id="DevSidecar">DevSidecar<a class="header-anchor" href="#DevSidecar"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/docmirror/dev-sidecar">DevSidecar</a> 是一个 GitHub 加速器。我真的要给作者磕两个响头，没别的，就为了 GitHub 加速功能<s>以及简单的翻墙功能</s>。对我这种贫苦学生真是太好了。</p>
+<h3 id="draw-io">draw.io<a class="header-anchor" href="#draw-io"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://app.diagrams.net/">draw.io</a> 是一个流程图绘制软件，<s>不过我高二时主要拿来画电路图</s>。</p>
+<h3 id="Everything">Everything<a class="header-anchor" href="#Everything"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.voidtools.com/zh-cn/">Everything</a> 是一个 Windows 文件搜索软件，Windows 最强搜索软件。为了它我把已经存了一部分文件的 exFAT 格成了 NTFS。</p>
+<p>不过前几天遇到个问题，开了 WSL 后想用 Everything 追踪 WSL 文件变化，然后发现任务栏每隔 30s 会被激活一次，经过测试我才发现是 Everything 「尝试监控变化」选项的原因，我调整了数值也没有改变，只好关闭了这个选项，<s>一开始我还以为是 TrafficMonitor 的锅准备写 issue 了</s>，万万没想到是它导致的。</p>
+<h3 id="GeoGebra">GeoGebra<a class="header-anchor" href="#GeoGebra"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.geogebra.org/">GeoGebra</a> 是一个数学绘图软件，我主要用来画函数图。</p>
+<h3 id="Git">Git<a class="header-anchor" href="#Git"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a> 是一个免费的开源分布式版本控制系统，不得不装的必装。</p>
+<h3 id="Vim">Vim<a class="header-anchor" href="#Vim"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.vim.org/">Vim</a> 是一个文本编辑器，现在我就是用它来写 markdown。可惜的是就在前几天（8 月 3 日）作者 Bram Moolenaar 已经<a target="_blank" rel="noopener" href="https://groups.google.com/g/vim_announce/c/tWahca9zkt4">撒手人寰</a>了。它有个知名 fork 项目 <a target="_blank" rel="noopener" href="https://neovim.io/">NeoVim</a>，也许等它稳定后我就会切过去了。</p>
+<p>R.I.P. Bram Moolenaar</p>
+<h3 id="Honeyview">Honeyview<a class="header-anchor" href="#Honeyview"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.bandisoft.com/honeyview">Honeyview</a> 是一个图像查看器。</p>
+<p>有意思的是我曾经用过它家 <a target="_blank" rel="noopener" href="https://www.bandisoft.com/">Bandisoft</a> 的压缩软件 <a target="_blank" rel="noopener" href="https://www.bandisoft.com/bandizip/">Bandizip</a> 和 GIF 录制软件 <a target="_blank" rel="noopener" href="https://www.bandisoft.com/honeycam/">Honeycam ©</a>，而后者说起来还有一段历史呢~后来因为 Bandizip 收费了，转向了 WinRAR ©，再后来就是 7-Zip 了。</p>
+<p>当然我对 Honeyview 也有诸多不满：例如它不支持设置导出，再比如说一些格式它不支持。只不过我对图像查看器要求比较低，而且也不知道有什么好的替代品，就先暂时用着了。</p>
+<h3 id="TeX-Live">TeX Live<a class="header-anchor" href="#TeX-Live"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://tug.org/texlive/">TeX Live</a> 是装来配置 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 环境的。<s>安装文件是 <code>install-tl-windows.exe</code></s>，使用镜像源（<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/">清华镜像</a>）安装，安装文件 <code>texlive.iso</code>，速度快多了。虽然我很久没写 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 了，但是该配的还是得配，当作例行公事。</p>
+<h3 id="Internet-Download-Manager-©">Internet Download Manager ©<a class="header-anchor" href="#Internet-Download-Manager-©"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.internetdownloadmanager.com/">Internet Download Manager</a> 是一个下载器。香，真的太香了，除了不支持种子和磁力链接外完美。</p>
+<h3 id="Node-js">Node.js<a class="header-anchor" href="#Node-js"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js</a> 用来配置 JavaScript 环境。</p>
+<h3 id="Python">Python<a class="header-anchor" href="#Python"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.python.org/">Python</a> 用来配置 Python 环境。</p>
+<h3 id="qBittorrent">qBittorrent<a class="header-anchor" href="#qBittorrent"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.qbittorrent.org">qBittorrent</a> 用来下载种子和磁力链接。</p>
+<h3 id="Quicker">Quicker<a class="header-anchor" href="#Quicker"></a></h3>
+<p><img src="quicker.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://getquicker.net/">Quicker</a> 用来做一些快捷动作。</p>
+<p>装了几个动作：</p>
+<ul>
+<li>搜索：类似 PowerToys Run 的搜索，因为 Run 还没实现多搜索引擎，用这个替代。</li>
+<li>EVER智识：智能搜索。</li>
+<li>截图OCR：我的 OCRC 还是有点缺陷的，跟这个配合使用。</li>
+<li>翻译：这个我没实现，因此用用。</li>
+<li>高级重命名：没试过，也许能有用。</li>
+<li>一级解散 &amp; 全部解散：解散文件夹，用过几次。</li>
+<li>插入日期时间：快捷插入日期时间，不过不能自定义配置，我只好改源码了，不知道会不会更新覆盖掉。</li>
+</ul>
+<p>我还试了下「公式识别」动作，我感觉就是我的 OCRC 完胜：</p>
+<ol>
+<li>多种类型公式复制选择</li>
+<li>Click2Clip 功能</li>
+<li>界面简洁易用</li>
+</ol>
+<p>除了不支持预览外可以说是完美了。我看了下那个公式识别，实在是不方便，不过它有个优点就是可以修改，变预览边改，虽然我觉得没啥用。</p>
+<h3 id="Sandboxie-Plus">Sandboxie-Plus<a class="header-anchor" href="#Sandboxie-Plus"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://sandboxie-plus.com/">Sandboxie-Plus</a> 是一个沙盒软件。用了一下还不错，想拿迅雷下一下死种，又不想它乱搞，Sandboxie-Plus 就派上用场了。</p>
+<h3 id="ScreenToGif">ScreenToGif<a class="header-anchor" href="#ScreenToGif"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.screentogif.com/">ScreenToGif</a> 是一个录制 GIF 的软件。</p>
+<p>话说我没装录屏软件，本来有一个的，但它停止更新了我也就弃用了，毕竟也不常用，没错就是 <a target="_blank" rel="noopener" href="https://github.com/MathewSachin/Captura">Capture</a>。</p>
+<h3 id="SumatraPDF">SumatraPDF<a class="header-anchor" href="#SumatraPDF"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.sumatrapdfreader.org/free-pdf-reader">SumatraPDF</a> 是一个 PDF 阅读器。</p>
+<p>以前也用过 <a target="_blank" rel="noopener" href="https://www.adobe.com/acrobat.html">Adobe Acrobat ©</a>，但是后来发现 PDF 修改功能并不需要，我主要用的只是阅读功能罢了，就弃用了。</p>
+<h3 id="微信">微信<a class="header-anchor" href="#微信"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://weixin.qq.com/">微信</a> 是我见过最烂的社交软件，即使是 QQ 都好过它一万倍，最让人痛恨的就是大家都在用，我也不得不用，好在南大的群都在 QQ，也许大学我可以弃用微信？</p>
+<p>之前（高一好像）也用过一段时间 <a target="_blank" rel="noopener" href="https://telegram.org/">Telegram</a>，体验确实比微信之流好太多。然而我的号由于是国内手机号注册的，在卸载后就找不回来账号了。</p>
+<h3 id="Visual-Studio-Code">Visual Studio Code<a class="header-anchor" href="#Visual-Studio-Code"></a></h3>
+<p><img src="vscode.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual Studio Code</a> 是一个代码编辑器。高一高二用的都是 VSCode，高二末转了 Vim。但是 Vim 连皮毛都没学成，因此 VSCode 还是得用。其实 VSCode 挺好用的，我转 Vim 的主要原因是为了 <a target="_blank" rel="noopener" href="https://github.com/SirVer/ultisnips">UltiSnips</a>，还写了很多被别人称为是「a little bit out of scope」的 snippets。</p>
+<p><code>china_cdn.txt</code> 内容如下，国内下载 VSCode 速度太慢，将下载链接进行替换以提速。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vscode.cdn.azure.cn/stable/</span><br></pre></td></tr></table></figure>
+<p><img src="vscode_portable_mode.jpg" alt=""></p>
+<p><code>portable_mode.jpg</code> 是 Portable Mode 开启方式：即创建 <code>data</code> 文件夹。</p>
+<div class="admonition note"><p class="admonition-title">2023 年 8 月 11 日更新
+</p><p>增加了两个文件 <code>Update.bat</code> 与 <code>VSCode.reg</code>，内容如下。（不放 Admonitions 里，防止代码渲染错误）</p>
+</div>
+<figure class="highlight bat"><figcaption><span>Update.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $computer=&quot;<span class="variable">%cname%</span>&quot; &gt; &quot;<span class="variable">%temp%</span>\VSCode_Update.temp.ps1&quot;</span><br><span class="line"><span class="keyword">for</span> /f &quot;delims=:&quot; <span class="variable">%%i</span> <span class="keyword">in</span> (&#x27;<span class="built_in">findstr</span> /n &quot;^:JoinDomain$&quot; &quot;%~f0&quot;&#x27;) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">more</span> +<span class="variable">%%i</span> &quot;%~f0&quot; &gt;&gt; &quot;<span class="variable">%temp%</span>\VSCode_Update.temp.ps1&quot;</span><br><span class="line">)</span><br><span class="line">powershell -executionpolicy remotesigned -file &quot;<span class="variable">%temp%</span>\VSCode_Update.temp.ps1&quot;</span><br><span class="line"><span class="built_in">del</span> &quot;<span class="variable">%temp%</span>\VSCode_Update.temp.ps1&quot;</span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line">:JoinDomain</span><br><span class="line">curl.exe -L &quot;https://update.code.visualstudio.com/latest/win32-x64-archive/stable&quot; -o stable.zip</span><br><span class="line">Get-ChildItem -Exclude @(&quot;data&quot;, &quot;Update.bat&quot;, &quot;stable.zip&quot;, &quot;VSCode.reg&quot;) | Remove-Item -Recurse -Force</span><br><span class="line">Invoke-Expression &quot;<span class="number">7</span>z x &#x27;stable.zip&#x27; -o&#x27;.&#x27;&quot;</span><br><span class="line">Remove-Item -<span class="built_in">Path</span> &quot;stable.zip&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><figcaption><span>VSCode.reg</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CURRENT_USER\Software\Classes\*\shell\VSCode]</span><br><span class="line">@=&quot;用 VSCode 打开&quot;</span><br><span class="line">&quot;Icon&quot;=&quot;D:\\Program Files\\Microsoft VS Code\\Code.exe&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CURRENT_USER\Software\Classes\*\shell\VSCode\command]</span><br><span class="line">@=&quot;\&quot;D:\\Program Files\\Microsoft VS Code\\Code.exe\&quot; \&quot;%1\&quot;&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\VSCode]</span><br><span class="line">@=&quot;用 VSCode 打开&quot;</span><br><span class="line">&quot;Icon&quot;=&quot;D:\\Program Files\\Microsoft VS Code\\Code.exe&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\VSCode\command]</span><br><span class="line">@=&quot;\&quot;D:\\Program Files\\Microsoft VS Code\\Code.exe\&quot; \&quot;%1\&quot;&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode]</span><br><span class="line">@=&quot;用 VSCode 打开&quot;</span><br><span class="line">&quot;Icon&quot;=&quot;D:\\Program Files\\Microsoft VS Code\\Code.exe&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode\command]</span><br><span class="line">@=&quot;\&quot;D:\\Program Files\\Microsoft VS Code\\Code.exe\&quot; \&quot;%V\&quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>众所周知 VSCode 便携版无法自动更新，同时右键也没有对应诸如「用 VSCode 打开」的选项。这两个新增的文件就是为解决这两个问题而诞生的。</p>
+<p>代码是在网上东拼西凑找到，并且达到了我非常满意的效果。</p>
+<p>第一个需要在 VSCode 目录创建 <code>Update.bat</code> 并加入上面的内容。需要更新时双击运行即可，实现了半自动。（也可以加入定时任务定时检查更新，但是如果正在使用可能会出现问题）</p>
+<p>同时还需要 7-Zip 支持，并将其加入 <code>PATH</code>。原代码使用 Windows 自带解压，但我在 Windows11 测试发现解压速度奇慢无比，下载压缩包用了 5s，解压用了 100+s，比 Windows10 慢多了。于是我寻求使用 7-Zip 并最终成功，现在解压用时不超过 10s。我刚刚测试了一下，只需不到 15s 就能完成一次更新，速度快到飞起。</p>
+<p>同时也不需要下载压缩包了，连安装的功能都实现了。以后只需要将 <code>Update.bat</code> 放在 <code>Microsoft VS Code</code> 目录，双击运行就能安装好。</p>
+<div class="admonition error"><p class="admonition-title">警告
+</p><p>请勿在有重要文件的文件夹中双击 <code>Update.bat</code>，它会在下载完安装包后清除除 <code>data</code>, <code>Update.bat</code> 和 <code>VSCode.reg</code> 外<strong>所有文件与文件夹</strong>，且<strong>无法撤销</strong>。</p>
+</div>
+<p>第二个需要将 <code>D:\\Program Files\\Microsoft VS Code\\Code.exe</code> 改为自己的 <code>Code.exe</code> 所在地，然后加入注册表即可。我将其放在了 VSCode 目录里，因此在 <code>Update.bat</code> 的排除列表里也加入了它。这样就能 VSCode Everywhere 了。</p>
+<h3 id="GoldenDict-ng">GoldenDict-ng<a class="header-anchor" href="#GoldenDict-ng"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/xiaoyifang/goldendict-ng">GoldenDict-ng</a> 是一个字典软件。Fork 自 <a target="_blank" rel="noopener" href="https://github.com/goldendict/goldendict">GoldenDict</a>，GoldenDict 几乎已经停止开发了，论坛和网站都已经差不多（？）死了。而 GoldenDict-ng 大概是所有 forks 中最有影响力的一个，作者开发很勤快，而且还是中国人，在 <a target="_blank" rel="noopener" href="https://forum.freemdict.com/">FreeMdict 论坛</a>也会解答问题。</p>
+<h3 id="Bulk-Crap-Uninstaller">Bulk Crap Uninstaller<a class="header-anchor" href="#Bulk-Crap-Uninstaller"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.bcuninstaller.com/">Bulk Crap Uninstaller</a> 是一个卸载工具。在网上找了找，比较有名的免费开源的，也只有它了，好不好用我也不好评价，但是比自带卸载程序卸载和控制面板卸载应该还是要好的。不过我看到 GitHub 写着在「Looking for maintainers」，可能未来不太妙。</p>
+<h3 id="FFmpeg">FFmpeg<a class="header-anchor" href="#FFmpeg"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.ffmpeg.org/">FFmpeg</a> 是音视频类的软件，也是其他软件的重要组件。用过它把 mkv 转为 mp4。</p>
+<h3 id="Snipaste">Snipaste<a class="header-anchor" href="#Snipaste"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.snipaste.com/">Snipaste</a> 是一个截图 &amp; 贴图软件。免费版功能足矣，暂时没找到很好的免费替代品。</p>
+<h3 id="TrafficMonitor">TrafficMonitor<a class="header-anchor" href="#TrafficMonitor"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhongyang219/TrafficMonitor">TrafficMonitor</a> 用来在任务栏显示上传下载网速、CPU 利用率和内存占用率。甚至还能统计历史流量。</p>
+<h2 id="选装">选装<a class="header-anchor" href="#选装"></a></h2>
+<p><img src="optional-softwares.png" alt=""></p>
+<p><img src="optional-portable-softwares.png" alt=""></p>
+<h3 id="EasyConnect">EasyConnect<a class="header-anchor" href="#EasyConnect"></a></h3>
+<p><img src="easyconnect.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://www.sangfor.com.cn/">EasyConnect</a> 是一个 VPN 客户端软件，虽说是选装，但如果在校外要上校内网站，就得用这个了。</p>
+<p>然而我有幸看到了学长一个视频「<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV163411Z7BD">转发给你的同学看看 如何应对与卸载删除它？有什么替代方案？</a>」</p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+<iframe style="position:absolute; height: 100%; width: 100%;" src="//www.bilibili.com/blackboard/html5mobileplayer.html?aid=435357348&bvid=BV163411Z7BD&cid=967016106&page=1&hasMuteButton=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+<p>然后我不慎安装了，确实难卸载，于是采用了 <a target="_blank" rel="noopener" href="https://github.com/Hagb/docker-easyconnect">Docker 方案</a> ，不过跟视频里采用的方案不同，我看着网上的教程，用了 WSL2。要不是要短信验证码就可以纯命令行了。</p>
+<p><code>Docker-EasyConnect.txt</code> 就是一行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -d --name DEC --device /dev/net/tun --cap-add NET_ADMIN -ti \</span><br><span class="line">-p 127.0.0.1:32890:1080 -v /tmp/.X11-unix:/tmp/.X11-unix \</span><br><span class="line">-v $HOME/.easyconn:/root/.easyconn -e EC_VER=7.6.7 -e DISPLAY hagb/docker-easyconnect:vncless-7.6.7</span><br></pre></td></tr></table></figure>
+<p>这也是我第一次用 Docker，好不容易才摸索弄好。</p>
+<p>这是在 WSL 里 Ubuntu 的命令，我命名这个容器为 DEC，分配端口 32890 给它，指定使用 7.6.7 版本的 EasyConnect。然后后面我就可以用下面的命令来开启关闭了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker start DEC</span><br><span class="line">sudo docker stop DEC</span><br></pre></td></tr></table></figure>
+<p>也可以直接在 Windows 运行，去掉 <code>sudo</code>。</p>
+<p>这个装了好久，一直失败，即使是加了阿里镜像也失败（Hello World 就可以），后面我关了代理就好了，也不知道是不是这个原因。</p>
+<h3 id="华为电脑管家">华为电脑管家<a class="header-anchor" href="#华为电脑管家"></a></h3>
+<p><img src="pcmanager.png" alt=""></p>
+<p>因为用的是华为手机（荣耀 V30），尽管笔记本是联想，但还是眼馋多屏协同和一碰传。结果还真有相关教程，于是我的笔记本变身成为 MateBook D(2018)。</p>
+<p><img src="nfc.png" alt=""></p>
+<p>然后还买了个 NFC 贴纸真正实现一碰传。唯一的缺陷就是抗金属贴纸比较厚，有点不协调，但是要贴在金属面也只好如此了。</p>
+<p>不过有时不稳定，连接手机、多屏协同、查看文件全部失败，有时多试几次就行，有时重启电脑就可以了。前几天重启电脑、重新安装（一开始不是用这个心情助手安装的，用的是一个<a target="_blank" rel="noopener" href="https://github.com/hamflx/huawei-pc-manager-bootstrap">开源软件</a>）都不行，最后是重启手机才好的，希望是手机的问题吧，未知的问题才是最可怕的。</p>
+<p>里面的 <code>UNTESTED</code> 提示这个文件夹内都是未经测试的，像那个驱动我也是网上随便找的，试过也没啥效果，但还是留着了。</p>
+<p>另外华为电脑管家会篡改 Windows11 输入法，会强制打开兼容模式。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/523651878">我在网上搜了一下才发现是它的问题</a>。</p>
+<p><img src="win11ime.png" alt=""></p>
+<p>我也不知道为什么它在那里拼命改。解决方案就是关闭兼容模式，然后火绒自定义规则加两条。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\Software\Microsoft\input\tsf\tsf3override\&#123;81d4e9c9-1d3b-41bc-9e6c-4b40bf79e35e&#125;\NoTsf3Override2</span><br><span class="line">HKEY_CURRENT_USER\Software\Microsoft\CTF\TIP\&#123;81D4E9C9-1D3B-41BC-9E6C-4B40BF79E35E&#125;\DummyValue</span><br></pre></td></tr></table></figure>
+<div class="admonition note"><p class="admonition-title">2023 年 9 月 2 日更新
+</p><p>我把这条规则禁用了。因为写博文时，退下格、按下别的什么键它就给我改成英文了，导致我写起来相当烦躁，改回兼容模式就好了。只可惜了 Bug11 精美的皮肤，虽然可以为了美观性适当牺牲实用性，但是这是有界的。显然 Bug11 输入法触碰到了这条界。不过也许是华为电脑管家的问题？但是我关了后再用还是一样的。</p>
+</div>
+<h3 id="Aegisub">Aegisub<a class="header-anchor" href="#Aegisub"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://aegisub.org/">Aegisub</a> 是一个字幕编辑软件，有时用来简单修改字幕。</p>
+<h3 id="PowerDVD-©">PowerDVD ©<a class="header-anchor" href="#PowerDVD-©"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://cn.cyberlink.com/products/powerdvd-ultra/features_zh_CN.html">PowerDVD</a> 是一个影音播放软件。用来尝尝鲜蓝光菜单。</p>
+<h3 id="Docker">Docker<a class="header-anchor" href="#Docker"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.docker.com/">Docker</a>「是一个开放源代码的开放平台软件，用于开发应用、交付应用和运行应用」。目前我只用来弄 DEC，也许以后会变成必装。</p>
+<h3 id="Go">Go<a class="header-anchor" href="#Go"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://go.dev/">Go</a> 用来配置 Go 环境。因为不用 Hugo 了可选装。</p>
+<h3 id="Ghostscript">Ghostscript<a class="header-anchor" href="#Ghostscript"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://ghostscript.com/">Ghostscript</a>「是 PostScript 语言和 PDF 文件的解释器」。用以使用 <a target="_blank" rel="noopener" href="https://github.com/szhorvat/MaTeX">MaTeX</a>。</p>
+<h3 id="JetBrains-Toolbox">JetBrains Toolbox<a class="header-anchor" href="#JetBrains-Toolbox"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.jetbrains.com/toolbox-app/">JetBrains Toolbox</a> 用来安装 JetBrains 全家桶。</p>
+<h3 id="Pandoc">Pandoc<a class="header-anchor" href="#Pandoc"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://pandoc.org/">Pandoc</a> 是一个标记语言转换工具。或许将来有用，现在没什么用。</p>
+<h3 id="StartAllBack-©">StartAllBack ©<a class="header-anchor" href="#StartAllBack-©"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.startallback.com/">StartAllBack</a> 是一个用来修改 Windows11 的工具。用过一段时间，后来弃用了，准备逐渐熟悉 Windows11，<s>然而右键按两下也太傻了点吧</s>。</p>
+<div class="admonition note"><p class="admonition-title">2023 年 9 月 3 日更新
+</p><p>通过修改注册表的方式恢复了旧的右键菜单。（代码框放 Admonitions 里还是会有转义现象，因此还是得避免代码框放里面）</p>
+</div>
+<figure class="highlight cmd"><figcaption><span>旧版</span></figcaption><table><tr><td class="code"><pre><span class="line">reg add &quot;HKCU\Software\Classes\CLSID\&#123;<span class="number">86</span>ca1aa0-<span class="number">34</span>aa-<span class="number">4</span>e8b-a509-<span class="number">50</span>c905bae2a2&#125;\InprocServer32&quot; /f /ve</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><figcaption><span>新版</span></figcaption><table><tr><td class="code"><pre><span class="line">reg delete &quot;HKCU\Software\Classes\CLSID\&#123;<span class="number">86</span>ca1aa0-<span class="number">34</span>aa-<span class="number">4</span>e8b-a509-<span class="number">50</span>c905bae2a2&#125;&quot; /f</span><br></pre></td></tr></table></figure>
+<p>然后重启资源管理器</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">taskkill</span> /f /im explorer.exe &amp; <span class="built_in">start</span> explorer.exe</span><br></pre></td></tr></table></figure>
+<h3 id="mkvtoolnix">mkvtoolnix<a class="header-anchor" href="#mkvtoolnix"></a></h3>
+<p>里面包含 <a target="_blank" rel="noopener" href="https://mkvtoolnix.download/">mkvtoolnix</a> 和 <a target="_blank" rel="noopener" href="http://forum.doom9.org/showthread.php?t=170249">gMKVExtractGUI</a>。用以处理 mkv 文件。</p>
+<p>本来极度依赖 GUI，到处找 GUI，结果批量处理时用了一下命令行，感觉真爽，还有中文 help，真是爽上加爽啊。但还是留了一个 mkvextract 的 GUI，对单独的文件简单看看，不过确实也没什么必要留着。</p>
+<h3 id="Android-Develop-Bridge">Android Develop Bridge<a class="header-anchor" href="#Android-Develop-Bridge"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://developer.android.com/tools/adb">Android Develop Bridge</a> 是用来调试 Android 的工具，我有时用来卸载系统应用或给应用提权。</p>
+<h3 id="Carnac">Carnac<a class="header-anchor" href="#Carnac"></a></h3>
+<p><a target="_blank" rel="noopener" href="http://carnackeys.com/">Carnac</a> 用来显示按键，对录制视频与动图可能有帮助。</p>
+<h3 id="Clash">Clash<a class="header-anchor" href="#Clash"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Fndroid/clash_for_windows_pkg">Clash for Windows</a> 是一个代理软件。现在梯子需求不大，加上没什么好的免费节点（穷学生现状），实在需要梯子的情况大多我会放弃。但是以后可能还是会用到的。</p>
+<h3 id="FastStone-Capture-©">FastStone Capture ©<a class="header-anchor" href="#FastStone-Capture-©"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.faststone.org/FSCaptureDetail.htm">FastStone Capture</a> 是一个截图 &amp; 录屏软件。据说功能强大，没有实际用过。</p>
+<h3 id="gtags">gtags<a class="header-anchor" href="#gtags"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/">gtags</a> 是一个源代码标记系统。我用以和 <a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF">LeaderF</a> 配合。</p>
+<h3 id="Hugo">Hugo<a class="header-anchor" href="#Hugo"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/gohugoio/hugo">Hugo</a> 是一个基于 Go 的博客构建工具。现在暂时不用，放在了 <code>Option</code>。</p>
+<h3 id="ripgrep">ripgrep<a class="header-anchor" href="#ripgrep"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep">ripgrep</a> 是一个正则表达式查找工具。同上用以和 LeaderF 配合。</p>
+<h3 id="微力同步">微力同步<a class="header-anchor" href="#微力同步"></a></h3>
+<p><a target="_blank" rel="noopener" href="http://www.verysync.com/">微力同步</a> 是一个局域网同步工具。由于 Anki 同步媒体速度太慢，我关掉了媒体同步，并按照叶大的教程使用微力同步同步 Anki 媒体文件。不知道现在 Anki 媒体同步是否有改善。</p>
+<h3 id="waifu2x-caffe">waifu2x-caffe<a class="header-anchor" href="#waifu2x-caffe"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/lltcggie/waifu2x-caffe">waifu2x-caffe</a> 是一个图片放大工具。</p>
+<h2 id="工具">工具<a class="header-anchor" href="#工具"></a></h2>
+<h3 id="SubtitleFont">SubtitleFont<a class="header-anchor" href="#SubtitleFont"></a></h3>
+<p>包括 <a target="_blank" rel="noopener" href="https://bbs.acgrip.com/forum.php?mod=viewthread&amp;tid=1894">ListAssFonts</a> 和 <a target="_blank" rel="noopener" href="https://github.com/Apache553/SubtitleFontHelper/">SubtitleFontHelper</a>。字幕字体相关，用以「查找字幕文件所需字体」与「自动加载所需字体」。</p>
+<h3 id="Office-Tool-Plus">Office Tool Plus<a class="header-anchor" href="#Office-Tool-Plus"></a></h3>
+<p><a target="_blank" rel="noopener" href="https://otp.landian.vip/zh-cn/">Office Tool Plus</a> 用来部署 Office。</p>
+<h3 id="图吧工具箱">图吧工具箱<a class="header-anchor" href="#图吧工具箱"></a></h3>
+<p><a target="_blank" rel="noopener" href="http://www.tbtool.cn/">图吧工具箱</a>是一个工具箱，用来查看电脑配置等。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hugo/" rel="tag"><i class="fa fa-tag"></i> Hugo</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 软件</a>
+              <a href="/tags/7-Zip/" rel="tag"><i class="fa fa-tag"></i> 7-Zip</a>
+              <a href="/tags/AutoHotkey/" rel="tag"><i class="fa fa-tag"></i> AutoHotkey</a>
+              <a href="/tags/%E7%81%AB%E7%BB%92/" rel="tag"><i class="fa fa-tag"></i> 火绒</a>
+              <a href="/tags/Mathematica/" rel="tag"><i class="fa fa-tag"></i> Mathematica</a>
+              <a href="/tags/PotPlayer/" rel="tag"><i class="fa fa-tag"></i> PotPlayer</a>
+              <a href="/tags/PowerToys/" rel="tag"><i class="fa fa-tag"></i> PowerToys</a>
+              <a href="/tags/QQ/" rel="tag"><i class="fa fa-tag"></i> QQ</a>
+              <a href="/tags/DevToys/" rel="tag"><i class="fa fa-tag"></i> DevToys</a>
+              <a href="/tags/Anki/" rel="tag"><i class="fa fa-tag"></i> Anki</a>
+              <a href="/tags/Calibre/" rel="tag"><i class="fa fa-tag"></i> Calibre</a>
+              <a href="/tags/DevSidecar/" rel="tag"><i class="fa fa-tag"></i> DevSidecar</a>
+              <a href="/tags/draw-io/" rel="tag"><i class="fa fa-tag"></i> draw.io</a>
+              <a href="/tags/Everything/" rel="tag"><i class="fa fa-tag"></i> Everything</a>
+              <a href="/tags/Geogebra/" rel="tag"><i class="fa fa-tag"></i> Geogebra</a>
+              <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
+              <a href="/tags/Vim/" rel="tag"><i class="fa fa-tag"></i> Vim</a>
+              <a href="/tags/Honeyview/" rel="tag"><i class="fa fa-tag"></i> Honeyview</a>
+              <a href="/tags/TeX-Live/" rel="tag"><i class="fa fa-tag"></i> TeX Live</a>
+              <a href="/tags/IDM/" rel="tag"><i class="fa fa-tag"></i> IDM</a>
+              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/qBittorrent/" rel="tag"><i class="fa fa-tag"></i> qBittorrent</a>
+              <a href="/tags/Quicker/" rel="tag"><i class="fa fa-tag"></i> Quicker</a>
+              <a href="/tags/ScreenToGif/" rel="tag"><i class="fa fa-tag"></i> ScreenToGif</a>
+              <a href="/tags/SumatraPDF/" rel="tag"><i class="fa fa-tag"></i> SumatraPDF</a>
+              <a href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag"><i class="fa fa-tag"></i> 微信</a>
+              <a href="/tags/VSCode/" rel="tag"><i class="fa fa-tag"></i> VSCode</a>
+              <a href="/tags/GoldenDict-ng/" rel="tag"><i class="fa fa-tag"></i> GoldenDict-ng</a>
+              <a href="/tags/BCUninstaller/" rel="tag"><i class="fa fa-tag"></i> BCUninstaller</a>
+              <a href="/tags/EasyConnect/" rel="tag"><i class="fa fa-tag"></i> EasyConnect</a>
+              <a href="/tags/%E5%8D%8E%E4%B8%BA%E7%94%B5%E8%84%91%E7%AE%A1%E5%AE%B6/" rel="tag"><i class="fa fa-tag"></i> 华为电脑管家</a>
+              <a href="/tags/Aegisub/" rel="tag"><i class="fa fa-tag"></i> Aegisub</a>
+              <a href="/tags/PowerDVD/" rel="tag"><i class="fa fa-tag"></i> PowerDVD</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/Go/" rel="tag"><i class="fa fa-tag"></i> Go</a>
+              <a href="/tags/Pandoc/" rel="tag"><i class="fa fa-tag"></i> Pandoc</a>
+              <a href="/tags/Sandboxie-Plus/" rel="tag"><i class="fa fa-tag"></i> Sandboxie-Plus</a>
+              <a href="/tags/StartAllBack/" rel="tag"><i class="fa fa-tag"></i> StartAllBack</a>
+              <a href="/tags/ADB/" rel="tag"><i class="fa fa-tag"></i> ADB</a>
+              <a href="/tags/Carnac/" rel="tag"><i class="fa fa-tag"></i> Carnac</a>
+              <a href="/tags/FastStone-Capture/" rel="tag"><i class="fa fa-tag"></i> FastStone Capture</a>
+              <a href="/tags/gtags/" rel="tag"><i class="fa fa-tag"></i> gtags</a>
+              <a href="/tags/ripgrep/" rel="tag"><i class="fa fa-tag"></i> ripgrep</a>
+              <a href="/tags/Office-Tool-Plus/" rel="tag"><i class="fa fa-tag"></i> Office Tool Plus</a>
+              <a href="/tags/Xmake/" rel="tag"><i class="fa fa-tag"></i> Xmake</a>
+              <a href="/tags/WolframEngine/" rel="tag"><i class="fa fa-tag"></i> WolframEngine</a>
+              <a href="/tags/Clash/" rel="tag"><i class="fa fa-tag"></i> Clash</a>
+              <a href="/tags/%E5%BE%AE%E5%8A%9B%E5%90%8C%E6%AD%A5/" rel="tag"><i class="fa fa-tag"></i> 微力同步</a>
+              <a href="/tags/waifu2x/" rel="tag"><i class="fa fa-tag"></i> waifu2x</a>
+              <a href="/tags/mkvtoolnix/" rel="tag"><i class="fa fa-tag"></i> mkvtoolnix</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/hello-world/" rel="prev" title="建博记">
+                  <i class="fa fa-angle-left"></i> 建博记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/08/vimrc/" rel="next" title="我的 Vim 配置">
+                  我的 Vim 配置 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lyieu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+<script src="/js/third-party/math/mhchem.min.js"></script>
+<script src="/js/third-party/math/copy-tex.min.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-comments-virid.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","dark":"auto","locale":{"placeholder":"欢迎评论~","level0":"问","level1":"哭","level2":"埋","level3":"挖","level4":"抬","level5":"死","level6":"熬","level7":"买","level8":"瞧","level9":"病","reactionTitle":"反应"},"reaction":["https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f970.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f973.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f9d0.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f632.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f610.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f641.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f62d.png"],"emoji":["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji","https://unpkg.com/@waline/emojis@1.2.0/tw-object","https://unpkg.com/@waline/emojis@1.2.0/tw-travel","https://unpkg.com/@waline/emojis@1.2.0/tw-weather"],"search":false,"meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"wordLimit":0,"login":"enable","pageSize":15,"texRenderer":"KaTeX","el":"#waline","comment":true,"path":"/2023/08/my-windows-softwares/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

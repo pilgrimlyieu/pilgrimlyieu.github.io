@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon.svg">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pilgrimlyieu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500,"threshold":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="对 C Programming Language 课程期末项目 RAM File System Shell 进行回顾与总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPL 项目 RAMFShell 回顾与总结">
+<meta property="og:url" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/index.html">
+<meta property="og:site_name" content="Shrine">
+<meta property="og:description" content="对 C Programming Language 课程期末项目 RAM File System Shell 进行回顾与总结。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/1.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/2.png">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/3.jpg">
+<meta property="og:image" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/4.jpg">
+<meta property="article:published_time" content="2024-01-25T03:49:34.000Z">
+<meta property="article:modified_time" content="2024-01-28T06:05:02.000Z">
+<meta property="article:author" content="Lyieu">
+<meta property="article:tag" content="CPL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/1.png">
+
+
+<link rel="canonical" href="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pilgrimlyieu.github.io/2024/01/cpl-project-review/","path":"2024/01/cpl-project-review/","title":"CPL 项目 RAMFShell 回顾与总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CPL 项目 RAMFShell 回顾与总结 | Shrine</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-comments-virid.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.admonition{font-size:.96em;margin:1.5625em 0;padding:.6rem;overflow:visible;page-break-inside:avoid;border-left:.3rem solid;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);line-height:1.8}.admonition>:last-child{margin-bottom:0!important}.admonition-title::before{position:absolute;top:1rem;left:1rem;width:16px;height:16px;border-radius:100%;content:" "}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;line-height:2}.admonition.note,.admonition.question,.admonition.success{border-color:#42b983}.note>.admonition-title::before,.question>.admonition-title::before,.success>.admonition-title::before{background-color:#42b983}.note>.admonition-title,.question>.admonition-title,.success>.admonition-title{background-color:rgba(66,185,131,.4)}.admonition.info,.admonition.todo{border-color:#00b8d4}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.4)}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.4)}.admonition.bug,.admonition.danger,.admonition.error,.admonition.failure,.admonition.missing{border-color:#ff5252}.bug>.admonition-title::before,.danger>.admonition-title::before,.error>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252}.bug>.admonition-title,.danger>.admonition-title,.error>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.4)}.admonition.example{border-color:#903dcc}.example>.admonition-title::before{background-color:#903dcc}.example>.admonition-title{background-color:rgba(144,61,204,.4)}.admonition.quote{border-color:#aaa}.quote>.admonition-title::before{background-color:#aaa}.quote>.admonition-title{background-color:rgba(170,170,170,.4)}.admonition.abstract,.admonition.tip{border-color:#448aff}.abstract>.admonition-title::before,.tip>.admonition-title::before{background-color:#448aff}.abstract>.admonition-title,.tip>.admonition-title{background-color:rgba(68,138,255,.4)}.admonition.memo,.admonition.sheet{border-color:#c3a210}.memo>.admonition-title::before,.sheet>.admonition-title::before{background-color:#c3a210}.memo>.admonition-title,.sheet>.admonition-title{background-color:rgba(195,162,16,.4)}@media (prefers-color-scheme:light){.admonition{background-color:#eee}.admonition.test{border-color:#283747}.test>.admonition-title::before{background-color:#283747}.test>.admonition-title{background-color:rgba(40,55,71,.4)}}@media (prefers-color-scheme:dark){.admonition{background-color:#444}.admonition.test{border-color:#f2f3f4}.test>.admonition-title::before{background-color:#f2f3f4}.test>.admonition-title{background-color:rgba(242,243,244,.4)}}</style><link rel="alternate" href="/atom.xml" title="Shrine" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shrine</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Fesmoph's Blog</p>
+      <img class="custom-logo-image" src="/images/logo/logo.svg" alt="Shrine">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">74</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-list-ul fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-folder-open fa-fw"></i>归档<span class="badge">29</span></a></li><li class="menu-item menu-item-记事"><a href="/daily/" rel="section"><i class="fa fa-clipboard-list fa-fw"></i>记事</a></li><li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-scroll fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%B8%83%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">基本布置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WSL"><span class="nav-number">2.2.</span> <span class="nav-text">WSL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode"><span class="nav-number">2.3.</span> <span class="nav-text">VSCode</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9"><span class="nav-number">2.3.1.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%80%E5%B7%A7"><span class="nav-number">2.3.3.</span> <span class="nav-text">技巧</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Makefile"><span class="nav-number">2.4.</span> <span class="nav-text">Makefile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2%E7%BC%96%E8%AF%91%E8%87%AA%E5%8A%A8-commit"><span class="nav-number">2.4.1.</span> <span class="nav-text">禁止编译自动 commit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4"><span class="nav-number">2.4.2.</span> <span class="nav-text">提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TOKEN"><span class="nav-number">2.4.3.</span> <span class="nav-text">TOKEN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">2.4.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#use-sh"><span class="nav-number">2.5.</span> <span class="nav-text">use.sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#check-sh"><span class="nav-number">2.6.</span> <span class="nav-text">check.sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sanitizer"><span class="nav-number">2.7.</span> <span class="nav-text">Sanitizer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%8E%E8%AE%BE%E5%AE%9A"><span class="nav-number">3.1.</span> <span class="nav-text">修改与设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="nav-number">3.2.</span> <span class="nav-text">代码风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E4%BB%A5%E4%B8%BA%E6%98%AF"><span class="nav-number">3.3.</span> <span class="nav-text">自以为是</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%98%E5%88%A0%E6%A0%B9%E4%B8%8E%E6%AE%8B%E4%BD%99%E8%8A%82%E7%82%B9"><span class="nav-number">3.3.1.</span> <span class="nav-text">忘删根与残余节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-char-%E5%92%8C-short-%E4%BB%A3%E6%9B%BF-int"><span class="nav-number">3.3.2.</span> <span class="nav-text">使用 char 和 short 代替 int</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#swhich-%E4%B9%B1%E8%BE%93%E5%87%BA"><span class="nav-number">3.3.3.</span> <span class="nav-text">swhich 乱输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.4.</span> <span class="nav-text">非字符串使用字符串操作的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2-strtok"><span class="nav-number">3.3.5.</span> <span class="nav-text">替换 strtok</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E6%96%87%E6%A1%A3%E7%B2%97%E5%BF%83%E5%A4%A7%E6%84%8F"><span class="nav-number">3.3.6.</span> <span class="nav-text">读文档粗心大意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#size"><span class="nav-number">3.3.7.</span> <span class="nav-text">size?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ls-file"><span class="nav-number">3.3.8.</span> <span class="nav-text">ls &lt;file&gt;</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lyieu"
+      src="/images/avatar/avatar.svg">
+  <p class="site-author-name" itemprop="name">Lyieu</p>
+  <div class="site-description" itemprop="description">Dreaming</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pilgrimlyieu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pilgrimlyieu" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pilgrimlyieu@outlook.com" title="E-Mail → mailto:pilgrimlyieu@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.svg">
+      <meta itemprop="name" content="Lyieu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrine">
+      <meta itemprop="description" content="Dreaming">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CPL 项目 RAMFShell 回顾与总结 | Shrine">
+      <meta itemprop="description" content="对 C Programming Language 课程期末项目 RAM File System Shell 进行回顾与总结。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CPL 项目 RAMFShell 回顾与总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-25 11:49:34" itemprop="dateCreated datePublished" datetime="2024-01-25T11:49:34+08:00">2024-01-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-28 14:05:02" itemprop="dateModified" datetime="2024-01-28T14:05:02+08:00">2024-01-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CPL/" itemprop="url" rel="index"><span itemprop="name">CPL</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2024/01/cpl-project-review/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2024/01/cpl-project-review/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>18k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>17 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">对 C Programming Language 课程期末项目 RAM File System Shell 进行回顾与总结。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言">前言<a class="header-anchor" href="#前言"></a></h2>
+<p>只是对这次项目大作业进行一个反思，并不会去分析代码，因此在 DDL 前发出来也没什么。</p>
+<p>首先得感谢一下我自己，开了个时间表，前几天异常专注努力（现在基本又靠近常态了），把其它作业早早解决了，让我能在比较早的时间开始项目。现在看来真是时间卡得很紧，昨天才过了，今天就 DDL，太刺激了。</p>
+<p>尽管写得比较烂，但也是 C 语言最大的一个项目了（当然也是第一个项目），即使在我写过寥寥无几的代码中，也是仅次于 OCRC 的工程量了（写的应该比 OCRC 好一点）。由于其特殊的纪念意义，就在 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell">GitHub 开源</a>，当然目前还是 Private 状态，我等软院 DDL 结束后再改 Public。</p>
+<p>回顾大概是翻 commits history，同时看看提交记录，想到啥写啥，可能会有遗漏。</p>
+<p>前言也顺便提一下为什么要选这个题目。</p>
+<p>首先排除做游戏，因为这些游戏我都不感兴趣，而且我认为做游戏的工程量还是比较大的（听说有人写了两万行，还是单文件，我整个 AutoHotkey 代码总量也不过万行，这样的代码即使有拆成多文件我想我也是难以维护的），而且做游戏还要学啥 SDL 图形库，我也没啥兴趣。</p>
+<p>然后自选，我也不是没有想法，但是呢工程量相较于给的题目来说太小了。其次呢，主观题拿满分对我而言几乎不可能，因此从功利的角度来说做游戏也不是好选择。</p>
+<p>客观题除了这个还有 SQL-Minus 与霓虹麻将。后者显然直接排除，类游戏的，不感兴趣。前者是有一点兴致的，我也可以借此机会了解一下 SQL。但是呢，我也提到过了，出于我对 RAMFShell 这个更感兴趣，同时它有个项目框架，我可以学习一下 VSCode 与 WSL 联动写 C 项目的流程，因此最终确定了这个选题。</p>
+<h2 id="准备">准备<a class="header-anchor" href="#准备"></a></h2>
+<h3 id="基本布置">基本布置<a class="header-anchor" href="#基本布置"></a></h3>
+<p>还好把副屏带回来了。写代码前，副屏看文档与项目 README，主屏记笔记；写代码时，主屏写代码，副屏测试、提交或者看文档 README 等。</p>
+<h3 id="WSL">WSL<a class="header-anchor" href="#WSL"></a></h3>
+<p>项目推荐使用 Linux 系统。但我轻薄本带不动虚拟机，而 WSL 又已经使用一段时间了，使用体验非常好，当然就用上了 WSL。</p>
+<p>WSL 的好处不必多说了，跟 Windows 衔接好、编译执行快…我在此前用 WSL 做笔记，写 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 等时就已经体会到了。</p>
+<h3 id="VSCode">VSCode<a class="header-anchor" href="#VSCode"></a></h3>
+<h4 id="选择">选择<a class="header-anchor" href="#选择"></a></h4>
+<p>同时决定了使用 VSCode。为什么呢？因为 VSCode 有 WSL 插件，可以直接用 VSCode 打开 WSL 的项目写代码，而不用在 WSL 里面再装个编辑器或者是庞大的 IDE。</p>
+<p>但是呢，我也提到过了，我平时的 OJ 作业都是用 CLion 的，而且 CLion 也有 WSL 工具链，还有 Gateway 这样的远程开发环境，同时 CLion 作为一个成熟的 IDE，显然会有更方便的配置和体验更好的代码补全、提示与调试功能，那我为什么不用 CLion 呢？</p>
+<p>原因其一，自然是因为我搜阅了网上相关文章，发现评价并不好，体验比 VSCode 差。其二，CLion 占用资源太多了，每次开个 CLion 风扇要呼呼转，然后我还得开个 WSL。</p>
+<p>那为什么不用 Vim 呢？WSL 上的 Vim 的问题已经基本解决了，已经能获得跟 Windows 上差不多的体验了，而且 Vim 上一堆插件，比如 vim-easy-align，不是可以很方便地对齐美化代码吗？而且 Vim 的操作不是比 VSCode 残缺功能的 Vim 插件更方便吗？那为什么不用 Vim 呢？</p>
+<p>原因其一，Vim 没配调试环境，完全无法调试（没学过 <code>gdb</code>）。其二，代码高亮不好看，这也是 Vim 写代码的通病，所以基本不用 Vim 写代码，都是写 markdown 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span>。相较而言，VSCode 高亮就很漂亮，写代码也是美的享受。</p>
+<p>当然也不是一点 Vim 都没用，还是会打开一些文件，对齐一下代码什么的，只不过 VSCode 是主力罢了。</p>
+<p>也不是说 VSCode 就完美无瑕。也遇到过一些问题，比如说调试时卡在某一行（一般是调用库函数的行），按单步执行动不了，这种情况我一般在下一步下个断点，然后恢复执行，就能越过去了。但是只是一开始写代码时遇到了，后面没遇到了，网上也没搜到类似问题，可能是初期代码的内存问题？</p>
+<p>还有呢就是 VSCode Vim 一些不太方便的问题。但是总的来说没用过什么奇技淫巧，都是很基础的操作，还是写得很舒服的。基本上就用了基本的移动键和修改键，<kbd>v</kbd> 选中代码，<kbd>,</kbd> 重复跳转，<kbd>.</kbd> 重复操作，<kbd>s</kbd> 修改 surroundings 的内容，<kbd>u</kbd> 撤回与重做，<kbd>y</kbd> 复制，<kbd>Ctrl</kbd> + <kbd>O</kbd>/<kbd>I</kbd> 来回跳，<kbd>/</kbd>/<kbd>n</kbd> 搜索与跳转，<kbd>z</kbd> 折叠，<kbd>:</kbd> 然后 <code>:%y</code> 复制全部…</p>
+<h4 id="配置">配置<a class="header-anchor" href="#配置"></a></h4>
+<p>既然决定是 VSCode 了，自然要学习一下怎么使用 VSCode 写 C 项目。</p>
+<p>我的 <code>.vscode</code> 有四个文件，一一来介绍一下。</p>
+<figure class="highlight json"><figcaption><span>settings.json</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/.vscode/settings.json">settings.json</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;C_Cpp.codeAnalysis.clangTidy.checks.disabled&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;clang-analyzer-security.insecureAPI.strcpy&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>settings.json</code> 禁掉了两个检查，因为第一个检查会警告我 <code>strcpy</code> 不安全，第二个检查会警告我 <code>strncpy</code> <code>memset</code> <code>memcpy</code> 等等不安全。但我一定是要用的，而这些检查挺烦人的，就关掉了。</p>
+<figure class="highlight json"><figcaption><span>c_cpp_properties.json</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/.vscode/c_cpp_properties.json">c_cpp_properties.json</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Linux&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;includePath&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;defines&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;_DEBUG&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;UNICODE&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;_UNICODE&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;compilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/clang&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c17&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;intelliSenseMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;linux-clang-x64&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;compilerArgs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;-O2&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-lm&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-march=native&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-fno-strict-aliasing&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-Wall&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-fdiagnostics-color=always&quot;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">4</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>c_cpp_properties.json</code> 是 VSCode 的 C/C++ 插件的配置文件。之前用的是 Clangd 插件，现在用回自带的插件了。</p>
+<p><code>includePath</code> 里包含了 <code>include</code> 目录，这样就不会报错找不到头文件了，而且可以带来更好的补全体验。</p>
+<p><code>defines</code> 忘了哪里来的，没啥印象。</p>
+<p><code>intelliSenseMode</code> 用的是 <code>linux-clang-x64</code>，因为给了更多提示，我一个内存泄漏问题就是它检查出来的。而一开始用 <code>linux-gcc-x64</code>，它就只一直在说上面不安全的问题。同时为了搭配使用，也用了 <code>clang</code> 作为编译器，毕竟对我这个水平的代码来说，编译器没啥差别。</p>
+<p><code>cStandard</code> 和 <code>compilerArgs</code> 抄的 OJ 上面的。大致含义：<code>-O2</code> 是开启二级优化，<code>-lm</code> 是链接数学库，<code>-march=native</code> 也是优化，<code>-fno-strict-aliasing</code> 是禁用严格别名规则，<code>-Wall</code> 是开启所有警告，<code>-fdiagnostics-color=always</code> 是开启彩色信息输出。</p>
+<figure class="highlight json"><figcaption><span>launch.json</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/.vscode/launch.json">launch.json</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Debug&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppdbg&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;program&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/ramfs-shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;environment&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gdb&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C Project Build&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>launch.json</code> 是调试配置文件。取了个朴实无华的名字 <code>Debug</code>。执行的目标程序是 <code>ramfs-shell</code>，执行前先执行一个 task 叫做 <code>C Project Build</code>。</p>
+<figure class="highlight json"><figcaption><span>tasks.json</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/.vscode/tasks.json">tasks.json</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppbuild&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C Project Build&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/clang&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;-g&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;file&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-o&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/ramfs-shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-I&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;fs/ramfs.c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;sh/shell.c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-lm&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-march=native&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="comment">// &quot;-fsanitize=address&quot;,</span></span><br><span class="line">                <span class="comment">// &quot;-fsanitize=undefined&quot;,</span></span><br><span class="line">                <span class="comment">// &quot;-fsanitize=leak&quot;,</span></span><br><span class="line">                <span class="comment">// &quot;-fsanitize=memory&quot;,</span></span><br><span class="line">                <span class="comment">// &quot;-fsanitize=thread&quot;,</span></span><br><span class="line">                <span class="string">&quot;-fno-strict-aliasing&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-fno-omit-frame-pointer&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-ftrapv&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-Wall&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-fdiagnostics-color=always&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;problemMatcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;build&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;isDefault&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;detail&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这就是 <code>tasks.json</code>，只有这一个 task——<code>C Project Build</code>，也是用 <code>clang</code>。比起前面，多了点参数，比如 <code>-g</code> 是开启调试信息，<code>-o</code> 是输出文件名，<code>-I</code> 是包含头文件目录，<code>-fsanitize</code> 是开启内存检查（注释掉了，调试时只开过 address），<code>-fno-omit-frame-pointer</code> 是网上抄的，<code>-ftrapv</code> 是检查整数溢出（也是网上抄的）。</p>
+<p>总的来说，没什么好说的。可能有点问题，不过我用着没出问题就是了，还有人找我抄配置，我也给了（其实蛮好奇，发起聊天就行了为啥要加好友呢，虽然发起聊天不能发文件）。</p>
+<h4 id="技巧">技巧<a class="header-anchor" href="#技巧"></a></h4>
+<p>还有就是一些学到的技巧（其实就一个）。</p>
+<p><img src="1.png" alt=""></p>
+<p>这是一个简单的程序，在根目录分别创建了两个文件夹和两个文件。但是呢右边的监视变量里面，却只能显示首地址，实在是不方便。</p>
+<p>于是我在 StackOverflow 的问题 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63278898/how-to-watch-char-values-of-strings-pointed-by-a-pointer-to-pointers-in-debugger">How to watch char values of strings pointed by a pointer to pointers in debugger mode of VSCode</a> 上找到了答案。</p>
+<p>当然，其实我是从问题描述学的，实际上就是用 <code>*(Node*(*)[5])</code> 就行了，5 是一个自定义的数字，代表数组的长度。这样就能把指针转化为数组来显示了，比较清晰。</p>
+<p><img src="2.png" alt=""></p>
+<p>也就是说，如果一个 <code>TYPE*</code> 类型的指针，那么 <code>*(TYPE(*)[LEN])</code> 就能把它转化为数组来显示。</p>
+<p>这个问题其实问的是另一种情况，也就是 <code>TYPE**</code> 类型的指针，想要转成数组型，同时每个元素也还是数组型，例如说一个字符串数组 <code>char**</code>，想要用数组显示每一个字符串，同时每一个字符串以数组形式显示每个字符，就可以用 <code>(TYPE(*(*)[N]))</code>，N 是字符串个数。</p>
+<p>类型解读记不太清了，因此也不太会解读，有时间重新看一看那篇顺时针解读 C 语言的复杂声明的文章。</p>
+<h3 id="Makefile"><code>Makefile</code><a class="header-anchor" href="#Makefile"></a></h3>
+<h4 id="禁止编译自动-commit">禁止编译自动 commit<a class="header-anchor" href="#禁止编译自动-commit"></a></h4>
+<p>一开始就打算了最后要把项目传到 GitHub，如果是默认的 compile 自动 commit，那 commits history 就毫无用处了。因此一开始就禁掉。这个早在开始写项目之前大半个月就弄了，去年年底就做了。</p>
+<figure class="highlight diff"><figcaption><span>Makefile</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/commit/acf56cf043deab7fd207c09b813d094083311f0c">acf56cf</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/Makefile b/Makefile</span></span><br><span class="line"><span class="comment">index 13ed87c..9985dea 100644</span></span><br><span class="line"><span class="comment">--- a/Makefile</span></span><br><span class="line"><span class="comment">+++ b/Makefile</span></span><br><span class="line"><span class="meta">@@ -4,7 +4,7 @@</span> INC_PATH := include/</span><br><span class="line"> </span><br><span class="line"> all: compile</span><br><span class="line"> </span><br><span class="line"><span class="deletion">-compile: git</span></span><br><span class="line"><span class="addition">+compile:</span></span><br><span class="line"> 	@gcc -g -std=c17 -O2 -I$(INC_PATH) main.c fs/ramfs.c sh/shell.c -o ramfs-shell</span><br><span class="line"> </span><br><span class="line"> run: compile</span><br></pre></td></tr></table></figure>
+<p>只看了教材关于 Makefile 的部分介绍，课本只是用来联合编译，现在才发现还有别的用途。</p>
+<p>至于说会不会给怀疑抄袭作弊，那当然不可能，毕竟我有 100+ commits，而且基本上每个 commit message 都有认真写（虽然说没学习规范，但好歹不是全是单个 <code>update</code> 或者 <code>fix</code> 什么的），同时还有非常多的提交测评记录，而且还在相关群问过问题、求过样例，所以这种事情完全不担心的。</p>
+<h4 id="提交">提交<a class="header-anchor" href="#提交"></a></h4>
+<figure class="highlight makefile"><figcaption><span>Makefile</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/Makefile#L44-L52">Makefile</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">submit:</span></span><br><span class="line">	<span class="variable">$(<span class="built_in">eval</span> TEMP := $(<span class="built_in">shell</span> mktemp -d)</span>)</span><br><span class="line">	<span class="variable">$(<span class="built_in">eval</span> BASE := $(<span class="built_in">shell</span> <span class="built_in">basename</span> <span class="variable">$(CURDIR)</span>)</span>)</span><br><span class="line">	<span class="variable">$(<span class="built_in">eval</span> FILE := $&#123;TEMP&#125;/$&#123;TOKEN&#125;.zip)</span></span><br><span class="line">	@cd .. &amp;&amp; zip -qr $&#123;FILE&#125; $&#123;BASE&#125;/.git</span><br><span class="line">	@echo <span class="string">&quot;Created submission archive $&#123;FILE&#125;&quot;</span></span><br><span class="line">	@curl -m 15 -w <span class="string">&quot;\n&quot;</span> -X POST -F <span class="string">&quot;TOKEN=$&#123;TOKEN&#125;&quot;</span> -F <span class="string">&quot;FILE=@$&#123;FILE&#125;&quot;</span> \</span><br><span class="line">		https://public.oj.cpl.icu/api/v2/submission/lab</span><br><span class="line">	@rm -r $&#123;TEMP&#125;</span><br></pre></td></tr></table></figure>
+<p>首先是把提交超时时间从 5 改成 15，5 和 10 都有超时过。然后还改成了 public.oj.cpl.icu，因为 oj.cpl.icu 交不上，估计是代理的问题，也懒得弄，索性用 public 的交。</p>
+<h4 id="TOKEN">TOKEN<a class="header-anchor" href="#TOKEN"></a></h4>
+<p>TOKEN 要保密，而 Makefile 又是要 commit 的。因此根目录下有一个 <code>TOKEN</code> 文件，里面写了 TOKEN，然后 Makefile 里面就是读取这个文件。</p>
+<figure class="highlight makefile"><figcaption><span>Makefile</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/Makefile#L4">Makefile</a></figcaption><table><tr><td class="code"><pre><span class="line">TOKEN := <span class="variable">$(<span class="built_in">shell</span> cat TOKEN)</span></span><br></pre></td></tr></table></figure>
+<p>也是查的，因为我自己不会写。</p>
+<h4 id="测试">测试<a class="header-anchor" href="#测试"></a></h4>
+<p>然后自己加了一点测试</p>
+<figure class="highlight makefile"><figcaption><span>Makefile</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/Makefile#L11-L29">Makefile</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">test_address:</span></span><br><span class="line">	@clang -fsanitize=address -fno-omit-frame-pointer -ftrapv -Wall -fdiagnostics-color=always -g -std=c17 -O2 -I<span class="variable">$(INC_PATH)</span> main.c fs/ramfs.c sh/shell.c -o ramfs-shell</span><br><span class="line">	@./ramfs-shell</span><br><span class="line"></span><br><span class="line"><span class="section">test_undefined:</span></span><br><span class="line">	@clang -fsanitize=undefined -fno-omit-frame-pointer -ftrapv -Wall -fdiagnostics-color=always -g -std=c17 -O2 -I<span class="variable">$(INC_PATH)</span> main.c fs/ramfs.c sh/shell.c -o ramfs-shell</span><br><span class="line">	@./ramfs-shell</span><br><span class="line"></span><br><span class="line"><span class="section">test_leak:</span></span><br><span class="line">	@clang -fsanitize=leak -fno-omit-frame-pointer -ftrapv -Wall -fdiagnostics-color=always -g -std=c17 -O2 -I<span class="variable">$(INC_PATH)</span> main.c fs/ramfs.c sh/shell.c -o ramfs-shell</span><br><span class="line">	@./ramfs-shell</span><br><span class="line"></span><br><span class="line"><span class="section">test_memory:</span></span><br><span class="line">	@clang -fsanitize=memory -fno-omit-frame-pointer -ftrapv -Wall -fdiagnostics-color=always -g -std=c17 -O2 -I<span class="variable">$(INC_PATH)</span> main.c fs/ramfs.c sh/shell.c -o ramfs-shell</span><br><span class="line">	@./ramfs-shell</span><br><span class="line"></span><br><span class="line"><span class="section">test_thread:</span></span><br><span class="line">	@clang -fsanitize=thread -fno-omit-frame-pointer -ftrapv -Wall -fdiagnostics-color=always -g -std=c17 -O2 -I<span class="variable">$(INC_PATH)</span> main.c fs/ramfs.c sh/shell.c -o ramfs-shell</span><br><span class="line">	@./ramfs-shell</span><br></pre></td></tr></table></figure>
+<p>用 <code>clang</code> 还有一个原因是，<code>gcc</code> 不能用 <code>-fsanitize=memory</code> 等，不如就全用 <code>clang</code> 了。不过 <code>compile</code> 还是用的 <code>gcc</code>，毕竟 OJ 那边也是 <code>gcc</code>。</p>
+<h3 id="use-sh"><code>use.sh</code><a class="header-anchor" href="#use-sh"></a></h3>
+<p>给了五个样例，要调试的话一个一个自己换太麻烦了，因此让 Copilot 写了个脚本自动化，甚至还有 Usage。样例全放在 <code>sample</code> 文件夹（我自己加了个测试，所以是六个）。能看懂大概，但让我自己写肯定不会写。使用前先 <code>chmod +x use.sh</code>。</p>
+<figure class="highlight bash"><figcaption><span>use.sh</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/use.sh">use.sh</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># chmod +x use.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义样例数量</span></span><br><span class="line">SAMPLE_COUNT=6</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查参数数量</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$#</span>&quot;</span> -ne 1 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Usage: <span class="variable">$0</span> &lt;number&gt;&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查参数是否为整数</span></span><br><span class="line"><span class="keyword">if</span> ! [[ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> =~ ^[0-9]+$ ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Error: Argument must be an integer.&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查参数是否在 1 到 SAMPLE_COUNT 之间</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -lt 1 ] || [ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -gt <span class="variable">$SAMPLE_COUNT</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Error: Number must be between 1 and <span class="variable">$SAMPLE_COUNT</span>.&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制 sample 文件夹中的 c 文件到根目录，覆盖 main.c</span></span><br><span class="line"><span class="built_in">cp</span> sample/<span class="variable">$1</span>.c main.c</span><br></pre></td></tr></table></figure>
+<p>使用方法就是 <code>./use.sh &lt;number&gt;</code>，number 是样例编号，从 1 到 6。例如说 <code>./use.sh 3</code> 就是使用第三个样例。没有加备份功能，因为一开始没有自己手搓样例，后面有了就手动备份了。</p>
+<h3 id="check-sh"><code>check.sh</code><a class="header-anchor" href="#check-sh"></a></h3>
+<p>等到后面所有样例都过了，进入修 bug 环节，就需要对全部测试跑一遍了。同时即使答案正确，也可能有内存泄漏等问题，需要用 Sanitizer 检查。但是 Sanitizer 会大大降低程序运行速度，因此用了两个参数，一个是 <code>std</code> 一个是 <code>pro</code>，对应基础和高级测试，默认无参数是标准测试。还可以指定测试哪个样例，不指定就是全部。也是 Copilot 写的，也是有 Usage 的，同样的使用前先 <code>chmod +x check.sh</code>。</p>
+<figure class="highlight bash"><figcaption><span>check.sh</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/check.sh">check.sh</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># chmod +x check.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义样例数量</span></span><br><span class="line">SAMPLE_COUNT=6</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查参数</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$#</span>&quot;</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">set</span> -- <span class="string">&quot;std&quot;</span> $(<span class="built_in">seq</span> 1 <span class="variable">$SAMPLE_COUNT</span>)</span><br><span class="line"><span class="keyword">elif</span> [[ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> =~ ^(std|pro)$ ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$#</span>&quot;</span> -eq 1 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">set</span> -- <span class="string">&quot;<span class="variable">$1</span>&quot;</span> $(<span class="built_in">seq</span> 1 <span class="variable">$SAMPLE_COUNT</span>)</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">set</span> -- <span class="string">&quot;std&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入 sample 目录</span></span><br><span class="line"><span class="built_in">cd</span> sample</span><br><span class="line"></span><br><span class="line"><span class="comment"># 高级测试</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> == <span class="string">&quot;pro&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 保存 main.c</span></span><br><span class="line">    <span class="built_in">mv</span> ../main.c custom.c</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 循环处理指定的文件</span></span><br><span class="line">    <span class="built_in">shift</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="comment"># 检查参数是否为整数</span></span><br><span class="line">        <span class="keyword">if</span> ! [[ <span class="string">&quot;<span class="variable">$i</span>&quot;</span> =~ ^[0-9]+$ ]]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">&quot;Error: Argument must be an integer.&quot;</span></span><br><span class="line">            <span class="built_in">exit</span> 1</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -lt 1 ] || [ <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -gt <span class="variable">$SAMPLE_COUNT</span> ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">&quot;Error: Number must be between 1 and <span class="variable">$SAMPLE_COUNT</span>.&quot;</span></span><br><span class="line">            <span class="built_in">exit</span> 1</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 使用 use.sh 替换 main.c</span></span><br><span class="line">        <span class="built_in">pushd</span> .. &gt; /dev/null</span><br><span class="line">        ./use.sh <span class="variable">$i</span></span><br><span class="line">        <span class="built_in">popd</span> &gt; /dev/null</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 定义所有的测试</span></span><br><span class="line">        tests=(<span class="string">&quot;test_address&quot;</span> <span class="string">&quot;test_memory&quot;</span> <span class="string">&quot;test_undefined&quot;</span> <span class="string">&quot;test_leak&quot;</span> <span class="string">&quot;test_thread&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 初始化通过的测试数量为 0</span></span><br><span class="line">        passed_tests=0</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 运行测试</span></span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">test</span> <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;tests[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">            <span class="built_in">pushd</span> .. &gt; /dev/null</span><br><span class="line">            make <span class="variable">$test</span> 2&gt; sample/<span class="variable">$i</span>.err | sed <span class="string">&quot;s/\x1b\[[0-9;]*m//g&quot;</span> &gt; sample/<span class="variable">$i</span>.out</span><br><span class="line">            <span class="built_in">popd</span> &gt; /dev/null</span><br><span class="line">            diff <span class="variable">$i</span>.out <span class="variable">$i</span>.std &gt; <span class="variable">$i</span>.diff</span><br><span class="line">            <span class="built_in">rm</span> <span class="variable">$i</span>.out</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 如果 .diff 文件不为空或 .err 文件不为空，则表示测试失败</span></span><br><span class="line">            <span class="keyword">if</span> [ -s <span class="variable">$i</span>.diff ] || [ -s sample/<span class="variable">$i</span>.err ]; <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> -e <span class="string">&quot;\033[31mSample-<span class="variable">$i</span> &#x27;<span class="variable">$test</span>&#x27; failed.\033[0m&quot;</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="comment"># 如果测试通过，增加通过的测试数量</span></span><br><span class="line">                ((passed_tests++))</span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">            <span class="built_in">rm</span> <span class="variable">$i</span>.diff <span class="variable">$i</span>.err</span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 根据通过的测试数量和总测试数量，输出相应的消息</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$passed_tests</span> -eq <span class="variable">$&#123;#tests[@]&#125;</span> ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">&quot;Sample-<span class="variable">$i</span> passed all <span class="variable">$&#123;#tests[@]&#125;</span> tests.&quot;</span></span><br><span class="line">        <span class="keyword">elif</span> [ <span class="variable">$passed_tests</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> -e <span class="string">&quot;\033[31mSample-<span class="variable">$i</span> passed <span class="variable">$passed_tests</span> of <span class="variable">$&#123;#tests[@]&#125;</span> tests.\033[0m&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 恢复 main.c</span></span><br><span class="line">    <span class="built_in">mv</span> custom.c ../main.c</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 基础测试</span></span><br><span class="line">    <span class="built_in">shift</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="comment"># 检查参数是否为整数</span></span><br><span class="line">        <span class="keyword">if</span> ! [[ <span class="string">&quot;<span class="variable">$i</span>&quot;</span> =~ ^[0-9]+$ ]]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">&quot;Error: Argument must be an integer.&quot;</span></span><br><span class="line">            <span class="built_in">exit</span> 1</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -lt 1 ] || [ <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -gt <span class="variable">$SAMPLE_COUNT</span> ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">&quot;Error: Number must be between 1 and <span class="variable">$SAMPLE_COUNT</span>.&quot;</span></span><br><span class="line">            <span class="built_in">exit</span> 1</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        gcc -g -std=c17 -O2 -I ../include <span class="variable">$i</span>.c ../fs/ramfs.c ../sh/shell.c -o <span class="variable">$i</span></span><br><span class="line">        ./<span class="variable">$i</span> 2&gt;<span class="variable">$i</span>.err | sed <span class="string">&quot;s/\x1b\[[0-9;]*m//g&quot;</span> &gt; <span class="variable">$i</span>.out</span><br><span class="line">        diff <span class="variable">$i</span>.out <span class="variable">$i</span>.std &gt; <span class="variable">$i</span>.diff</span><br><span class="line">        <span class="built_in">rm</span> <span class="variable">$i</span> <span class="variable">$i</span>.out</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> [ -s <span class="variable">$i</span>.diff ] || [ -s <span class="variable">$i</span>.err ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> -e <span class="string">&quot;\033[31mSample-<span class="variable">$i</span> failed.\033[0m&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">&quot;Sample-<span class="variable">$i</span> passed.&quot;</span></span><br><span class="line">            <span class="built_in">rm</span> <span class="variable">$i</span>.diff <span class="variable">$i</span>.err</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回到原来的目录</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+<p>还用了 ANSI 转义序列强调错误。</p>
+<p>基础测试会输出 <code>.diff</code> 和 <code>.err</code> 文件，高级测试则不会（因为每个样例都会把所有测试过一遍，即是一个样例没过，下一个样例也会继续测试）。</p>
+<h3 id="Sanitizer">Sanitizer<a class="header-anchor" href="#Sanitizer"></a></h3>
+<p>以 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/commit/31781e7f076f0d998e94e21d472b3625db284d01">31781e7</a> 的第二个样例为例进行测试，讲一下我对 <code>-fsanitize=address</code> 的简单理解。</p>
+<p>首先记得蚂蚁老师的课上记得演示过，字面量挨着存放，未定义行为输出了奇怪的结果。于是我猜测，这个 Sanitizer 应该是让每块内存周围都有一块保护区，如果越界访问就会报错。</p>
+<p><img src="3.jpg" alt=""></p>
+<p>第一个红框指明了错误类型为 <code>heap-buffer-overflow</code>。剩下的红框则表明了错误发生的位置，与相应内存分配的位置。</p>
+<p><img src="4.jpg" alt=""></p>
+<p>再来看这个 &quot;Shadow bytes around the buggy address&quot;。首先解释一下部分符号的含义：fa 是 Heap left redzone，反正就是不可访问的。fd 是 Freed heap region，也不可访问。0x，也就是白色的，是可访问的。</p>
+<p>那 x 代表的数字是什么意思的？</p>
+<p>我查了一下，1 个影子字节（Shadow Byte）对应 8 个字节的内存，后面的数字如果是 00，代表这 8 个字节都可「寻址」，也就是说都可用，如果是前部分可用，比如说只有前三个 3 个可寻址，那就是 03。是 8 个的原因好像是因为为了「对齐」，以方便寻址？</p>
+<p>错误发生在被圈出来的 05，数了一下有 5 个 00，1 个 05，也就是 45 个字节可寻址，但是呢上面却写了 &quot;READ of size 46 at …&quot;，也就是说，访问越界了。</p>
+<p>再看一看发生错误的代码</p>
+<figure class="highlight c"><figcaption><span>shell.c</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/31781e7f076f0d998e94e21d472b3625db284d01/sh/shell.c#L17-L23">31781e7</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    Node* rc = find(<span class="string">&quot;/home/ubuntu/.bashrc&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (rc == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> *run_commands = <span class="built_in">malloc</span>(rc-&gt;size);</span><br><span class="line">&gt;   <span class="built_in">strcpy</span>(run_commands, rc-&gt;content); <span class="comment">// <span class="doctag">TODO:</span> fsanitize address ERROR</span></span><br><span class="line">    <span class="type">char</span> *line = strtok(run_commands, <span class="string">&quot;\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>这个就是下面会说的一个问题——非字符串使用字符串操作的函数。<code>rc-&gt;content</code> 是 <code>void*</code> 类型的，它在赋值时用的是 <code>memcpy</code>，不一定会带有 '\0'，所以 <code>strcpy</code> 会一直往后读，然后到了 Redzone 就报错了。</p>
+<p>那为什么不开 Sanitizer 就不会报错呢？我猜大概是默认时外围内存的值都是 0，相当于帮你贴心地终止了字符串，所以不会一直读下去。但是开了 Sanitizer 就会检查，一旦你要访问接下来的内存，就会发现这个内存是不可访问的，所以报错了。</p>
+<p>由此可见，还是有必要开 Sanitizer 来确保程序的安全性。当然其实用不着去分析下面那个图，我看了下面那个图也没啥用，关键其实知道错误位置就够了，只不过多了解一点也不是坏事。</p>
+<p>总的来说就是，代码写得懒滥烂，但花活倒是挺婪。</p>
+<h2 id="代码">代码<a class="header-anchor" href="#代码"></a></h2>
+<p>写了这么多，终于开始谈谈代码了。写的好困啊，写完上面刷了会手机，打了好几个哈欠才继续写，明明昨天睡挺早。</p>
+<h3 id="修改与设定">修改与设定<a class="header-anchor" href="#修改与设定"></a></h3>
+<p>这里会有代码内容，不过基本都是头文件的，没啥影响。</p>
+<p>与原始框架相比，做了些改动，以适合我自己的习惯。</p>
+<p>例如类型定义，尽管都是 <code>int</code>，但我还是用 <code>fd_t</code> <code>flags_t</code> <code>whence_t</code> <code>stat</code> 区分了文件描述符、标志、偏移起始位置、返回状态值。这样可以使不同 <code>int</code> 更加清楚明白。</p>
+<figure class="highlight c"><figcaption><span>ramfs.h</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/include/ramfs.h#L29-L35">ramfs.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">intptr_t</span>  <span class="type">ssize_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">uintptr_t</span> <span class="type">size_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span>      <span class="type">off_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span>       <span class="type">fd_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span>       <span class="type">flags_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span>       <span class="type">whence_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span>      stat;</span><br></pre></td></tr></table></figure>
+<p>然后是节点使用了 <code>Node</code> 而非 <code>node</code>，同时改了点字段名。</p>
+<figure class="highlight c"><figcaption><span>ramfs.h</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/include/ramfs.h#L37-L46">ramfs.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> &#123;</span>F, D&#125; type;</span><br><span class="line">    <span class="type">char</span> *name;</span><br><span class="line">    <span class="comment">// FILE</span></span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">    <span class="type">void</span> *content;</span><br><span class="line">    <span class="comment">// DIR</span></span><br><span class="line">    <span class="type">int</span> nchilds;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> **<span class="title">childs</span>;</span></span><br><span class="line">&#125; Node;</span><br></pre></td></tr></table></figure>
+<p>枚举里面一开始用了 <code>FILE</code> 和 <code>DIR</code>，会报错，因为冲突了，所以改成了 <code>F</code> 和 <code>D</code>。一开始还想过用联合来节省空间，但是想到这样要多写一点，而且也不是很需要，就没用了。</p>
+<p>然后是 <code>FD</code>，我改成了 <code>Handle</code>。</p>
+<figure class="highlight c"><figcaption><span>ramfs.h</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/include/ramfs.h#L48-L53">ramfs.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Handle</span> &#123;</span></span><br><span class="line">    <span class="type">off_t</span> offset;</span><br><span class="line">    Node *f;</span><br><span class="line">    <span class="type">flags_t</span> flags;</span><br><span class="line">    <span class="type">bool</span> used;</span><br><span class="line">&#125; Handle;</span><br></pre></td></tr></table></figure>
+<p>之前不知道文件描述符，学习了一下。按照我的理解，文件描述符是一个整数，标识上面说的 <code>Handle</code> 在一个数组里的位置，因此用 <code>FD</code> 命名我感觉不合适。但我也想不到合适的名字，而且想到这好像跟句柄有点类似，就用了 <code>Handle</code>。不过为了省内存空间，没用了的 <code>Handle</code> 我直接 <code>free</code> 了，没用到 <code>used</code> 字段。</p>
+<p>设定了一些宏，表示状态。</p>
+<figure class="highlight c"><figcaption><span>ramfs.h</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/include/ramfs.h#L21-L27">ramfs.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> stat FIND_LEVEL;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SUCCESS  0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PROBLEM  1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FAILURE -1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOENT  -2</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENOTDIR -3</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EINVAL  -4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EISFILE -5</span></span><br></pre></td></tr></table></figure>
+<p><code>PROBLEM</code> 是 Shell 部分错误返回值，<code>FAILURE</code> 是 File System 部分错误返回值。剩下的是 <code>find</code> 及 <code>find_parent</code> 会设置 <code>FIND_LEVEL</code> 的值，用于判断两个 <code>find</code> 函数的情况，这是学习了 <code>ErrorLevel</code> 的做法。</p>
+<p>然后本来还想过改掉一些原有的宏，比如标志用的八进制整型，在内存超限时想过改成二进制表示，然后换成 <code>short</code> 或 <code>char</code>，同时把上面一些也换成 <code>short</code> 或 <code>char</code>，但是交上去会多错一部分样例，不明所以，就没改了。</p>
+<h3 id="代码风格">代码风格<a class="header-anchor" href="#代码风格"></a></h3>
+<p>上面已经能看出来，我会对齐宏以及类型定义，使得更美观清晰。不仅如此，我还会对齐函数：</p>
+<figure class="highlight c"><figcaption><span>ramfs.h</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/include/ramfs.h#L55-L84">ramfs.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Auxiliary functions</span></span><br><span class="line">Node* <span class="title function_">find</span>          <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">Node* <span class="title function_">find_parent</span>   <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">Node* <span class="title function_">create_node</span>   <span class="params">(Node* parent, <span class="type">const</span> <span class="type">char</span>* name)</span>;</span><br><span class="line">Node* <span class="title function_">create_dir</span>    <span class="params">(Node* parent, <span class="type">const</span> <span class="type">char</span>* name)</span>;</span><br><span class="line">Node* <span class="title function_">create_file</span>   <span class="params">(Node* parent, <span class="type">const</span> <span class="type">char</span>* name)</span>;</span><br><span class="line"><span class="type">char</span>* <span class="title function_">get_basename</span>  <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line"><span class="type">int</span>   <span class="title function_">existed_index</span> <span class="params">(<span class="type">const</span> Node* dir, <span class="type">const</span> <span class="type">char</span>* name)</span>;</span><br><span class="line"><span class="type">bool</span>  <span class="title function_">is_valid_name</span> <span class="params">(<span class="type">const</span> <span class="type">char</span>* name)</span>;</span><br><span class="line"><span class="type">bool</span>  <span class="title function_">is_valid_path</span> <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line"><span class="type">bool</span>  <span class="title function_">fd_usable</span>     <span class="params">(<span class="type">fd_t</span> fd)</span>;</span><br><span class="line"><span class="type">bool</span>  <span class="title function_">fd_readable</span>   <span class="params">(<span class="type">fd_t</span> fd)</span>;</span><br><span class="line"><span class="type">bool</span>  <span class="title function_">fd_writable</span>   <span class="params">(<span class="type">fd_t</span> fd)</span>;</span><br><span class="line"><span class="type">void</span>  <span class="title function_">pre_fd</span>        <span class="params">(<span class="type">fd_t</span> fd)</span>;</span><br><span class="line"><span class="type">void</span>  <span class="title function_">seek_overflow</span> <span class="params">(<span class="type">fd_t</span> fd)</span>;</span><br><span class="line"><span class="type">void</span>  <span class="title function_">pluck_node</span>    <span class="params">(Node* parent, Node* node)</span>;</span><br><span class="line"><span class="type">void</span>  <span class="title function_">remove_root</span>   <span class="params">(Node* root)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// API functions</span></span><br><span class="line"><span class="type">fd_t</span>    <span class="title function_">ropen</span>       <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname, <span class="type">flags_t</span> flags)</span>;</span><br><span class="line">stat    <span class="title function_">rclose</span>      <span class="params">(<span class="type">fd_t</span> fd)</span>;</span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">rwrite</span>      <span class="params">(<span class="type">fd_t</span> fd, <span class="type">const</span> <span class="type">void</span>* buf, <span class="type">size_t</span> count)</span>;</span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">rread</span>       <span class="params">(<span class="type">fd_t</span> fd, <span class="type">void</span>* buf, <span class="type">size_t</span> count)</span>;</span><br><span class="line"><span class="type">off_t</span>   <span class="title function_">rseek</span>       <span class="params">(<span class="type">fd_t</span> fd, <span class="type">off_t</span> offset, <span class="type">whence_t</span> whence)</span>;</span><br><span class="line">stat    <span class="title function_">rmkdir</span>      <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">stat    <span class="title function_">rrmdir</span>      <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">stat    <span class="title function_">runlink</span>     <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line"><span class="type">void</span>    <span class="title function_">init_ramfs</span>  <span class="params">()</span>;</span><br><span class="line"><span class="type">void</span>    <span class="title function_">close_ramfs</span> <span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>shell.h</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/include/shell.h#L3-L15">shell.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Auxiliary functions</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">read_path</span>   <span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">print_error</span> <span class="params">(<span class="type">const</span> <span class="type">char</span>* cmd, <span class="type">const</span> <span class="type">char</span>* custom, <span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Shell functions</span></span><br><span class="line">stat <span class="title function_">sls</span>         <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">stat <span class="title function_">scat</span>        <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">stat <span class="title function_">smkdir</span>      <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">stat <span class="title function_">stouch</span>      <span class="params">(<span class="type">const</span> <span class="type">char</span>* pathname)</span>;</span><br><span class="line">stat <span class="title function_">secho</span>       <span class="params">(<span class="type">const</span> <span class="type">char</span>* content)</span>;</span><br><span class="line">stat <span class="title function_">swhich</span>      <span class="params">(<span class="type">const</span> <span class="type">char</span>* cmd)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">init_shell</span>  <span class="params">()</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">close_shell</span> <span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<p>只有声明，写出来应该也没啥关系吧？</p>
+<p>还有一些定义，也会对齐：</p>
+<figure class="highlight c"><figcaption><span>ramfs.c</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/fs/ramfs.c#L11-L15">ramfs.c</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Node   *ROOT                = <span class="literal">NULL</span>;</span><br><span class="line">Handle *Handles[NRFD]       = &#123;<span class="literal">NULL</span>&#125;;</span><br><span class="line"><span class="type">fd_t</span>    available_fds[NRFD] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">fd_t</span>    fds_top             = NRFD - <span class="number">1</span>;</span><br><span class="line">stat    FIND_LEVEL          = SUCCESS;</span><br></pre></td></tr></table></figure>
+<p>可能会注意到，函数声明以及参数类型，如果是指针，我都是将 <code>*</code> 挨着类型名写的，而不是变量名。但是如果看其他地方定义，比如下面定义了 <code>ROOT</code>，我就会将 <code>*</code> 挨着变量名写。这是因为，例如 <code>char* func(Node* node);</code>，我的意思是，这个函数接收一个 <code>Node*</code> 类型的参数 <code>node</code>，返回一个 <code>char*</code> 类型的值。而 <code>Node *ROOT;</code> 则是这是一个指向 <code>Node</code> 类型的指针变量。</p>
+<figure class="highlight c"><figcaption><span>ramfs.h</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/blob/main/include/ramfs.h#L87">ramfs.h</a></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">extern</span> Node *ROOT;</span><br></pre></td></tr></table></figure>
+<p>当然这样不一致也有点别扭，未来可能也会改变习惯。</p>
+<p>然后便是大括号问题，没啥好说的，定死了大括号不换行，铁律，永远不会改的。</p>
+<p>还有就是 <code>else</code> 要不要换行的问题，以前的代码都是换行的，但是我也逐渐承认不换行似乎确实更好看一点，而且在连着两块 <code>if</code> 时，不换行也更清晰一点，表明这一块「嵌」在了一起，更清晰。于是在代码通过后修改了格式，全部使用了不换行的格式。这样也与 JavaScript 推荐的格式一致了。</p>
+<p>然后就是单行代码要不要加大括号的问题，无论是 AutoHotkey 代码还是 OJ 作业，我都是不加的。不过我也承认还是加更好一点，因此这次就全程加了。</p>
+<p>以及数组初始化的 <code>{...}</code> 要不要空格，我最终选择了不要，按照以前的格式。</p>
+<p>函数内部一般无换行，因为函数内容一般不多，而且可以轻松用 <code>vip</code> 全选。当然其实也是一个不太好的习惯，不同逻辑块还是用空行分开比较好。</p>
+<p>命名法，Camel 和 Snake 都用过，喜好没啥差别，但因为给的函数用的 Snake，所以我也就用了 Snake。</p>
+<h3 id="自以为是">自以为是<a class="header-anchor" href="#自以为是"></a></h3>
+<p>接下来就来看看写代码过程中一些自以为是、自作聪明、想当然的错误吧。基本上就是查一下分数跃升时的 commit 就能看到了，或者 commit message 写了 &quot;Revert&quot; 的。</p>
+<h4 id="忘删根与残余节点">忘删根与残余节点<a class="header-anchor" href="#忘删根与残余节点"></a></h4>
+<p>一开始通过全部样例，但是没通过 Sanitizer 的一个地方就是没删剩下来的节点。想当然以为所有操作结束后会回到初始状态，但是即便如此，根节点也得删啊。</p>
+<h4 id="使用-char-和-short-代替-int">使用 <code>char</code> 和 <code>short</code> 代替 <code>int</code><a class="header-anchor" href="#使用-char-和-short-代替-int"></a></h4>
+<p>刚刚试了一下，也是一样的某个样例 Runtime Error，喜提 93。我改了 <code>stat</code> 就可以 100，所以我现在猜测原因是其它的会有不合法输入，造成了溢出。</p>
+<p>跟这个磕了一会儿，最终磕得头破血流，回到了 <code>int</code>。</p>
+<h4 id="swhich-乱输出"><code>swhich</code> 乱输出<a class="header-anchor" href="#swhich-乱输出"></a></h4>
+<p>一开始想当然，以为 <code>swhich</code> 会输出比较正常的结果（现在想来应该是和 <code>whereis</code> 混淆了，之前没用过 <code>which</code>），也就是说环境变量里如果有多个 &quot;/&quot; 连着，会格式化为一个 &quot;/&quot;。</p>
+<p>后面惊觉，看了文档说了 &quot;It does not canonicalize path names.&quot;，于是我这样改：</p>
+<figure class="highlight diff"><figcaption><span>shell.c</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/CPL-Project-RAMFShell/commit/ef6ab77a3a89760d737add8f4dd265e350272ec2#diff-635a52f8003bae3b77535ca2085d8f895835d7a45a6abd85cd59753dbabbff36L214-R208">ef6ab77</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- char *basic = basic_directory(env_path);</span></span><br><span class="line"><span class="deletion">- printf(&quot;%s/%s\n&quot;, basic, cmd);</span></span><br><span class="line"><span class="deletion">- free(basic);</span></span><br><span class="line"><span class="addition">+ int len = strlen(env_path);</span></span><br><span class="line"><span class="addition">+ printf((env_path[len - 1] == &#x27;/&#x27;) ? &quot;%s%s\n&quot; : &quot;%s/%s\n&quot;, env_path, cmd);</span></span><br></pre></td></tr></table></figure>
+<p><code>basic_directory</code> 做的就是格式化的工作。我还是想当然了，以为会判断最后有没有 '/'。后面自己测试了一下发现，如果 PATH 里最后有 '/'，那么 <code>which</code> 会输出两个 '/'，而不是一个。</p>
+<p>说起来这个还是 GPT 发现的，我找不到 bug 时全部复制给 GPT 让它找 bug，虽然说了很多扯淡的内容，但是它发现了这个。</p>
+<h4 id="非字符串使用字符串操作的函数">非字符串使用字符串操作的函数<a class="header-anchor" href="#非字符串使用字符串操作的函数"></a></h4>
+<p>文件里面的内容 <code>content</code> 可能并不包含 '\0'，因此不能直接调用 <code>str</code> 开头的函数，而应该使用 <code>mem</code> 开头的函数，或者建一个字符串。</p>
+<p>这个问题主要出现在解析 PATH 部分，其它也有零星出现。前者导致了一开始 Sanitizer 的错误，后面仔细分析错误信息才发现是这个问题，也是一处想当然。</p>
+<h4 id="替换-strtok">替换 <code>strtok</code><a class="header-anchor" href="#替换-strtok"></a></h4>
+<p>主要是 <code>find</code> 与 <code>find_parent</code> 函数，由于 <code>strtok</code> 会破坏字符串，因此需要先复制一份，造成了一些空间的浪费。因此我就想过直接对原字符串进行查找操作，期间出现过两个思路，一个是用 <code>while</code>，另一个是用 <code>strchr</code>。</p>
+<p>前者不可行，逐渐替换为了后者。而后者由于在最后没找到直接返回 NULL，也与预期不符，因此最后我也回归了 <code>strtok</code>。</p>
+<p>当然也并不是 <code>strtok</code> 就完美，<code>swhich</code> 里一开始用的是 <code>strtok</code>，但是调试时有莫名其妙的问题，最后换成了 <code>while</code>。<s>懒得看了反正过了</s>有时间看看吧。</p>
+<p>而换成 <code>while</code> 后，发现了 <code>strchr</code>，如获至宝，两个 commits 将 <code>swhich</code> 和 <code>find</code> 都换成了 <code>strchr</code>，而这两个 commits 最后都给 Revert 了。尤其是 <code>swhich</code>，<code>find</code> 在一个 commit 后就 Revert 了，而 <code>swhich</code> 比较晚，message 也反映了我的愤怒。</p>
+<h4 id="读文档粗心大意">读文档粗心大意<a class="header-anchor" href="#读文档粗心大意"></a></h4>
+<p><code>man</code> 的文档不太会用，但是因为跟 Vim 差不多，基本操作什么移动、翻页都会，也就懒得查了。后面逐渐发现还能查找，但大部分函数写笔记时没用过。</p>
+<p>这就造成了笔记遗漏，错误码可能并不只有一个，如 <code>open</code> 就有两个 <code>EINVAL</code>，而我一开始找到一个记下来后就去找另一个了。这是后面重读文档时，使用查找功能发现的。</p>
+<h4 id="size">size?<a class="header-anchor" href="#size"></a></h4>
+<p>一开始确实想过将文件大小 <code>size</code> 和子节点数目 <code>nchilds</code> 合并，只不过最终还是没这么做。原因不记得了，我猜是因为已经完成主体部分了，懒得大改了。</p>
+<p>结果真出现了弄混淆的情况，也怪我取名不好，但确实想不到啥好名字了，难不成叫 <code>count</code>？好像确实更好一点…</p>
+<h4 id="ls-file"><code>ls &lt;file&gt;</code><a class="header-anchor" href="#ls-file"></a></h4>
+<p>这是这几个里面之最，困扰了我两天。</p>
+<p><code>ls</code> 我只对文件夹使用过，然后这次项目知道了还能对文件使用。测试时我也就随手拿 <code>ls Makefile</code> 测试了一下，看到输出 <code>Makefile</code> 也就下意识认为这个命令对文件使用会输出文件名。</p>
+<p>然后就陷入了两天痛苦地写样例 debug 过程。这两天没多少 commits，之前 Debug 都有不少。这是因为找不到什么 bug 了，之前可以很笃定，这里有问题，赶紧修复了 commit，但当时想的是，改改吧，也许就能过了。因此当时没有 push，随便写点 message 把全部更改交上去，然后 submit 后再撤回。等待结果时玩玩手机、看点别的，看到结果、抓狂一会，继续摆烂、宽慰自己，所以效率挺低。</p>
+<p>后面在群里求样例，助教火眼金睛，看出了问题所在，我瞠目结舌，居然是在这种地方出错。</p>
+<p>然后自己测试一下带 '/' 的相对路径才发现，原来是输入什么就输出什么，泪。</p>
+<p>好像没什么可说的，那就到这里？等我有了新想法再来补充吧，正好离技科 DDL 还有 20 分钟。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CPL/" rel="tag"><i class="fa fa-tag"></i> CPL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/winter-holiday-timetable/" rel="prev" title="2024 寒假时间规划表">
+                  <i class="fa fa-angle-left"></i> 2024 寒假时间规划表
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/02/views-of-idols/" rel="next" title="我的偶像观">
+                  我的偶像观 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lyieu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+<script src="/js/third-party/math/mhchem.min.js"></script>
+<script src="/js/third-party/math/copy-tex.min.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-comments-virid.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","dark":"auto","locale":{"placeholder":"欢迎评论~","level0":"问","level1":"哭","level2":"埋","level3":"挖","level4":"抬","level5":"死","level6":"熬","level7":"买","level8":"瞧","level9":"病","reactionTitle":"反应"},"reaction":["https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f970.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f973.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f9d0.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f632.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f610.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f641.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f62d.png"],"emoji":["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji","https://unpkg.com/@waline/emojis@1.2.0/tw-object","https://unpkg.com/@waline/emojis@1.2.0/tw-travel","https://unpkg.com/@waline/emojis@1.2.0/tw-weather"],"search":false,"meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"wordLimit":0,"login":"enable","pageSize":15,"texRenderer":"KaTeX","el":"#waline","comment":true,"path":"/2024/01/cpl-project-review/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

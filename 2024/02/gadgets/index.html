@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon.svg">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pilgrimlyieu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500,"threshold":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="介绍一点用处不大的小玩意（主要用于 Linux）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小玩意">
+<meta property="og:url" content="https://pilgrimlyieu.github.io/2024/02/gadgets/index.html">
+<meta property="og:site_name" content="Shrine">
+<meta property="og:description" content="介绍一点用处不大的小玩意（主要用于 Linux）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-09T15:08:00.000Z">
+<meta property="article:modified_time" content="2024-02-09T15:08:00.000Z">
+<meta property="article:author" content="Lyieu">
+<meta property="article:tag" content="杂记">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pilgrimlyieu.github.io/2024/02/gadgets/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pilgrimlyieu.github.io/2024/02/gadgets/","path":"2024/02/gadgets/","title":"小玩意"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>小玩意 | Shrine</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-comments-virid.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.admonition{font-size:.96em;margin:1.5625em 0;padding:.6rem;overflow:visible;page-break-inside:avoid;border-left:.3rem solid;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);line-height:1.8}.admonition>:last-child{margin-bottom:0!important}.admonition-title::before{position:absolute;top:1rem;left:1rem;width:16px;height:16px;border-radius:100%;content:" "}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;line-height:2}.admonition.note,.admonition.question,.admonition.success{border-color:#42b983}.note>.admonition-title::before,.question>.admonition-title::before,.success>.admonition-title::before{background-color:#42b983}.note>.admonition-title,.question>.admonition-title,.success>.admonition-title{background-color:rgba(66,185,131,.4)}.admonition.info,.admonition.todo{border-color:#00b8d4}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.4)}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.4)}.admonition.bug,.admonition.danger,.admonition.error,.admonition.failure,.admonition.missing{border-color:#ff5252}.bug>.admonition-title::before,.danger>.admonition-title::before,.error>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252}.bug>.admonition-title,.danger>.admonition-title,.error>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.4)}.admonition.example{border-color:#903dcc}.example>.admonition-title::before{background-color:#903dcc}.example>.admonition-title{background-color:rgba(144,61,204,.4)}.admonition.quote{border-color:#aaa}.quote>.admonition-title::before{background-color:#aaa}.quote>.admonition-title{background-color:rgba(170,170,170,.4)}.admonition.abstract,.admonition.tip{border-color:#448aff}.abstract>.admonition-title::before,.tip>.admonition-title::before{background-color:#448aff}.abstract>.admonition-title,.tip>.admonition-title{background-color:rgba(68,138,255,.4)}.admonition.memo,.admonition.sheet{border-color:#c3a210}.memo>.admonition-title::before,.sheet>.admonition-title::before{background-color:#c3a210}.memo>.admonition-title,.sheet>.admonition-title{background-color:rgba(195,162,16,.4)}@media (prefers-color-scheme:light){.admonition{background-color:#eee}.admonition.test{border-color:#283747}.test>.admonition-title::before{background-color:#283747}.test>.admonition-title{background-color:rgba(40,55,71,.4)}}@media (prefers-color-scheme:dark){.admonition{background-color:#444}.admonition.test{border-color:#f2f3f4}.test>.admonition-title::before{background-color:#f2f3f4}.test>.admonition-title{background-color:rgba(242,243,244,.4)}}</style><link rel="alternate" href="/atom.xml" title="Shrine" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shrine</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Fesmoph's Blog</p>
+      <img class="custom-logo-image" src="/images/logo/logo.svg" alt="Shrine">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">75</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-list-ul fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-folder-open fa-fw"></i>归档<span class="badge">30</span></a></li><li class="menu-item menu-item-记事"><a href="/daily/" rel="section"><i class="fa fa-clipboard-list fa-fw"></i>记事</a></li><li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-scroll fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#stats-py"><span class="nav-number">1.</span> <span class="nav-text">stats.py</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lyieu"
+      src="/images/avatar/avatar.svg">
+  <p class="site-author-name" itemprop="name">Lyieu</p>
+  <div class="site-description" itemprop="description">Dreaming</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pilgrimlyieu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pilgrimlyieu" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pilgrimlyieu@outlook.com" title="E-Mail → mailto:pilgrimlyieu@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pilgrimlyieu.github.io/2024/02/gadgets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.svg">
+      <meta itemprop="name" content="Lyieu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrine">
+      <meta itemprop="description" content="Dreaming">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="小玩意 | Shrine">
+      <meta itemprop="description" content="介绍一点用处不大的小玩意（主要用于 Linux）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小玩意
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-09 23:08:00" itemprop="dateCreated datePublished" datetime="2024-02-09T23:08:00+08:00">2024-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">杂记</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2024/02/gadgets/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2024/02/gadgets/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>13k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">介绍一点用处不大的小玩意（主要用于 Linux）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>除夕这天，想要看看博文字符统计，但是简单搜搜没发现合适的，因此借助 Copilot 写了个，同时决定可以以后把类似的小玩意整合起来，本篇博文作为介绍，具体代码放在了 <a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/Gadgets">GitHub</a> 上。</p>
+<h2 id="stats-py"><code>stats.py</code><a class="header-anchor" href="#stats-py"></a></h2>
+<blockquote>
+<p><strong>用来统计文件中字符出现的次数</strong>。<br>
+有<u>指定显示数目</u>（默认显示全部）、<u>使用正则表达式匹配</u>、<u>使用内置字符集匹配</u>（与前一个选项互斥）、<u>指定查找文件后缀</u>（默认全部文件）、<u>递归查找目录</u>（默认不递归）、<u>忽略空白字符</u>（默认忽略）、<u>忽略大小写</u>（默认大小写敏感）、<u>输出结果</u>（默认输出到标准输出）等功能。</p>
+</blockquote>
+<p>一开始用 Bash，写得又臭又长，折腾半天还是有点问题。</p>
+<!-- {{{ bash code-->
+<figure class="highlight bash"><figcaption><span>stats.sh（需要 ripgrep, perl 等）</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/Gadgets/blob/main/stats.sh">GitHub</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># DEPRECATED: Use `stats.py` instead.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义变量来存储参数的值</span></span><br><span class="line">number=0</span><br><span class="line">regex=<span class="string">&quot;&quot;</span></span><br><span class="line">library=<span class="string">&quot;&quot;</span></span><br><span class="line">reverse=<span class="literal">false</span></span><br><span class="line">recursive=<span class="literal">false</span></span><br><span class="line">ignore_space=<span class="literal">true</span></span><br><span class="line">ignore_case=<span class="literal">false</span></span><br><span class="line">debug=<span class="literal">false</span></span><br><span class="line">file_formats=()</span><br><span class="line">output_file=<span class="string">&quot;&quot;</span></span><br><span class="line">temp_file=$(<span class="built_in">mktemp</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 Perl 正则表达式字符集库</span></span><br><span class="line"><span class="built_in">declare</span> -A libraries=(</span><br><span class="line">  [c]=<span class="string">&quot;[:graph:]&quot;</span> <span class="comment"># 所有可打印字符</span></span><br><span class="line">  [<span class="built_in">cp</span>]=<span class="string">&quot;[:print:]&quot;</span>  <span class="comment"># 所有可打印字符和空格字符</span></span><br><span class="line">  [cn]=<span class="string">&quot;\\p&#123;Script=Han&#125;&quot;</span>  <span class="comment"># 所有常用汉字</span></span><br><span class="line">  [en]=<span class="string">&quot;a-zA-Z&quot;</span>  <span class="comment"># 所有英文字母</span></span><br><span class="line">  [alnum]=<span class="string">&quot;[:alnum:]&quot;</span>  <span class="comment"># 字母和数字字符</span></span><br><span class="line">  [num]=<span class="string">&quot;[:digit:]&quot;</span>  <span class="comment"># 所有数字</span></span><br><span class="line">  [sp]=<span class="string">&quot;[:space:]&quot;</span>  <span class="comment"># 空白字符</span></span><br><span class="line">  [punc]=<span class="string">&quot;[:punct:]&quot;</span>  <span class="comment"># 标点字符</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个函数来显示使用方法</span></span><br><span class="line"><span class="function"><span class="title">usage</span></span>() &#123;</span><br><span class="line">  <span class="built_in">echo</span> -e <span class="string">&quot;Usage: <span class="variable">$0</span> [-n number] [-e regex] [-l library] [-f format] [-o output] [-d] [-r] [-R] [-S] [-i] [-h] file | dir [file | dir ...]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Options:</span></span><br><span class="line"><span class="string">  -n number   Display the top number of results.</span></span><br><span class="line"><span class="string">  -e regex    Use the specified regular expression.</span></span><br><span class="line"><span class="string">  -l library  Use the specified character set library. This option cannot be used with the -e option.</span></span><br><span class="line"><span class="string">  -f format   Process files of the specified format(s).</span></span><br><span class="line"><span class="string">  -o output   Write the results to the specified output file.</span></span><br><span class="line"><span class="string">  -d          Debug mode.</span></span><br><span class="line"><span class="string">  -r          Reverse the order of the results.</span></span><br><span class="line"><span class="string">  -R          Process directories recursively.</span></span><br><span class="line"><span class="string">  -S          Show whitespace characters.</span></span><br><span class="line"><span class="string">  -i          Ignore case.</span></span><br><span class="line"><span class="string">  -h          Display this help message.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Arguments:</span></span><br><span class="line"><span class="string">  file        The file(s) to process.</span></span><br><span class="line"><span class="string">  dir         The directory to process.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Libraries:</span></span><br><span class="line"><span class="string">  c           All printable characters.</span></span><br><span class="line"><span class="string">  cp          All printable and space characters.</span></span><br><span class="line"><span class="string">  cn          All common Chinese characters.</span></span><br><span class="line"><span class="string">  en          All English alphabetic characters.</span></span><br><span class="line"><span class="string">  alnum       Alphabetic and numeric characters.</span></span><br><span class="line"><span class="string">  num         Numeric characters.</span></span><br><span class="line"><span class="string">  sp          Space characters.</span></span><br><span class="line"><span class="string">  punc        Punctuation characters.&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">process_file</span></span>() &#123;</span><br><span class="line">  file=<span class="variable">$1</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$file</span>&quot;</span> &gt;&gt; <span class="string">&quot;<span class="variable">$temp_file</span>&quot;</span></span><br><span class="line">  <span class="comment"># 根据是否设置了 -e 或 -l 选项来决定如何处理文件</span></span><br><span class="line">  <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$regex</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果设置了 -e 选项，则使用正则表达式来过滤字符</span></span><br><span class="line">    perl -C -ne <span class="string">&quot;while (/<span class="variable">$regex</span>/g) &#123;print \&quot;\$&amp;\n\&quot;&#125;&quot;</span> <span class="string">&quot;<span class="variable">$file</span>&quot;</span></span><br><span class="line">  <span class="keyword">elif</span> [ -n <span class="string">&quot;<span class="variable">$library</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果设置了 -l 选项，则只显示字符集库中的字符</span></span><br><span class="line">    perl -C -ne <span class="string">&#x27;while (/([&#x27;</span><span class="variable">$&#123;libraries[$library]&#125;</span><span class="string">&#x27;])/g) &#123;print &quot;$1\n&quot;&#125;&#x27;</span> <span class="string">&quot;<span class="variable">$file</span>&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 如果没有设置 -e 或 -l 选项，则显示所有字符</span></span><br><span class="line">    <span class="built_in">cat</span> <span class="string">&quot;<span class="variable">$file</span>&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 getopts 循环来处理命令行参数</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">getopts</span> <span class="string">&quot;n:e:l:f:o:drRSih&quot;</span> opt; <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">case</span> <span class="variable">$opt</span> <span class="keyword">in</span></span><br><span class="line">    n) number=<span class="variable">$OPTARG</span></span><br><span class="line">       <span class="comment"># 检查 number 是否为正整数</span></span><br><span class="line">       <span class="keyword">if</span> ! [[ <span class="string">&quot;<span class="variable">$number</span>&quot;</span> =~ ^[0-9]+$ ]]; <span class="keyword">then</span></span><br><span class="line">         <span class="built_in">echo</span> <span class="string">&quot;Error: -n option requires a positive integer argument.&quot;</span> &gt;&amp;2</span><br><span class="line">         <span class="built_in">exit</span> 1</span><br><span class="line">       <span class="keyword">fi</span> ;;</span><br><span class="line">    e) regex=<span class="variable">$OPTARG</span></span><br><span class="line">        <span class="comment"># 检查 -e 和 -l 选项是否同时使用</span></span><br><span class="line">        <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$library</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">          <span class="built_in">echo</span> <span class="string">&quot;Error: -e and -l options cannot be used together.&quot;</span> &gt;&amp;2</span><br><span class="line">          <span class="built_in">exit</span> 1</span><br><span class="line">        <span class="keyword">fi</span> ;;</span><br><span class="line">    l) library=<span class="variable">$OPTARG</span></span><br><span class="line">       <span class="comment"># 检查 -e 和 -l 选项是否同时使用</span></span><br><span class="line">       <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$regex</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">         <span class="built_in">echo</span> <span class="string">&quot;Error: -e and -l options cannot be used together.&quot;</span> &gt;&amp;2</span><br><span class="line">         <span class="built_in">exit</span> 1</span><br><span class="line">       <span class="keyword">fi</span></span><br><span class="line">       <span class="comment"># 检查指定的字符集库是否存在</span></span><br><span class="line">       <span class="keyword">if</span> ! [[ -v libraries[<span class="string">&quot;<span class="variable">$library</span>&quot;</span>] ]]; <span class="keyword">then</span></span><br><span class="line">         <span class="built_in">echo</span> <span class="string">&quot;Error: Unknown library -<span class="variable">$library</span>&quot;</span> &gt;&amp;2</span><br><span class="line">         <span class="built_in">exit</span> 1</span><br><span class="line">       <span class="keyword">fi</span> ;;</span><br><span class="line">    d) debug=<span class="literal">true</span> ;;</span><br><span class="line">    r) reverse=<span class="literal">true</span> ;;</span><br><span class="line">    R) recursive=<span class="literal">true</span> ;;</span><br><span class="line">    S) ignore_space=<span class="literal">false</span> ;;</span><br><span class="line">    i) ignore_case=<span class="literal">true</span> ;;</span><br><span class="line">    f) IFS=<span class="string">&#x27;,&#x27;</span> <span class="built_in">read</span> -ra formats &lt;&lt;&lt; <span class="string">&quot;<span class="variable">$OPTARG</span>&quot;</span></span><br><span class="line">       <span class="keyword">for</span> format <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;formats[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">         file_formats+=(<span class="string">&quot;<span class="variable">$format</span>&quot;</span>)</span><br><span class="line">       <span class="keyword">done</span> ;;</span><br><span class="line">    o) output_file=<span class="variable">$OPTARG</span> ;;</span><br><span class="line">    h) usage</span><br><span class="line">       <span class="built_in">exit</span> 0 ;;</span><br><span class="line">    \?) <span class="built_in">echo</span> <span class="string">&quot;Invalid option -<span class="variable">$OPTARG</span>&quot;</span> &gt;&amp;2</span><br><span class="line">        usage</span><br><span class="line">        <span class="built_in">exit</span> 1 ;;</span><br><span class="line">  <span class="keyword">esac</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 shift 命令来移除已处理的参数</span></span><br><span class="line"><span class="built_in">shift</span> $((OPTIND -<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否提供了至少一个文件参数</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Error: At least one file argument is required.&quot;</span> &gt;&amp;2</span><br><span class="line">  usage</span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理每个输入的文件或目录</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">for</span> input <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 如果输入是目录</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="string">&quot;<span class="variable">$input</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">      <span class="keyword">if</span> <span class="variable">$recursive</span>; <span class="keyword">then</span></span><br><span class="line">        <span class="comment"># 如果开启了递归选项，使用 find 命令递归地查找并处理目录中的文件</span></span><br><span class="line">        <span class="keyword">while</span> IFS= <span class="built_in">read</span> -r -d <span class="string">&#x27;&#x27;</span> file</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">          <span class="comment"># 检查文件是否符合扩展名限制</span></span><br><span class="line">          <span class="keyword">if</span> [ <span class="variable">$&#123;#file_formats[@]&#125;</span> -eq 0 ] || [[ <span class="string">&quot; <span class="variable">$&#123;file_formats[@]&#125;</span> &quot;</span> =~ <span class="string">&quot; <span class="variable">$&#123;file##*.&#125;</span> &quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">            process_file <span class="string">&quot;<span class="variable">$file</span>&quot;</span></span><br><span class="line">          <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">done</span> &lt; &lt;(find <span class="string">&quot;<span class="variable">$input</span>&quot;</span> -<span class="built_in">type</span> f -print0)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        <span class="comment"># 如果没有开启递归选项，只处理该目录下的文件</span></span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$input</span>&quot;</span>/*; <span class="keyword">do</span></span><br><span class="line">          <span class="keyword">if</span> [ ! -f <span class="string">&quot;<span class="variable">$file</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">continue</span></span><br><span class="line">          <span class="keyword">fi</span></span><br><span class="line">          <span class="comment"># 检查文件是否符合扩展名限制</span></span><br><span class="line">          <span class="keyword">if</span> [ <span class="variable">$&#123;#file_formats[@]&#125;</span> -eq 0 ] || [[ <span class="string">&quot; <span class="variable">$&#123;file_formats[@]&#125;</span> &quot;</span> =~ <span class="string">&quot; <span class="variable">$&#123;file##*.&#125;</span> &quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">            process_file <span class="string">&quot;<span class="variable">$file</span>&quot;</span></span><br><span class="line">          <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">      <span class="keyword">fi</span></span><br><span class="line">    <span class="comment"># 如果输入是文件</span></span><br><span class="line">    <span class="keyword">elif</span> [ -f <span class="string">&quot;<span class="variable">$input</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">      <span class="comment"># 检查文件是否符合扩展名限制</span></span><br><span class="line">      <span class="keyword">if</span> [ <span class="variable">$&#123;#file_formats[@]&#125;</span> -eq 0 ] || [[ <span class="string">&quot; <span class="variable">$&#123;file_formats[@]&#125;</span> &quot;</span> =~ <span class="string">&quot; <span class="variable">$&#123;input##*.&#125;</span> &quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">        process_file <span class="string">&quot;<span class="variable">$input</span>&quot;</span></span><br><span class="line">      <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">&quot;Error: <span class="variable">$input</span> is not a valid file or directory.&quot;</span> &gt;&amp;2</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">) | &#123;</span><br><span class="line">  <span class="comment"># 根据是否设置了 -S 选项来决定是否显示空白字符</span></span><br><span class="line">  <span class="keyword">if</span> <span class="variable">$ignore_space</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">tr</span> -d <span class="string">&#x27;[:space:]&#x27;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">cat</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125; | &#123;</span><br><span class="line">  <span class="comment"># 根据是否设置了 -i 选项来决定是否忽略大小写</span></span><br><span class="line">  <span class="keyword">if</span> <span class="variable">$ignore_case</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">tr</span> <span class="string">&#x27;[:upper:]&#x27;</span> <span class="string">&#x27;[:lower:]&#x27;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">cat</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125; | rg -o .| <span class="built_in">sort</span> | <span class="built_in">uniq</span> -c | &#123;</span><br><span class="line">  <span class="comment"># 根据是否设置了 -r 选项来决定结果的排序顺序</span></span><br><span class="line">  <span class="keyword">if</span> <span class="variable">$reverse</span>; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">sort</span> -k1n</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">sort</span> -k1nr</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125; | &#123;</span><br><span class="line">  i=1  <span class="comment"># 初始化序号</span></span><br><span class="line">  <span class="keyword">while</span> IFS=<span class="string">&#x27; &#x27;</span> <span class="built_in">read</span> -ra line; <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 使用数组切片来忽略开头的空字段</span></span><br><span class="line">    count=<span class="variable">$&#123;line[0]&#125;</span></span><br><span class="line">    char=<span class="variable">$&#123;line[1]&#125;</span>  <span class="comment"># 获取第二个字段，即字符</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;%d\t%s\t%d\n&quot;</span> <span class="string">&quot;<span class="variable">$i</span>&quot;</span> <span class="string">&quot;<span class="variable">$char</span>&quot;</span> <span class="string">&quot;<span class="variable">$count</span>&quot;</span></span><br><span class="line">    ((i++))  <span class="comment"># 增加序号</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">&#125; | &#123;</span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$number</span>&quot;</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果设置了数量选项，则只显示指定数量的结果</span></span><br><span class="line">    <span class="built_in">head</span> -n <span class="string">&quot;<span class="variable">$number</span>&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">cat</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125; &gt; <span class="string">&quot;<span class="variable">$&#123;output_file:-/dev/stdout&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示调试信息</span></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$debug</span>; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> -e <span class="string">&quot;</span></span><br><span class="line"><span class="string">Debug Information</span></span><br><span class="line"><span class="string">=================</span></span><br><span class="line"><span class="string">Number:\t<span class="variable">$number</span></span></span><br><span class="line"><span class="string">Regex:\t<span class="variable">$regex</span></span></span><br><span class="line"><span class="string">Library:\t<span class="variable">$library</span></span></span><br><span class="line"><span class="string">Reverse:\t<span class="variable">$reverse</span></span></span><br><span class="line"><span class="string">Recursive:\t<span class="variable">$recursive</span></span></span><br><span class="line"><span class="string">Ignore Space:\t<span class="variable">$ignore_space</span></span></span><br><span class="line"><span class="string">Ignore Case:\t<span class="variable">$ignore_case</span></span></span><br><span class="line"><span class="string">File Formats:\t<span class="variable">$&#123;file_formats[@]&#125;</span></span></span><br><span class="line"><span class="string">Processed Files:&quot;</span> | <span class="built_in">tee</span> --append <span class="variable">$&#123;output_file:-/dev/null&#125;</span></span><br><span class="line">  <span class="built_in">cat</span> <span class="string">&quot;<span class="variable">$temp_file</span>&quot;</span> | <span class="built_in">tee</span> --append <span class="variable">$&#123;output_file:-/dev/null&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">rm</span> <span class="string">&quot;<span class="variable">$temp_file</span>&quot;</span>  <span class="comment"># 删除临时文件</span></span><br></pre></td></tr></table></figure>
+<!-- }}} -->
+<p>这个脚本还是有点问题的，目前我知道的就有 '␣'（一个正常空格）不会正常显示。</p>
+<p>折腾了很久还是无法解决，最终放弃了，让 Copilot 写了个 Python 版本的（再也不写 Bash 了，语法丑陋难懂，还又臭又长）。</p>
+<!-- {{{ python code -->
+<figure class="highlight python"><figcaption><span>stats.py（初版，最新版请点击右侧 GitHub 链接）</span><a target="_blank" rel="noopener" href="https://github.com/pilgrimlyieu/Gadgets/blob/main/stats.py">GitHub</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> fnmatch <span class="keyword">import</span> fnmatch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义不同字符集</span></span><br><span class="line">libraries = &#123;</span><br><span class="line">    <span class="string">&quot;c&quot;</span>: <span class="string">r&quot;[^\W]&quot;</span>,  <span class="comment"># 所有可打印字符</span></span><br><span class="line">    <span class="string">&quot;cp&quot;</span>: <span class="string">r&quot;[^\W]|[\s]&quot;</span>,  <span class="comment"># 所有可打印字符和空格字符</span></span><br><span class="line">    <span class="string">&quot;cn&quot;</span>: <span class="string">r&quot;[\u4e00-\u9fff]&quot;</span>,  <span class="comment"># 所有常用汉字</span></span><br><span class="line">    <span class="string">&quot;en&quot;</span>: <span class="string">r&quot;[a-zA-Z]&quot;</span>,  <span class="comment"># 所有英文字母</span></span><br><span class="line">    <span class="string">&quot;alnum&quot;</span>: <span class="string">r&quot;[a-zA-Z\d]&quot;</span>,  <span class="comment"># 字母和数字字符</span></span><br><span class="line">    <span class="string">&quot;num&quot;</span>: <span class="string">r&quot;[\d]&quot;</span>,  <span class="comment"># 所有数字</span></span><br><span class="line">    <span class="string">&quot;sp&quot;</span>: <span class="string">r&quot;[\s]&quot;</span>,  <span class="comment"># 空白字符</span></span><br><span class="line">    <span class="string">&quot;punc&quot;</span>: <span class="string">r&quot;[^\w\s]&quot;</span>,  <span class="comment"># 标点字符</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_file</span>(<span class="params">file, regex, library, ignore_space, ignore_case, verbose</span>):</span><br><span class="line">    <span class="keyword">if</span> verbose:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Processing file: <span class="subst">&#123;file&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        content = f.read()</span><br><span class="line">        <span class="keyword">if</span> ignore_space:</span><br><span class="line">            content = re.sub(<span class="string">r&#x27;\s&#x27;</span>, <span class="string">&#x27;&#x27;</span>, content)</span><br><span class="line">        <span class="keyword">if</span> ignore_case:</span><br><span class="line">            content = content.lower()</span><br><span class="line">        <span class="keyword">if</span> regex:</span><br><span class="line">            matches = re.findall(regex, content)</span><br><span class="line">        <span class="keyword">elif</span> library:</span><br><span class="line">            matches = re.findall(libraries[library], content)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            matches = <span class="built_in">list</span>(content)</span><br><span class="line">        <span class="keyword">return</span> matches</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&#x27;Count the occurrences of characters in files.&#x27;</span>,</span><br><span class="line">                                     epilog=<span class="string">&#x27;&#x27;&#x27;libraries:</span></span><br><span class="line"><span class="string">  c           All printable characters.</span></span><br><span class="line"><span class="string">  cp          All printable and space characters.</span></span><br><span class="line"><span class="string">  cn          All common Chinese characters.</span></span><br><span class="line"><span class="string">  en          All English alphabetic characters.</span></span><br><span class="line"><span class="string">  alnum       Alphabetic and numeric characters.</span></span><br><span class="line"><span class="string">  num         Numeric characters.</span></span><br><span class="line"><span class="string">  sp          Space characters.</span></span><br><span class="line"><span class="string">  punc        Punctuation characters.&#x27;&#x27;&#x27;</span>,</span><br><span class="line">  formatter_class=argparse.RawTextHelpFormatter)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--number&#x27;</span>, metavar=<span class="string">&quot;number&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">0</span>, <span class="built_in">help</span>=<span class="string">&#x27;The number of most common characters to display.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-e&#x27;</span>, <span class="string">&#x27;--expression&#x27;</span>, metavar=<span class="string">&quot;regex&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;&quot;</span>, <span class="built_in">help</span>=<span class="string">&#x27;The regular expression to match.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-l&#x27;</span>, <span class="string">&#x27;--library&#x27;</span>, metavar=<span class="string">&quot;library&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, choices=libraries.keys(), <span class="built_in">help</span>=<span class="string">&#x27;The character set library to use.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-f&#x27;</span>, <span class="string">&#x27;--format&#x27;</span>, metavar=<span class="string">&quot;format&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;&quot;</span>, <span class="built_in">help</span>=<span class="string">&#x27;The file formats to process.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-o&#x27;</span>, <span class="string">&#x27;--output&#x27;</span>, metavar=<span class="string">&quot;output&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;&quot;</span>, <span class="built_in">help</span>=<span class="string">&#x27;The output file.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-r&#x27;</span>, <span class="string">&#x27;--reverse&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, default=<span class="literal">False</span>, <span class="built_in">help</span>=<span class="string">&#x27;Reverse the order of the output.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-R&#x27;</span>, <span class="string">&#x27;--recursive&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, default=<span class="literal">False</span>, <span class="built_in">help</span>=<span class="string">&#x27;Recursively process directories.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-S&#x27;</span>, <span class="string">&#x27;--show-space&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, default=<span class="literal">False</span>, <span class="built_in">help</span>=<span class="string">&#x27;Show whitespace characters.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-i&#x27;</span>, <span class="string">&#x27;--case-sensitive&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, default=<span class="literal">False</span>, <span class="built_in">help</span>=<span class="string">&#x27;Ignore case when matching.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-v&#x27;</span>, <span class="string">&#x27;--verbose&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, default=<span class="literal">False</span>, <span class="built_in">help</span>=<span class="string">&#x27;Display verbose output.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;paths&#x27;</span>, nargs=<span class="string">&#x27;+&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;The files or directories to process.&#x27;</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> args.expression <span class="keyword">and</span> args.library:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Error: --expression and --library options cannot be used together.&quot;</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> args.library <span class="keyword">and</span> args.library <span class="keyword">not</span> <span class="keyword">in</span> libraries:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error: Unknown library --<span class="subst">&#123;args.library&#125;</span>&quot;</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    file_formats = args.<span class="built_in">format</span>.split(<span class="string">&#x27;,&#x27;</span>) <span class="keyword">if</span> args.<span class="built_in">format</span> <span class="keyword">else</span> []</span><br><span class="line"></span><br><span class="line">    results = []</span><br><span class="line">    processed_files = []  <span class="comment"># 新增一个列表用于存储处理过的文件</span></span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> args.paths:</span><br><span class="line">        <span class="keyword">if</span> os.path.isfile(path):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> file_formats <span class="keyword">or</span> <span class="built_in">any</span>(fnmatch(path, <span class="string">f&#x27;*.<span class="subst">&#123;fmt&#125;</span>&#x27;</span>) <span class="keyword">for</span> fmt <span class="keyword">in</span> file_formats):</span><br><span class="line">                results.extend(process_file(path, args.expression, args.library, <span class="keyword">not</span> args.show_space, <span class="keyword">not</span> args.case_sensitive, args.verbose))</span><br><span class="line">                processed_files.append(path)  <span class="comment"># 处理完一个文件后，将其添加到列表中</span></span><br><span class="line">        <span class="keyword">elif</span> os.path.isdir(path):</span><br><span class="line">            <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(path):</span><br><span class="line">                <span class="keyword">for</span> name <span class="keyword">in</span> files:</span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">not</span> file_formats <span class="keyword">or</span> <span class="built_in">any</span>(fnmatch(name, <span class="string">f&#x27;*.<span class="subst">&#123;fmt&#125;</span>&#x27;</span>) <span class="keyword">for</span> fmt <span class="keyword">in</span> file_formats):</span><br><span class="line">                        results.extend(process_file(os.path.join(root, name), args.expression, args.library, <span class="keyword">not</span> args.show_space, <span class="keyword">not</span> args.case_sensitive, args.verbose))</span><br><span class="line">                        processed_files.append(os.path.join(root, name))  <span class="comment"># 处理完一个文件后，将其添加到列表中</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> args.recursive:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    counter = Counter(results)</span><br><span class="line">    most_common = counter.most_common(args.number <span class="keyword">if</span> args.number &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>)</span><br><span class="line">    most_common.sort(key=<span class="keyword">lambda</span> x: (x[<span class="number">1</span>], x[<span class="number">0</span>]) <span class="keyword">if</span> args.reverse <span class="keyword">else</span> (-x[<span class="number">1</span>], x[<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line">    f = <span class="built_in">open</span>(args.output, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">if</span> args.output <span class="keyword">else</span> sys.stdout</span><br><span class="line">    <span class="keyword">for</span> i, (char, count) <span class="keyword">in</span> <span class="built_in">enumerate</span>(most_common, start=<span class="number">1</span>):</span><br><span class="line">        escape_dict = &#123;<span class="string">&quot; &quot;</span>: <span class="string">r&quot;\s&quot;</span>, <span class="string">&quot;\n&quot;</span>: <span class="string">r&quot;\n&quot;</span>, <span class="string">&quot;\t&quot;</span>: <span class="string">r&quot;\t&quot;</span>, <span class="string">&quot;\r&quot;</span>: <span class="string">r&quot;\r&quot;</span>, <span class="string">&quot;\f&quot;</span>: <span class="string">r&quot;\f&quot;</span>, <span class="string">&quot;\v&quot;</span>: <span class="string">r&quot;\v&quot;</span>, <span class="string">&quot;\b&quot;</span>: <span class="string">r&quot;\b&quot;</span>&#125;</span><br><span class="line">        char = escape_dict.get(char, char)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;i&#125;</span>\t<span class="subst">&#123;char&#125;</span>\t<span class="subst">&#123;count&#125;</span>&quot;</span>, file=f)</span><br><span class="line">    <span class="keyword">if</span> args.output:</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在所有文件处理完后，输出处理过的文件列表</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Processed files:&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> processed_files:</span><br><span class="line">        <span class="built_in">print</span>(file)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<!-- }}} -->
+<p><code>./stats.py -h</code> 会显示使用帮助。</p>
+<!-- {{{ python usage -->
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">usage: stats.py [-h] [-n number] [-e regex] [-l library] [-f format] [-o output] [-r] [-R] [-S] [-i] [-v] paths [paths ...]</span><br><span class="line"></span><br><span class="line">Count the occurrences of characters in files.</span><br><span class="line"></span><br><span class="line">positional arguments:</span><br><span class="line">  paths                 The files or directories to process.</span><br><span class="line"></span><br><span class="line">options:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -n number, --number number</span><br><span class="line">                        The number of most common characters to display.</span><br><span class="line">  -e regex, --expression regex</span><br><span class="line">                        The regular expression to match.</span><br><span class="line">  -l library, --library library</span><br><span class="line">                        The character set library to use.</span><br><span class="line">  -f format, --format format</span><br><span class="line">                        The file formats to process.</span><br><span class="line">  -o output, --output output</span><br><span class="line">                        The output file.</span><br><span class="line">  -r, --reverse         Reverse the order of the output.</span><br><span class="line">  -R, --recursive       Recursively process directories.</span><br><span class="line">  -S, --show-space      Show whitespace characters.</span><br><span class="line">  -i, --case-sensitive  Ignore case when matching.</span><br><span class="line">  -v, --verbose         Display verbose output.</span><br><span class="line"></span><br><span class="line">libraries:</span><br><span class="line">  c           All printable characters.</span><br><span class="line">  cp          All printable and space characters.</span><br><span class="line">  cn          All common Chinese characters.</span><br><span class="line">  en          All English alphabetic characters.</span><br><span class="line">  alnum       Alphabetic and numeric characters.</span><br><span class="line">  num         Numeric characters.</span><br><span class="line">  sp          Space characters.</span><br><span class="line">  punc        Punctuation characters.</span><br></pre></td></tr></table></figure>
+<!-- }}} -->
+<!-- {{{ details -->
+<details>
+<summary>Bash 版本的 Usage 有点不同，但因为不再维护所以没有更新</summary>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Usage: ./stats.sh [-n number] [-e regex] [-l library] [-f format] [-o output] [-d] [-r] [-R] [-S] [-i] [-h] file | dir [file | dir ...]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -n number   Display the top number of results.</span><br><span class="line">  -e regex    Use the specified regular expression.</span><br><span class="line">  -l library  Use the specified character set library. This option cannot be used with the -e option.</span><br><span class="line">  -f format   Process files of the specified format(s).</span><br><span class="line">  -o output   Write the results to the specified output file.</span><br><span class="line">  -d          Debug mode.</span><br><span class="line">  -r          Reverse the order of the results.</span><br><span class="line">  -R          Process directories recursively.</span><br><span class="line">  -S          Show whitespace characters.</span><br><span class="line">  -i          Ignore case.</span><br><span class="line">  -h          Display this help message.</span><br><span class="line"></span><br><span class="line">Arguments:</span><br><span class="line">  file        The file(s) to process.</span><br><span class="line">  dir         The directory to process.</span><br><span class="line"></span><br><span class="line">Libraries:</span><br><span class="line">  c           All printable characters.</span><br><span class="line">  cp          All printable and space characters.</span><br><span class="line">  cn          All common Chinese characters.</span><br><span class="line">  en          All English alphabetic characters.</span><br><span class="line">  alnum       Alphabetic and numeric characters.</span><br><span class="line">  num         Numeric characters.</span><br><span class="line">  sp          Space characters.</span><br><span class="line">  punc        Punctuation characters.</span><br></pre></td></tr></table></figure>
+</details>
+<!-- }}} -->
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%82%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 杂记</a>
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/02/views-of-idols/" rel="prev" title="我的偶像观">
+                  <i class="fa fa-angle-left"></i> 我的偶像观
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lyieu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+<script src="/js/third-party/math/mhchem.min.js"></script>
+<script src="/js/third-party/math/copy-tex.min.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-comments-virid.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","dark":"auto","locale":{"placeholder":"欢迎评论~","level0":"问","level1":"哭","level2":"埋","level3":"挖","level4":"抬","level5":"死","level6":"熬","level7":"买","level8":"瞧","level9":"病","reactionTitle":"反应"},"reaction":["https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f970.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f973.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f9d0.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f632.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f610.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f641.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f62d.png"],"emoji":["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji","https://unpkg.com/@waline/emojis@1.2.0/tw-object","https://unpkg.com/@waline/emojis@1.2.0/tw-travel","https://unpkg.com/@waline/emojis@1.2.0/tw-weather"],"search":false,"meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"wordLimit":0,"login":"enable","pageSize":15,"texRenderer":"KaTeX","el":"#waline","comment":true,"path":"/2024/02/gadgets/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

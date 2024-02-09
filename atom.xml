@@ -6,7 +6,7 @@
   <link href="https://pilgrimlyieu.github.io/atom.xml" rel="self"/>
   
   <link href="https://pilgrimlyieu.github.io/"/>
-  <updated>2024-02-08T12:07:53.000Z</updated>
+  <updated>2024-02-09T15:08:00.000Z</updated>
   <id>https://pilgrimlyieu.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小玩意</title>
+    <link href="https://pilgrimlyieu.github.io/2024/02/gadgets/"/>
+    <id>https://pilgrimlyieu.github.io/2024/02/gadgets/</id>
+    <published>2024-02-09T15:08:00.000Z</published>
+    <updated>2024-02-09T15:08:00.000Z</updated>
+    
+    
+    <summary type="html">介绍一点用处不大的小玩意（主要用于 Linux）</summary>
+    
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="工具" scheme="https://pilgrimlyieu.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>我的偶像观</title>
@@ -113,9 +134,9 @@
     <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
-    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
-    
     <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
     
     <category term="双拼" scheme="https://pilgrimlyieu.github.io/tags/%E5%8F%8C%E6%8B%BC/"/>
     
@@ -279,11 +300,11 @@
     <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
-    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
+    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
     
     <category term="Hexo" scheme="https://pilgrimlyieu.github.io/tags/Hexo/"/>
     
-    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
     
     <category term="GitHub" scheme="https://pilgrimlyieu.github.io/tags/GitHub/"/>
     
@@ -309,31 +330,6 @@
     
     
     <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2023-08-26 杂记 &amp; 南京大学邮箱设置</title>
-    <link href="https://pilgrimlyieu.github.io/2023/08/nju-email/"/>
-    <id>https://pilgrimlyieu.github.io/2023/08/nju-email/</id>
-    <published>2023-08-25T13:47:27.000Z</published>
-    <updated>2023-08-25T16:06:40.000Z</updated>
-    
-    
-    <summary type="html">本篇博文简单记录了我最近动向，并介绍了我南京大学邮箱的客户端设置，利用 IMAP 服务使用 Outlook 收发邮件。</summary>
-    
-    
-    
-    <category term="杂记" scheme="https://pilgrimlyieu.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/categories/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
-    
-    
-    <category term="杂记" scheme="https://pilgrimlyieu.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-    <category term="南京大学" scheme="https://pilgrimlyieu.github.io/tags/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
-    
-    <category term="邮箱" scheme="https://pilgrimlyieu.github.io/tags/%E9%82%AE%E7%AE%B1/"/>
     
   </entry>
   

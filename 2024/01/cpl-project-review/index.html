@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/3.jpg">
 <meta property="og:image" content="https://pilgrimlyieu.github.io/2024/01/cpl-project-review/4.jpg">
 <meta property="article:published_time" content="2024-01-25T03:49:34.000Z">
-<meta property="article:modified_time" content="2024-01-28T06:05:02.000Z">
+<meta property="article:modified_time" content="2024-02-14T12:05:22.000Z">
 <meta property="article:author" content="Lyieu">
 <meta property="article:tag" content="CPL">
 <meta name="twitter:card" content="summary">
@@ -250,7 +250,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-28 14:05:02" itemprop="dateModified" datetime="2024-01-28T14:05:02+08:00">2024-01-28</time>
+      <time title="修改时间：2024-02-14 20:05:22" itemprop="dateModified" datetime="2024-02-14T20:05:22+08:00">2024-02-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -324,7 +324,7 @@
 <p>那为什么不用 Vim 呢？WSL 上的 Vim 的问题已经基本解决了，已经能获得跟 Windows 上差不多的体验了，而且 Vim 上一堆插件，比如 vim-easy-align，不是可以很方便地对齐美化代码吗？而且 Vim 的操作不是比 VSCode 残缺功能的 Vim 插件更方便吗？那为什么不用 Vim 呢？</p>
 <p>原因其一，Vim 没配调试环境，完全无法调试（没学过 <code>gdb</code>）。其二，代码高亮不好看，这也是 Vim 写代码的通病，所以基本不用 Vim 写代码，都是写 markdown 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span>。相较而言，VSCode 高亮就很漂亮，写代码也是美的享受。</p>
 <p>当然也不是一点 Vim 都没用，还是会打开一些文件，对齐一下代码什么的，只不过 VSCode 是主力罢了。</p>
-<p>也不是说 VSCode 就完美无瑕。也遇到过一些问题，比如说调试时卡在某一行（一般是调用库函数的行），按单步执行动不了，这种情况我一般在下一步下个断点，然后恢复执行，就能越过去了。但是只是一开始写代码时遇到了，后面没遇到了，网上也没搜到类似问题，可能是初期代码的内存问题？</p>
+<p>也不是说 VSCode 就完美无瑕。也遇到过一些问题，比如说调试时卡在某一行（一般是调用库函数的行），按单步执行动不了，这种情况我一般在下一步下个断点，然后恢复执行，就能越过去了。但是只是一开始写代码时遇到了，后面没遇到了，网上也没搜到类似问题，可能是初期代码的内存问题？（非也，原因写在了<a href="/daily/2024-01#VSCode-2">记事</a>）</p>
 <p>还有呢就是 VSCode Vim 一些不太方便的问题。但是总的来说没用过什么奇技淫巧，都是很基础的操作，还是写得很舒服的。基本上就用了基本的移动键和修改键，<kbd>v</kbd> 选中代码，<kbd>,</kbd> 重复跳转，<kbd>.</kbd> 重复操作，<kbd>s</kbd> 修改 surroundings 的内容，<kbd>u</kbd> 撤回与重做，<kbd>y</kbd> 复制，<kbd>Ctrl</kbd> + <kbd>O</kbd>/<kbd>I</kbd> 来回跳，<kbd>/</kbd>/<kbd>n</kbd> 搜索与跳转，<kbd>z</kbd> 折叠，<kbd>:</kbd> 然后 <code>:%y</code> 复制全部…</p>
 <h4 id="配置">配置<a class="header-anchor" href="#配置"></a></h4>
 <p>既然决定是 VSCode 了，自然要学习一下怎么使用 VSCode 写 C 项目。</p>

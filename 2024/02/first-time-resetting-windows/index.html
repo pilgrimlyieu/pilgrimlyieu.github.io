@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon.svg">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pilgrimlyieu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500,"threshold":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="第一次重置 Windows11，记录一下过程，供日后参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重置 Windows 初体验">
+<meta property="og:url" content="https://pilgrimlyieu.github.io/2024/02/first-time-resetting-windows/index.html">
+<meta property="og:site_name" content="Shrine">
+<meta property="og:description" content="第一次重置 Windows11，记录一下过程，供日后参考。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-17T00:23:09.000Z">
+<meta property="article:modified_time" content="2024-02-17T00:23:09.000Z">
+<meta property="article:author" content="Lyieu">
+<meta property="article:tag" content="记录">
+<meta property="article:tag" content="Windows11">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pilgrimlyieu.github.io/2024/02/first-time-resetting-windows/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pilgrimlyieu.github.io/2024/02/first-time-resetting-windows/","path":"2024/02/first-time-resetting-windows/","title":"重置 Windows 初体验"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>重置 Windows 初体验 | Shrine</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-comments-virid.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.admonition{font-size:.96em;margin:1.5625em 0;padding:.6rem;overflow:visible;page-break-inside:avoid;border-left:.3rem solid;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);line-height:1.8}.admonition>:last-child{margin-bottom:0!important}.admonition-title::before{position:absolute;top:1rem;left:1rem;width:16px;height:16px;border-radius:100%;content:" "}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;line-height:2}.admonition.note,.admonition.question,.admonition.success{border-color:#42b983}.note>.admonition-title::before,.question>.admonition-title::before,.success>.admonition-title::before{background-color:#42b983}.note>.admonition-title,.question>.admonition-title,.success>.admonition-title{background-color:rgba(66,185,131,.4)}.admonition.info,.admonition.todo{border-color:#00b8d4}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.4)}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.4)}.admonition.bug,.admonition.danger,.admonition.error,.admonition.failure,.admonition.missing{border-color:#ff5252}.bug>.admonition-title::before,.danger>.admonition-title::before,.error>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252}.bug>.admonition-title,.danger>.admonition-title,.error>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.4)}.admonition.example{border-color:#903dcc}.example>.admonition-title::before{background-color:#903dcc}.example>.admonition-title{background-color:rgba(144,61,204,.4)}.admonition.quote{border-color:#aaa}.quote>.admonition-title::before{background-color:#aaa}.quote>.admonition-title{background-color:rgba(170,170,170,.4)}.admonition.abstract,.admonition.tip{border-color:#448aff}.abstract>.admonition-title::before,.tip>.admonition-title::before{background-color:#448aff}.abstract>.admonition-title,.tip>.admonition-title{background-color:rgba(68,138,255,.4)}.admonition.memo,.admonition.sheet{border-color:#c3a210}.memo>.admonition-title::before,.sheet>.admonition-title::before{background-color:#c3a210}.memo>.admonition-title,.sheet>.admonition-title{background-color:rgba(195,162,16,.4)}@media (prefers-color-scheme:light){.admonition{background-color:#eee}.admonition.test{border-color:#283747}.test>.admonition-title::before{background-color:#283747}.test>.admonition-title{background-color:rgba(40,55,71,.4)}}@media (prefers-color-scheme:dark){.admonition{background-color:#444}.admonition.test{border-color:#f2f3f4}.test>.admonition-title::before{background-color:#f2f3f4}.test>.admonition-title{background-color:rgba(242,243,244,.4)}}</style><link rel="alternate" href="/atom.xml" title="Shrine" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shrine</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Fesmoph's Blog</p>
+      <img class="custom-logo-image" src="/images/logo/logo.svg" alt="Shrine">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-list-ul fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-folder-open fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-记事"><a href="/daily/" rel="section"><i class="fa fa-clipboard-list fa-fw"></i>记事</a></li><li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-scroll fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%89%8D%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">目前进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NanaZip"><span class="nav-number">3.</span> <span class="nav-text">NanaZip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NPM-%E5%85%A8%E5%B1%80%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">NPM 全局命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loopback"><span class="nav-number">5.</span> <span class="nav-text">Loopback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-Terminal-Preview"><span class="nav-number">6.</span> <span class="nav-text">Windows Terminal Preview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0%E4%BA%8B%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">记事本设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-WSL-%E5%B9%B6%E6%81%A2%E5%A4%8D%E5%A4%87%E4%BB%BD"><span class="nav-number">8.</span> <span class="nav-text">安装 WSL 并恢复备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%81%E7%94%A8-Windows-%E7%B4%A2%E5%BC%95"><span class="nav-number">9.</span> <span class="nav-text">禁用 Windows 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB"><span class="nav-number">10.</span> <span class="nav-text">应用数据迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AppData"><span class="nav-number">10.1.</span> <span class="nav-text">AppData</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Outlook"><span class="nav-number">10.1.1.</span> <span class="nav-text">Outlook</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="nav-number">10.2.</span> <span class="nav-text">注册表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IDM"><span class="nav-number">10.2.1.</span> <span class="nav-text">IDM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PotPlayer"><span class="nav-number">10.2.2.</span> <span class="nav-text">PotPlayer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-Defender-%E7%81%AB%E7%BB%92"><span class="nav-number">11.</span> <span class="nav-text">Windows Defender &amp; 火绒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A3%85"><span class="nav-number">12.</span> <span class="nav-text">重装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathematica"><span class="nav-number">12.1.</span> <span class="nav-text">Mathematica</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker"><span class="nav-number">12.2.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub-CLI"><span class="nav-number">12.3.</span> <span class="nav-text">GitHub CLI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%BA%94%E7%94%A8"><span class="nav-number">13.</span> <span class="nav-text">关联应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE"><span class="nav-number">14.</span> <span class="nav-text">设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">15.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edge"><span class="nav-number">16.</span> <span class="nav-text">Edge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B4%E5%83%8F"><span class="nav-number">17.</span> <span class="nav-text">头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-number">18.</span> <span class="nav-text">字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E6%A0%87"><span class="nav-number">19.</span> <span class="nav-text">光标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95"><span class="nav-number">20.</span> <span class="nav-text">开始菜单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Office"><span class="nav-number">21.</span> <span class="nav-text">Office</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8E%E4%B8%BA%E7%94%B5%E8%84%91%E7%AE%A1%E5%AE%B6"><span class="nav-number">22.</span> <span class="nav-text">华为电脑管家</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F"><span class="nav-number">23.</span> <span class="nav-text">任务计划程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%8C%E6%88%90"><span class="nav-number">24.</span> <span class="nav-text">基本完成</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lyieu"
+      src="/images/avatar/avatar.svg">
+  <p class="site-author-name" itemprop="name">Lyieu</p>
+  <div class="site-description" itemprop="description">Dreaming</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pilgrimlyieu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pilgrimlyieu" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pilgrimlyieu@outlook.com" title="E-Mail → mailto:pilgrimlyieu@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pilgrimlyieu.github.io/2024/02/first-time-resetting-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.svg">
+      <meta itemprop="name" content="Lyieu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrine">
+      <meta itemprop="description" content="Dreaming">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="重置 Windows 初体验 | Shrine">
+      <meta itemprop="description" content="第一次重置 Windows11，记录一下过程，供日后参考。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          重置 Windows 初体验
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-17 08:23:09" itemprop="dateCreated datePublished" datetime="2024-02-17T08:23:09+08:00">2024-02-17</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2024/02/first-time-resetting-windows/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2024/02/first-time-resetting-windows/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">第一次重置 Windows11，记录一下过程，供日后参考。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="目前进程">目前进程<a class="header-anchor" href="#目前进程"></a></h2>
+<p><a href="/daily/2024-02#%E9%87%8D%E8%A3%85%E5%90%8E">记事</a>里说了不少，我就简单讲一下吧。</p>
+<p>主要使用 BCUninstaller 卸掉了大部分联想带的应用、恢复了一部分环境变量、安装了 JetBrains Mono Nerd 字体先能打开 Vim（为赶时间全装了……）、安装了 AutoHotkey 等软件保证正常运行脚本以提高效率……</p>
+<p>根据我的记录，未恢复的应用起码还有下面的，加粗的是必须恢复的：</p>
+<ul>
+<li><strong>7z</strong></li>
+<li>Adobe</li>
+<li><strong>Docker</strong></li>
+<li>.NET</li>
+<li><strong>GitHub CLI</strong></li>
+<li><strong>Huawei</strong></li>
+<li><strong>mingw64</strong></li>
+<li>PowerShell</li>
+<li><strong>PowerToys</strong></li>
+<li><strong>Wolfram</strong></li>
+<li><strong>WSL</strong></li>
+<li>xmake</li>
+</ul>
+<p>比较乱，基本是我做到哪写到哪，会稍微变动一下顺序，但是还是会比较凌乱，以后有机会整理吧（<s>意味着大致不会动了</s>）。</p>
+<h2 id="Python">Python<a class="header-anchor" href="#Python"></a></h2>
+<p>昨天说的打开 Store 的问题，其实也可以不用动 PATH 位置，直接去「应用 &gt; 高级应用设置 &gt; 应用执行别名」里关闭 <code>python</code> <code>python3</code> 关联到「应用安装程序」的别名就行了。</p>
+<h2 id="NanaZip">NanaZip<a class="header-anchor" href="#NanaZip"></a></h2>
+<p>要解压缩包，不想用自带的。懒得装 7z 了，直接用 <a target="_blank" rel="noopener" href="https://github.com/M2Team/NanaZip">NanaZip</a> 。</p>
+<p>NanaZip 同时占用了 <code>7z</code> 的别名，可以无缝切换，直接命令行用 <code>7z</code> 调用 NanaZip。所以之前用 <code>7z</code> 的脚本应该都不用改。</p>
+<h2 id="NPM-全局命令">NPM 全局命令<a class="header-anchor" href="#NPM-全局命令"></a></h2>
+<p>NPM 全局安装 Hexo 后，却仍需要加上 <code>npx</code> 才能调用。解决方法是把 <code>%USERPROFILE%\AppData\Roaming\npm</code> 加入 PATH。估计是安装程序做的工作，而我只是把 <code>Node.js</code> 目录加入了 PATH。</p>
+<p>不过还是重装了 <code>Node.js</code>，因为之前的版本是 v18.17.0，现在是 v20.11.1，跃升了好多，虽然说才不到一年，不过呢记得当时 Latest 就有 20 了。</p>
+<h2 id="Loopback">Loopback<a class="header-anchor" href="#Loopback"></a></h2>
+<p>要装 Windows Terminal Preview，打算用 Microsoft Store，但是 Microsoft Store 是 UWP 应用，开代理上不了。虽然可以直接去 GitHub 下安装包，但是呢还是要解决 UWP 代理的问题。</p>
+<p>之前用的是 DevSidecar 的 Loopback，因为现在卸掉了 DevSidecar，所以找了一个别的，<a target="_blank" rel="noopener" href="https://github.com/themerror/UWP-Loopback-Exemption-Manager">themerror/UWP-Loopback-Exemption-Manager</a>。</p>
+<p>管理员身份运行打开，然后找到应用前面打勾，Save 就好了。</p>
+<h2 id="Windows-Terminal-Preview">Windows Terminal Preview<a class="header-anchor" href="#Windows-Terminal-Preview"></a></h2>
+<p>直接 Store 安装就好了，然后在「系统 &gt; 开发者选项 &gt; 终端」设置为默认终端，同时在「应用 &gt; 高级应用设置 &gt; 应用执行别名」把 <code>wt</code> 设定为 Windows Terminal Preview。</p>
+<p>导入设置，设置位置在 <code>%LocalAppData%\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState</code>。</p>
+<p>打开 <code>settings.json</code> 的方式改为 Vim，只需把 JSON 文件关联到 Vim 即可。</p>
+<h2 id="记事本设置">记事本设置<a class="header-anchor" href="#记事本设置"></a></h2>
+<p>不怎么用记事本，但也不是完全不用。主要就是改一个点。「记事本启动时」改成「打开新窗口」。</p>
+<h2 id="安装-WSL-并恢复备份">安装 WSL 并恢复备份<a class="header-anchor" href="#安装-WSL-并恢复备份"></a></h2>
+<p>参照官方教程<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">如何使用 WSL 在 Windows 上安装 Linux</a>。</p>
+<p>先安装 WSL，等弄完别的内容再重启。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl --install</span><br></pre></td></tr></table></figure>
+<p>然后导入备份，按<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl">教程</a>的说法，命令是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl --import &lt;Distro&gt; &lt;InstallLocation&gt; &lt;FileName&gt;</span><br></pre></td></tr></table></figure>
+<p>顺带移动到 D 盘。</p>
+<p>但是这样启动是以 root 用户启动的，<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/wsl/wsl-config#user-settings">改一下 WSL 发行版里面的设置就行了</a>（微软文档很多都是机翻的吧，<code>default</code> 不应该翻译，结果给翻译成了「默认值」，这哪里搞得懂，PowerToys 也是一股机翻味，之前看到很多人抱怨机翻问题，<a target="_blank" rel="noopener" href="https://github.com/microsoft/PowerToys/issues/7670">而且无法自行设置语言</a>）</p>
+<figure class="highlight plaintext"><figcaption><span>/etc/wsl.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">default=username</span><br></pre></td></tr></table></figure>
+<h2 id="禁用-Windows-索引">禁用 Windows 索引<a class="header-anchor" href="#禁用-Windows-索引"></a></h2>
+<p>已经有了 Everything，不需要 Windows 索引了。在「服务」里找到「Windows Search」，禁用即可。</p>
+<h2 id="应用数据迁移">应用数据迁移<a class="header-anchor" href="#应用数据迁移"></a></h2>
+<h3 id="AppData">AppData<a class="header-anchor" href="#AppData"></a></h3>
+<p>大部分没备份的应用的数据去 AppData 里迁移就可以了（有一些留在了文档，不过文档保留着）。这里列一点常用目录变量（不一定是 AppData）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>%APPDATA%</code></td>
+<td style="text-align:left"><code>C:\Users\&lt;User&gt;\AppData\Roaming</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%LOCALAPPDATA%</code></td>
+<td style="text-align:left"><code>C:\Users\&lt;User&gt;\AppData\Local</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%TEMP%</code></td>
+<td style="text-align:left"><code>C:\Users\&lt;User&gt;\AppData\Local\Temp</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%USERPROFILE%</code></td>
+<td style="text-align:left"><code>C:\Users\&lt;User&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%PROGRAMFILES%</code></td>
+<td style="text-align:left"><code>C:\Program Files</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Outlook">Outlook<a class="header-anchor" href="#Outlook"></a></h4>
+<p>Outlook 在 <code>%LOCALAPPDATA%\Microsoft\Olk</code> 里面，迁移后挂了一个 Outlook 邮箱，连接不上，错误代码 0x80190001，关了代理就行了。</p>
+<h3 id="注册表">注册表<a class="header-anchor" href="#注册表"></a></h3>
+<h4 id="IDM">IDM<a class="header-anchor" href="#IDM"></a></h4>
+<p>WD 删了我的「安装包」，还无法恢复，只好排除了下载文件夹再下载一次。</p>
+<p>悲报，IDM 设置<a target="_blank" rel="noopener" href="https://www.internetdownloadmanager.com/register/new_faq/functions17.html">存在注册表</a>，喜报，我知道如何恢复注册表信息了。</p>
+<p><code>Windows.old\Users\&lt;User&gt;</code> 下有个 <code>NTUSER.DAT</code>，参考 <a target="_blank" rel="noopener" href="https://superuser.com/questions/1563813/how-to-view-registry-items-from-saved-ntuser-dat">How to View Registry Items from Saved NTUSER.DAT</a>，只需打开 Regedit，选择 <code>HKEY_USERS</code>，然后「文件 &gt; 加载配置单元」就可以了。</p>
+<p>具体怎么迁移呢？使用下面的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REG COPY HKEY_USERS\&lt;Name&gt;\Software\DownloadManager HKEY_CURRENT_USER\Software\DownloadManager /s</span><br></pre></td></tr></table></figure>
+<p>最后卸载就行了。</p>
+<p>Honeyview 这样类似的就不提及了。</p>
+<h4 id="PotPlayer">PotPlayer<a class="header-anchor" href="#PotPlayer"></a></h4>
+<p>查了一下才发现，在 <code>DAUM</code>，吓死了还以为没有。</p>
+<h2 id="Windows-Defender-火绒">Windows Defender &amp; 火绒<a class="header-anchor" href="#Windows-Defender-火绒"></a></h2>
+<p>WD 把图吧工具箱清理掉了……得重装下火绒。</p>
+<p>然后发现 AppData 里面没有 Sysdiag 或者其它的文件夹，寄。而且注册表也没信息，就一个安装路径。</p>
+<p>重装时改到 D 盘，说加密的目录不行，删了再试都不行。搜了下才发现是 BitLocker 的锅，懒得解除就装 C 盘去了。</p>
+<h2 id="重装">重装<a class="header-anchor" href="#重装"></a></h2>
+<h3 id="Mathematica">Mathematica<a class="header-anchor" href="#Mathematica"></a></h3>
+<p>得先登录 1T 的 OneDrive 下载安装包，这段时间先干点别的。</p>
+<div style="display: none; ">装完了，改装 14 的，结果无法注册，但换了个注册机多试几次就行了……本来打算放弃了都。</div>
+<p>界面变好看了一点。</p>
+<h3 id="Docker">Docker<a class="header-anchor" href="#Docker"></a></h3>
+<p>官网下载安装包，装完后迁移 Local 和 Roaming 里的 Docker 文件夹，也是等重启。</p>
+<h3 id="GitHub-CLI">GitHub CLI<a class="header-anchor" href="#GitHub-CLI"></a></h3>
+<p>使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install --id GitHub.cli</span><br></pre></td></tr></table></figure>
+<p>不过装不上，得先设置代理。使用命令 <code>winget settings</code> 添加下面的内容，就可以使用系统代理，再行安装。</p>
+<figure class="highlight json"><figcaption><span>%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;network&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">   <span class="comment">// &quot;downloader&quot;: &quot;do&quot;,</span></span><br><span class="line">   <span class="attr">&quot;downloader&quot;</span><span class="punctuation">:</span> <span class="string">&quot;wininet&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;doProgressTimeoutInSeconds&quot;</span><span class="punctuation">:</span> <span class="number">60</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>然后先 <code>gh auth login</code> 登录，再</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gh extension install github/gh-copilot</span><br></pre></td></tr></table></figure>
+<p>安装 Copilot。</p>
+<h2 id="关联应用">关联应用<a class="header-anchor" href="#关联应用"></a></h2>
+<p>这个得去设置界面关联一大片，然后到时候遇到不对的再手动换吧，等最后再做。</p>
+<h2 id="设置">设置<a class="header-anchor" href="#设置"></a></h2>
+<p>想了一下，设置应该大部分还是在的，比如啥 WiFi 啥的，只是屏幕设置没了我自己重新设置了罢了，连光标设置都还在（但背景设置却不对）。</p>
+<p>我想想哪些设置不在了吧。任务栏的似乎全不在了，包括合并、Copilot、搜索、显示秒等，反倒是时间那里一个显示秒的设置（自己弄的，不好用）还在。</p>
+<h2 id="环境变量">环境变量<a class="header-anchor" href="#环境变量"></a></h2>
+<p>注册表找到环境变量了，在 <code>Environment</code> 下。不过只有用户的，我好像大部分放系统了，还是得手动恢复。</p>
+<p>然后研究了下注册表，估计就没什么了，也就找到了估计是控制面板的设置，但应该没啥用，剩下的就不太懂了，看起来也没啥用了。</p>
+<h2 id="Edge">Edge<a class="header-anchor" href="#Edge"></a></h2>
+<p>我还以为是数据没复制全，原来是 3G+ 的数据复制过去，Edge 已启动就删得只剩下 200M 了。</p>
+<p>Windows 下 Bash 执行 <code>du -hs * | sort -hr</code> 结果为（开着不动又增大了几十 M）</p>
+<!-- {{{result1 -->
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">156M    Default</span><br><span class="line">22M     Snapshots</span><br><span class="line">11M     Subresource Filter</span><br><span class="line">4.1M    BrowserMetrics</span><br><span class="line">4.0M    BrowserMetrics-spare.pma</span><br><span class="line">2.6M    Speech Recognition</span><br><span class="line">2.1M    Safe Browsing</span><br><span class="line">1.3M    hyphen-data</span><br><span class="line">1.3M    Crashpad</span><br><span class="line">638K    SmartScreen</span><br><span class="line">548K    ShaderCache</span><br><span class="line">548K    GrShaderCache</span><br><span class="line">548K    GraphiteDawnCache</span><br><span class="line">128K    first_party_sets.db-wal</span><br><span class="line">104K    Local State</span><br><span class="line">100K    Ad Blocking</span><br><span class="line">72K     Nurturing</span><br><span class="line">64K     Functional SAN Data-wal</span><br><span class="line">32K     first_party_sets.db-shm</span><br><span class="line">30K     CertificateRevocation</span><br><span class="line">10K     AutoLaunchProtocolsComponent</span><br><span class="line">6.0K    OriginTrials</span><br><span class="line">4.0K    Functional SAN Data</span><br><span class="line">4.0K    first_party_sets.db</span><br><span class="line">1.0K    Variations</span><br><span class="line">1.0K    Last Version</span><br><span class="line">1.0K    Last Browser</span><br><span class="line">0       ZxcvbnData</span><br><span class="line">0       WorkspacesNavigationComponent</span><br><span class="line">0       WidevineCdm</span><br><span class="line">0       Web Notifications Deny List</span><br><span class="line">0       Typosquatting</span><br><span class="line">0       TrustTokenKeyCommitments</span><br><span class="line">0       Trust Protection Lists</span><br><span class="line">0       TpcdMetadata</span><br><span class="line">0       SafetyTips</span><br><span class="line">0       RecoveryImproved</span><br><span class="line">0       PKIMetadata</span><br><span class="line">0       lockfile</span><br><span class="line">0       FirstPartySetsPreloaded</span><br><span class="line">0       FirstLaunchAfterInstallation</span><br><span class="line">0       First Run</span><br><span class="line">0       EdgeOnnxRuntimeDirectML</span><br><span class="line">0       Edge Wallet</span><br><span class="line">0       Edge Travel</span><br><span class="line">0       Edge Shopping</span><br><span class="line">0       Edge Designer</span><br><span class="line">0       EADPData Component</span><br><span class="line">0       Autofill</span><br></pre></td></tr></table></figure>
+<!-- }}} -->
+<p>而备份为（绷不住了，WSL 比 Windows 早运行几分钟，WSL 出结果了 Windows 还在运行，所以下面结果是 WSL 计算出的）</p>
+<!-- {{{result2 -->
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">3.1G    Default</span><br><span class="line">43M     Edge Wallet</span><br><span class="line">24M     component_crx_cache</span><br><span class="line">22M     Snapshots</span><br><span class="line">22M     EdgeOnnxRuntimeDirectML</span><br><span class="line">11M     Subresource Filter</span><br><span class="line">9.9M    Edge Shopping</span><br><span class="line">5.5M    segmentation_platform</span><br><span class="line">4.0M    BrowserMetrics-spare.pma</span><br><span class="line">4.0M    BrowserMetrics</span><br><span class="line">2.6M    Speech Recognition</span><br><span class="line">2.1M    Safe Browsing</span><br><span class="line">1.9M    Functional SAN Data-wal</span><br><span class="line">1.3M    hyphen-data</span><br><span class="line">1.3M    Crashpad</span><br><span class="line">992K    extensions_crx_cache</span><br><span class="line">740K    Autofill</span><br><span class="line">636K    SmartScreen</span><br><span class="line">312K    PKIMetadata</span><br><span class="line">292K    Data Client</span><br><span class="line">152K    SafetyTips</span><br><span class="line">120K    first_party_sets.db</span><br><span class="line">108K    EADPData Component</span><br><span class="line">100K    Ad Blocking</span><br><span class="line">72K     Local State</span><br><span class="line">52K     Application Guard</span><br><span class="line">40K     Typosquatting</span><br><span class="line">32K     first_party_sets.db-shm</span><br><span class="line">32K     Edge Travel</span><br><span class="line">24K     CertificateRevocation</span><br><span class="line">20K     Nurturing</span><br><span class="line">16K     TrustTokenKeyCommitments</span><br><span class="line">16K     FirstPartySetsPreloaded</span><br><span class="line">16K     CrashpadMetrics-active.pma</span><br><span class="line">12K     Web Notifications Deny List</span><br><span class="line">12K     TpcdMetadata</span><br><span class="line">12K     Edge Designer</span><br><span class="line">4.0K    WorkspacesNavigationComponent</span><br><span class="line">4.0K    Functional SAN Data</span><br><span class="line">4.0K    CloudConfig</span><br><span class="line">4.0K    AutoLaunchProtocolsComponent</span><br><span class="line">0       ZxcvbnData</span><br><span class="line">0       WidevineCdm</span><br><span class="line">0       Webstore Downloads</span><br><span class="line">0       Variations</span><br><span class="line">0       Trust Protection Lists</span><br><span class="line">0       RecoveryImproved</span><br><span class="line">0       OriginTrials</span><br><span class="line">0       Notification Resources</span><br><span class="line">0       NotificationHelperMetrics</span><br><span class="line">0       Local Traces</span><br><span class="line">0       Last Version</span><br><span class="line">0       Last Browser</span><br><span class="line">0       First Run</span><br><span class="line">0       first_party_sets.db-journal</span><br><span class="line">0       FirstLaunchAfterInstallation</span><br><span class="line">0       edge_task_manager_close.txt</span><br><span class="line">0       DeferredBrowserMetrics</span><br></pre></td></tr></table></figure>
+<!-- }}} -->
+<p>成功恢复 Edge 数据了，方式令人绷不住，我看 <code>Default</code> 这个文件夹占大头，就只复制了这个文件夹。打开 Edge 后观察这个文件夹大小没有变化（增了 10M 量级）就估计八成是成功了，只不过会像新 Edge 一样弹出欢迎界面，但是数据、插件什么的全部都在，其它文件夹都自动完成了创建。所以说备份还是有必要的，而且我备份好巧不巧就只备份了这一个。我再用用看看有没有什么不对的。</p>
+<p>看了一下，似乎没有进入 Beta 的选项（也可能我找错页了），我并不是想进入 Beta，只是顺手看看有没有更新，我猜是因为 Windows 没装预览的原因。</p>
+<p>绷，Edge 给自动加了两个收藏，都是联想官网，看来联想余孽还没有清除。同时下次重装要研究一下如何纯净安装。</p>
+<p>Edge 恢复了，那损失就不大了，最大估计就是火绒了、任务计划程序等了。</p>
+<h2 id="头像">头像<a class="header-anchor" href="#头像"></a></h2>
+<p>之前我微软账户头像一直是纯紫色的，也一直没去动，现在重装后变成最普通的那种默认的人像图标了，我反而不习惯了。这不好，丧失了独特性，但是也是一样的，我懒得去动。</p>
+<p>嗯……重启完就变回来了对味了。</p>
+<h2 id="字体">字体<a class="header-anchor" href="#字体"></a></h2>
+<p>装 Mathematica 时发现字体显示好像有点烂，粗细不一，我找个时间看看如何解决。</p>
+<h2 id="光标">光标<a class="header-anchor" href="#光标"></a></h2>
+<p>恢复了一开始粗糙的光标还真是不习惯，之前还把文件夹删除了，还好没清空回收站，即使重置后回收站内容也还在（毕竟不在 C 盘），于是顺利恢复了，舒服了。用的是 Windows Cursor  Concept Default 主题，简朴而优雅。</p>
+<h2 id="开始菜单">开始菜单<a class="header-anchor" href="#开始菜单"></a></h2>
+<p>这个设置变了，「推荐的项目」我之前是设置的一行。部分能从 <code>%APPDATA%\Microsoft\Windows\Start Menu</code> 找回。不过 ProgramData 里的似乎也还在。</p>
+<h2 id="Office">Office<a class="header-anchor" href="#Office"></a></h2>
+<p>Office 里有很多我不要的，比如 Access，于是卸掉了，用 Office Tool Plus 重装。</p>
+<p>就要三大件就行了（虽然有 Outlook 和 OneDrive，但我卸了还在就无妨了）。</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://www.coolhub.top/archives/11">[安装 Office] Office Tool Plus 入门教程</a>，选择了 Microsoft 365 企业应用版（不过我的是 2021 家庭版好像，NJU 里的也都是年份的）。</p>
+<p>最后显示是 Microsoft Office Mondo 2016，忘了之前是啥了，反正界面似乎更新，但反正 Office 用不多，无妨。</p>
+<h2 id="华为电脑管家">华为电脑管家<a class="header-anchor" href="#华为电脑管家"></a></h2>
+<p>等安装 Office 时弄了一下华为电脑管家。</p>
+<p>心情助手火绒报毒了，我只有信任……</p>
+<p>心情助手自动化，全默认。之前弄的贴纸居然还是能直接用，不用重新弄新数据，也许跟我导入了 AppData 有关。</p>
+<p>当然可用性与稳定性还得观察一段时间。</p>
+<p>装完后华为驱动程序不兼容，WD 内存完整性无法打开。</p>
+<h2 id="任务计划程序">任务计划程序<a class="header-anchor" href="#任务计划程序"></a></h2>
+<p>差不多了，那就开始得恢复任务计划程序及开机启动了。也十一点半了，下午摆了会，刷了会手机。</p>
+<h2 id="基本完成">基本完成<a class="header-anchor" href="#基本完成"></a></h2>
+<p>基本完成了，基本已经变回原来的样子了，一些细枝末节的，比如火绒的重新配置，就有心情有时间再弄吧。</p>
+<p>装回来大部分后，怎么感觉更卡顿了，内存占用也更高了，Hexo 速度也变慢了很多（现在快了，重启前挺慢的），而且字体显示问题也蛮糟心的，不过我也累了，就这样吧，哪里出问题再去补坑吧。</p>
+<p>删掉 30+G 的 WSL（比导出来的大很多）后，<code>Windows.old</code> 还有 16+G，先留一段时间，过段时间再删。</p>
+<p>还有就是 Adobe 没有再装了，要用再装吧，太大了真的吃不消，再加上挺恶心的说。</p>
+<p>完场重装后，C 盘 114G，估计就只是大出来个 WSL 和 Adobe。D 盘缩水了 40+G，不过还是有 100+G 的。</p>
+<p>同时备份过程杂七杂八的东西、备份，回南京再删吧，折腾一天累死人了，顺序也暂时先不动吧，过零点了，Anki 又早先 postpone 了，明儿再补。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag"><i class="fa fa-tag"></i> 记录</a>
+              <a href="/tags/Windows11/" rel="tag"><i class="fa fa-tag"></i> Windows11</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/02/gadgets/" rel="prev" title="小玩意">
+                  <i class="fa fa-angle-left"></i> 小玩意
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lyieu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+<script src="/js/third-party/math/mhchem.min.js"></script>
+<script src="/js/third-party/math/copy-tex.min.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-comments-virid.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","dark":"auto","locale":{"placeholder":"欢迎评论~","level0":"问","level1":"哭","level2":"埋","level3":"挖","level4":"抬","level5":"死","level6":"熬","level7":"买","level8":"瞧","level9":"病","reactionTitle":"反应"},"reaction":["https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f970.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f973.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f9d0.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f632.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f610.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f641.png","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji/1f62d.png"],"emoji":["https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji","https://unpkg.com/@waline/emojis@1.2.0/tw-object","https://unpkg.com/@waline/emojis@1.2.0/tw-travel","https://unpkg.com/@waline/emojis@1.2.0/tw-weather"],"search":false,"meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"wordLimit":0,"login":"enable","pageSize":15,"texRenderer":"KaTeX","el":"#waline","comment":true,"path":"/2024/02/first-time-resetting-windows/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

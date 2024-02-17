@@ -6,7 +6,7 @@
   <link href="https://pilgrimlyieu.github.io/atom.xml" rel="self"/>
   
   <link href="https://pilgrimlyieu.github.io/"/>
-  <updated>2024-02-09T15:08:00.000Z</updated>
+  <updated>2024-02-17T00:23:09.000Z</updated>
   <id>https://pilgrimlyieu.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重置 Windows 初体验</title>
+    <link href="https://pilgrimlyieu.github.io/2024/02/first-time-resetting-windows/"/>
+    <id>https://pilgrimlyieu.github.io/2024/02/first-time-resetting-windows/</id>
+    <published>2024-02-17T00:23:09.000Z</published>
+    <updated>2024-02-17T00:23:09.000Z</updated>
+    
+    
+    <summary type="html">第一次重置 Windows11，记录一下过程，供日后参考。</summary>
+    
+    
+    
+    
+    <category term="记录" scheme="https://pilgrimlyieu.github.io/tags/%E8%AE%B0%E5%BD%95/"/>
+    
+    <category term="Windows11" scheme="https://pilgrimlyieu.github.io/tags/Windows11/"/>
+    
+  </entry>
   
   <entry>
     <title>小玩意</title>
@@ -311,25 +330,6 @@
     <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
     
     <category term="Outlook" scheme="https://pilgrimlyieu.github.io/tags/Outlook/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AutoHotkey 脚本重构小记</title>
-    <link href="https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/"/>
-    <id>https://pilgrimlyieu.github.io/2023/08/autohotkey-refactor/</id>
-    <published>2023-08-26T08:13:10.000Z</published>
-    <updated>2023-08-28T04:31:49.000Z</updated>
-    
-    
-    <summary type="html">本篇博文简单介绍了我 AutoHotkey 脚本重构过程中遇到的一些坑及我对两个版本语法的看法。</summary>
-    
-    
-    
-    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/categories/AutoHotkey/"/>
-    
-    
-    <category term="AutoHotkey" scheme="https://pilgrimlyieu.github.io/tags/AutoHotkey/"/>
     
   </entry>
   

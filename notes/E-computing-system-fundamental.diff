@@ -1,0 +1,8 @@
+--- 
++++ 
+@@ -8,4 +8,4 @@
+ katex: true
+ ---
+ 
+-1. [命题逻辑](1-propositional-logic)
++1. [计算系统概论](1-introduction-to-computing-systems)

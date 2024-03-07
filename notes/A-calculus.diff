@@ -1,7 +1,0 @@
---- 
-+++ 
-@@ -15,3 +15,4 @@
- 5. [向量代数与空间解析几何](5-vector-algebra-and-spatial-analytic-geometry)
- 6. [多元函数](6-multivariate-function)
- 7. [偏导数和全微分](7-partial-derivative-and-total-differential)
-+8. [多元复合函数偏导与泰勒公式](8-partial-derivative-of-multivariate-composite-function-and-taylor-series)

@@ -1,0 +1,7 @@
+--- 
++++ 
+@@ -9,3 +9,4 @@
+ ---
+ 
+ 1. [计算系统概论](1-introduction-to-computing-systems)
++2. [数据的机器表示](2-machine-representation-of-data)

@@ -1,0 +1,7 @@
+--- 
++++ 
+@@ -10,3 +10,4 @@
+ 
+ 1. [编程语言概述](1-programming-language-overview)
+ 2. [可计算性](2-computability)
++3. [Lambda 演算](3-lambda-calculus)

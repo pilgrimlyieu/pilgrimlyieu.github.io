@@ -1,0 +1,7 @@
+--- 
++++ 
+@@ -16,3 +16,4 @@
+ 6. [多元函数](6-multivariate-function)
+ 7. [偏导数和全微分](7-partial-derivative-and-total-differential)
+ 8. [多元复合函数偏导与泰勒公式](8-partial-derivative-of-multivariate-composite-function-and-taylor-series)
++9. [多元向量函数、方向导数、梯度、几何应用与极值](9-multivariate-vector-function-directional-derivative-gradient-geometric-application-and-extreme-value)

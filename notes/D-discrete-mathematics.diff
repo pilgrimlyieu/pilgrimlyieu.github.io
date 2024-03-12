@@ -1,0 +1,7 @@
+--- 
++++ 
+@@ -10,3 +10,4 @@
+ 
+ 1. [命题逻辑](1-propositional-logic)
+ 2. [谓词逻辑初步](2-predicate-logic-preliminary)
++3. [证明方法](3-proof-method)
